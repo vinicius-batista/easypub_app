@@ -1,6 +1,6 @@
 {
-  "name": "easypub_app",
-  "short_name": "easypub_app",
+  "name": "EasyPub",
+  "short_name": "EasyPub",
   "icons": [
     {
       "src": "/img/icons/android-chrome-192x192.png",
