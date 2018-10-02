@@ -26,7 +26,7 @@
         large
         @click="changeRoute('auth.register')"
       >
-        Registre-se
+        Cadastrar
       </v-btn>
     </v-flex>
   </v-layout>
