@@ -42,10 +42,11 @@
             </v-btn>
           </v-form>
           <h6
-            class="tertiary--text text-xs-center body-2 mt-4"
+            class="tertiary--text text-xs-center body-2 mt-4 font-weight-regular"
             @click="changeRoute('auth.login')"
           >
-            Ja possui uma conta? Entre agora!
+            Ja possui uma conta?
+            <span class="font-weight-medium">Entre agora!</span>
           </h6>
         </v-card>
       </v-flex>
