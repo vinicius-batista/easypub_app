@@ -1,18 +1,12 @@
 <template>
   <div>
-    <LogoCard title="Cadastro" />
+    <LogoCard title="Login" />
     <FormCard
-      helperText="Já possui uma conta?"
-      actionText="Entre agora!"
-      @actionClick="changeRoute('auth.login')"
+      helperText="Não possui uma conta?"
+      actionText="Cadastre-se agora!"
+      @actionClick="changeRoute('auth.register')"
     >
       <v-form>
-        <v-text-field
-          label="Nome"
-          v-model="input.name"
-          prepend-icon="fa-user"
-          box
-        />
         <v-text-field
           label="Email"
           v-model="input.email"
@@ -26,6 +20,13 @@
           prepend-icon="fa-lock"
           box
         />
+        <h6
+          class="tertiary--text body-2 font-weight-medium mb-3"
+          @click="changeRoute('auth.register')"
+          style="cursor: pointer;"
+        >
+          Esqueceu sua senha?
+        </h6>
         <v-btn
           type="submit"
           round
@@ -33,7 +34,7 @@
           block
           large
         >
-          Enviar
+          Acessar
         </v-btn>
       </v-form>
     </FormCard>
@@ -45,7 +46,7 @@ import LogoCard from '../components/LogoCard'
 import FormCard from '../components/FormCard'
 
 export default {
-  name: 'Register',
+  name: 'Login',
   components: {
     LogoCard,
     FormCard
