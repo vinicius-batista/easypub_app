@@ -11,7 +11,7 @@ services:
         target: /app
     ports:
       - "8080:8080"
-    command: npm run serve
+    command: yarn serve
 
   # NGINX preview of 'npm run build' contents
   preview:
