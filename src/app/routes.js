@@ -1,7 +1,7 @@
-import { homeRoutes } from './home'
+import { mainRoutes } from './main'
 import { authRoutes } from './auth'
 
 export default [
-  ...homeRoutes,
+  ...mainRoutes,
   ...authRoutes
 ]
