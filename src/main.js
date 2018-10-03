@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import './plugins/vuetify'
+import './plugins/veevalidate'
 import App from './App.vue'
 import { router, store } from './services'
 import './registerServiceWorker'
