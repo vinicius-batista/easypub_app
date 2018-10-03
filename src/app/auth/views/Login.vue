@@ -6,18 +6,19 @@
       actionText="Cadastre-se agora!"
       @actionClick="changeRoute('auth.register')"
     >
-      <v-form>
+      <v-form v-model="valid">
         <v-text-field
-          label="Email"
-          v-model="input.email"
-          prepend-icon="fa-envelope"
-          box
-        />
-        <v-text-field
-          type="password"
-          label="Senha"
-          v-model="input.password"
-          prepend-icon="fa-lock"
+          class="my-2"
+          v-for="{ label, model, icon, type, rules } in form"
+          v-validate="rules"
+          :data-vv-name="model"
+          :data-vv-as="label.toLowerCase()"
+          :type="type"
+          :key="model"
+          :label="label"
+          v-model="input[model]"
+          :prepend-icon="icon"
+          :error-messages="errors.collect(model)"
           box
         />
         <h6
@@ -33,6 +34,7 @@
           color="primary"
           block
           large
+          :disabled="!valid"
         >
           Acessar
         </v-btn>
@@ -52,11 +54,26 @@ export default {
     FormCard
   },
   data: () => ({
+    valid: false,
     input: {
-      name: '',
       email: '',
       password: ''
-    }
+    },
+    form: [
+      {
+        label: 'Email',
+        model: 'email',
+        icon: 'fa-envelope',
+        rules: 'required|email'
+      },
+      {
+        label: 'Senha',
+        model: 'password',
+        icon: 'fa-lock',
+        type: 'password',
+        rules: 'required|min:6'
+      }
+    ]
   }),
   methods: {
     changeRoute (name) {

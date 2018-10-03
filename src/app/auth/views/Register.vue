@@ -6,24 +6,19 @@
       actionText="Entre agora!"
       @actionClick="changeRoute('auth.login')"
     >
-      <v-form>
+      <v-form v-model="valid">
         <v-text-field
-          label="Nome"
-          v-model="input.name"
-          prepend-icon="fa-user"
-          box
-        />
-        <v-text-field
-          label="Email"
-          v-model="input.email"
-          prepend-icon="fa-envelope"
-          box
-        />
-        <v-text-field
-          type="password"
-          label="Senha"
-          v-model="input.password"
-          prepend-icon="fa-lock"
+          class="my-2"
+          v-for="{ label, model, icon, type, rules } in form"
+          v-validate="rules"
+          :data-vv-name="model"
+          :data-vv-as="label.toLowerCase()"
+          :type="type"
+          :key="model"
+          :label="label"
+          v-model="input[model]"
+          :prepend-icon="icon"
+          :error-messages="errors.collect(model)"
           box
         />
         <v-btn
@@ -32,6 +27,7 @@
           color="primary"
           block
           large
+          :disabled="!valid"
         >
           Enviar
         </v-btn>
@@ -51,11 +47,33 @@ export default {
     FormCard
   },
   data: () => ({
+    valid: false,
     input: {
       name: '',
       email: '',
       password: ''
-    }
+    },
+    form: [
+      {
+        label: 'Nome',
+        model: 'name',
+        icon: 'fa-user',
+        rules: 'required|alpha'
+      },
+      {
+        label: 'Email',
+        model: 'email',
+        icon: 'fa-envelope',
+        rules: 'required|email'
+      },
+      {
+        label: 'Senha',
+        model: 'password',
+        icon: 'fa-lock',
+        type: 'password',
+        rules: 'required|min:6'
+      }
+    ]
   }),
   methods: {
     changeRoute (name) {
