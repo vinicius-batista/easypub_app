@@ -35,6 +35,7 @@
           block
           large
           :disabled="!valid"
+          @click="$router.push({ name: 'home' })"
         >
           Acessar
         </v-btn>
