@@ -9,16 +9,16 @@
       <v-form v-model="valid">
         <v-text-field
           class="my-2"
-          v-for="{ label, model, icon, type, rules } in form"
+          v-for="{ label, model, icon, type, rules, mask } in form"
           v-validate="rules"
           :data-vv-name="model"
           :data-vv-as="label.toLowerCase()"
-          :type="type"
           :key="model"
           :label="label"
           v-model="input[model]"
           :prepend-icon="icon"
           :error-messages="errors.collect(model)"
+          v-bind="{ type, mask }"
           box
         />
         <v-btn
@@ -51,7 +51,8 @@ export default {
     input: {
       name: '',
       email: '',
-      password: ''
+      password: '',
+      phone: ''
     },
     form: [
       {
@@ -65,6 +66,13 @@ export default {
         model: 'email',
         icon: 'fa-envelope',
         rules: 'required|email'
+      },
+      {
+        label: 'Telefone',
+        model: 'phone',
+        icon: 'fa-phone',
+        rules: 'required',
+        mask: '(##) ##### - ####'
       },
       {
         label: 'Senha',
