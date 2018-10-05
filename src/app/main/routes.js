@@ -1,9 +1,7 @@
-import Main from './views/Main'
-
 export default [
   {
     path: '/',
     name: 'main',
-    component: Main
+    component: () => import(/* webpackChunkName: "main" */ './views/Main')
   }
 ]

@@ -1,6 +1,5 @@
 import { mainRoutes } from './main'
 import { authRoutes } from './auth'
-import Home from './home/views/Home'
 
 export default [
   ...mainRoutes,
@@ -9,7 +8,7 @@ export default [
     name: 'home',
     path: '/home/',
     meta: { requiresAuth: true },
-    component: Home,
+    component: () => import(/* webpackChunkName: "home" */ './home/views/Home'),
     children: []
   }
 ]
