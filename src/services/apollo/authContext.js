@@ -7,17 +7,17 @@ import { prop } from 'ramda'
 
 const newAccessToken = (request) =>
   store
-    .refreshToken()
+    .dispatch('auth/refeshToken')
     .then(refreshToken => graphqlRequest(newAccessTokenQuery, { refreshToken }))
     .then(getData('newAccessToken'))
     .then(prop('accessToken'))
-    .then(accessToken => store.setAccessToken(accessToken))
+    .then(accessToken => store.dispatch('setAccessToken', accessToken))
     .then(authHeader(request))
     .catch(() => request)
 
 export const withAuthToken = setContext((request) => {
   return store
-    .accessToken()
+    .dispatch('auth/accessToken')
     .then(accessToken => {
       if (!accessToken) {
         return request

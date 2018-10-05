@@ -9,6 +9,6 @@ const options = {
   socketEndpoint: process.env.VUE_APP_GRAPHQL_SOCKET_ENDPOINT || 'ws://0.0.0.0:4000/socket'
 }
 
-export const apolloProvider = new VueApollo({
+export default new VueApollo({
   defaultClient: createApolloClient(options)
 })

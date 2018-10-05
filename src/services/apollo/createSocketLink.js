@@ -26,7 +26,7 @@ class SocketLink extends ApolloLink {
     this.url = url
 
     store
-      .accessToken()
+      .dispatch('auth/accessToken')
       .then(createBearerToken)
       .then(accessToken => {
         this.accessToken = accessToken
