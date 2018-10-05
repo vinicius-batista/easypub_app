@@ -6,40 +6,48 @@
       actionText="Cadastre-se agora!"
       @actionClick="changeRoute('auth.register')"
     >
-      <v-form v-model="valid">
-        <v-text-field
-          class="my-2"
-          v-for="{ label, model, icon, type, rules } in form"
-          v-validate="rules"
-          :data-vv-name="model"
-          :data-vv-as="label.toLowerCase()"
-          :type="type"
-          :key="model"
-          :label="label"
-          v-model="input[model]"
-          :prepend-icon="icon"
-          :error-messages="errors.collect(model)"
-          box
-        />
-        <h6
-          class="tertiary--text body-2 font-weight-medium mb-3"
-          @click="changeRoute('auth.register')"
-          style="cursor: pointer;"
+      <FormErrorMessage ref="formErrorMessage" />
+      <ApolloMutation
+          :mutation="$options.loginUserMutation"
+          @done="submitSuccess"
+          @error="handleError"
         >
-          Esqueceu sua senha?
-        </h6>
-        <v-btn
-          type="submit"
-          round
-          color="primary"
-          block
-          large
-          :disabled="!valid"
-          @click="$router.push({ name: 'home' })"
-        >
-          Acessar
-        </v-btn>
-      </v-form>
+          <template slot-scope="{ mutate }">
+            <v-form v-model="valid" @submit.prevent="mutate({ variables: { input } })">
+              <v-text-field
+                class="my-2"
+                v-for="{ label, model, icon, type, rules } in form"
+                v-validate="rules"
+                :data-vv-name="model"
+                :data-vv-as="label.toLowerCase()"
+                :type="type"
+                :key="model"
+                :label="label"
+                v-model="input[model]"
+                :prepend-icon="icon"
+                :error-messages="errors.collect(model)"
+                box
+              />
+              <h6
+                class="tertiary--text body-2 font-weight-medium mb-3"
+                @click="changeRoute('auth.register')"
+                style="cursor: pointer;"
+              >
+                Esqueceu sua senha?
+              </h6>
+              <v-btn
+                type="submit"
+                round
+                color="primary"
+                block
+                large
+                :disabled="!valid"
+              >
+                Acessar
+              </v-btn>
+            </v-form>
+          </template>
+      </ApolloMutation>
     </FormCard>
   </div>
 </template>
@@ -47,13 +55,19 @@
 <script>
 import LogoCard from '../components/LogoCard'
 import FormCard from '../components/FormCard'
+import FormErrorMessage from '@/components/FormErrorMessage'
+import { getData } from '@/helpers/graphql'
+import { mapActions } from 'vuex'
+import { loginUserMutation } from '@/domains/auth/graphql'
 
 export default {
   name: 'Login',
   components: {
     LogoCard,
-    FormCard
+    FormCard,
+    FormErrorMessage
   },
+  loginUserMutation,
   data: () => ({
     valid: false,
     input: {
@@ -77,8 +91,19 @@ export default {
     ]
   }),
   methods: {
+    ...mapActions('auth', ['setTokens']),
     changeRoute (name) {
       this.$router.push({ name })
+    },
+    submitSuccess (result) {
+      return Promise
+        .resolve(result)
+        .then(getData('loginUser'))
+        .then(this.setTokens)
+        .then(() => this.changeRoute('home'))
+    },
+    handleError (error) {
+      this.$refs.formErrorMessage.handleError(error)
     }
   }
 }
