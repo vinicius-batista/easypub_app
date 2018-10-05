@@ -8,7 +8,7 @@ export default function (to, from, next) {
     .then(() =>
       requiresAuth
         ? next()
-        : next({ name: 'home' })
+        : next({ name: 'home.bars' })
     )
     .catch(() =>
       requiresAuth

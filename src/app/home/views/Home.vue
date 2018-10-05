@@ -1,7 +1,9 @@
 <template>
   <div>
     <Toolbar />
-    <router-view></router-view>
+    <v-content app>
+      <router-view></router-view>
+    </v-content>
     <BottomNavigation />
   </div>
 </template>
