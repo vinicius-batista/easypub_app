@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import Vuetify from 'vuetify'
-import 'vuetify/dist/vuetify.min.css'
+import '@/assets/styles/main.styl'
 import pt from 'vuetify/es5/locale/pt'
 import colors from 'vuetify/es5/util/colors'
 
