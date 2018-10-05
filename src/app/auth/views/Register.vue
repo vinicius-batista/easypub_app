@@ -12,7 +12,7 @@
           @done="submitSuccess"
           @error="handleError"
         >
-          <template slot-scope="{ mutate }">
+          <template slot-scope="{ mutate, loading }">
             <v-form v-model="valid" @submit.prevent="mutate({ variables: { input } })">
               <v-text-field
                 class="my-2"
@@ -35,6 +35,7 @@
                 block
                 large
                 :disabled="!valid"
+                v-bind="{ loading }"
               >
                 Enviar
               </v-btn>
