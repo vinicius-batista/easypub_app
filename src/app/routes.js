@@ -8,6 +8,7 @@ export default [
   {
     name: 'home',
     path: '/home/',
+    meta: { requiresAuth: true },
     component: Home,
     children: []
   }
