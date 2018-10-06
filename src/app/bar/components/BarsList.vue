@@ -1,14 +1,15 @@
-<template functional>
+<template>
   <v-layout row wrap>
     <v-flex xs12>
       <v-list three-line>
         <v-subheader>
           Bares
         </v-subheader>
-        <template v-for="{ title, avatar, status} in props.bars">
+        <template v-for="{ id, title, avatar, status} in bars">
           <v-list-tile
-            :key="title"
+            :key="id"
             avatar
+            :to="{ name: 'home.bar', params: { id } }"
           >
             <v-list-tile-avatar>
               <img :src="avatar">
@@ -19,23 +20,7 @@
             </v-list-tile-content>
 
             <v-list-tile-action>
-              <v-chip
-                v-if="status === 'aberto'"
-                small
-                disabled
-                color="green lighten-4"
-                class="green--text text--darken-4"
-              >
-                Aberto
-              </v-chip>
-              <v-chip
-                v-else
-                small
-                color="red lighten-4"
-                class="red--text text--darken-4"
-              >
-                Fechado
-              </v-chip>
+              <BarStatusChip v-bind="{ status }"/>
             </v-list-tile-action>
           </v-list-tile>
         </template>
@@ -45,8 +30,11 @@
 </template>
 
 <script>
+import BarStatusChip from './BarStatusChip'
+
 export default {
   name: 'BarsList',
+  components: { BarStatusChip },
   props: {
     bars: Array
   }
