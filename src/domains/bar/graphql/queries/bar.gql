@@ -1,0 +1,12 @@
+query($id: String!) {
+  bar(id: $id) {
+    name,
+    address,
+    avatar,
+    status,
+    menuCategories {
+      id,
+      name
+    }
+  }
+}

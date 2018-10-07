@@ -6,11 +6,9 @@
           <div class="headline"> <span>{{item.name}}</span>
           </div>
           <v-spacer></v-spacer>
-          <v-subheader class="headline">R$ {{item.price}},00</v-subheader>
+          <v-subheader class="headline">R$ {{item.price}}</v-subheader>
         </v-card-title>
-        <v-img :alt="item.description" height="auto" :src="item.photo" class="mx-4">
-
-        </v-img>
+        <v-img :alt="item.description" height="auto" :src="item.photo" class="mx-4" />
         <v-card-text>
           <v-subheader>{{item.description}}</v-subheader>
         </v-card-text>
@@ -26,7 +24,8 @@
         </v-card-text>
 
         <v-card-actions>
-          <v-btn @click="status = !status" flat block large color="secondary">Adicionar Observacao
+          <v-btn @click="status = !status" flat block large color="secondary">
+            Adicionar observação
             <v-icon right>fas fa-plus</v-icon>
           </v-btn>
         </v-card-actions>

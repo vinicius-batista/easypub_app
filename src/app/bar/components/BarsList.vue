@@ -1,24 +1,23 @@
 <template>
   <v-layout row wrap>
     <v-flex xs12>
-      <v-list three-line>
+      <v-list two-line>
         <v-subheader>
           Bares
         </v-subheader>
-        <template v-for="{ id, title, avatar, status} in bars">
+        <template v-for="{ id, name, avatar, status } in bars">
           <v-list-tile
             :key="id"
             avatar
             :to="{ name: 'home.bar', params: { id } }"
           >
-            <v-list-tile-avatar>
-              <img :src="avatar">
+            <v-list-tile-avatar color="secondary">
+              <img v-if="avatar" :src="avatar">
+              <span v-else> {{ name.charAt(0).toUpperCase() }} </span>
             </v-list-tile-avatar>
-
             <v-list-tile-content>
-              <v-list-tile-title>{{ title }}</v-list-tile-title>
+              <v-list-tile-title>{{ name }}</v-list-tile-title>
             </v-list-tile-content>
-
             <v-list-tile-action>
               <BarStatusChip v-bind="{ status }"/>
             </v-list-tile-action>

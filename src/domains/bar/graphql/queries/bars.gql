@@ -1,0 +1,8 @@
+query($name:String!) {
+  bars(name: $name) {
+    id,
+    name,
+    status,
+    insertedAt
+  }
+}

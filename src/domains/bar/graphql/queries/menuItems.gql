@@ -1,0 +1,7 @@
+query($categoryId:String!){
+  menuItems(categoryId:$categoryId) {
+    id,
+    name,
+    price
+  }
+}
