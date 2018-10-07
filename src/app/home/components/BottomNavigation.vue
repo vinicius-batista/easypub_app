@@ -7,10 +7,11 @@
       color="white"
     >
       <v-btn
-        v-for="{text, icon} in buttons"
+        v-for="{text, icon, to} in buttons"
         :key="text"
         color="primary"
         flat
+        :to="to"
       >
         {{text}}
         <v-icon>{{icon}}</v-icon>
@@ -27,7 +28,8 @@ export default {
     buttons: [
       {
         text: 'Home',
-        icon: 'fa-home'
+        icon: 'fa-home',
+        to: { name: 'home.bars' }
       },
       {
         text: 'Pedidos',
@@ -35,7 +37,8 @@ export default {
       },
       {
         text: 'Perfil',
-        icon: 'fa-user'
+        icon: 'fa-user',
+        to: { name: 'home.profile' }
       }
     ]
   })
