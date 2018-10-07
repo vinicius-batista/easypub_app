@@ -1,5 +1,11 @@
 <template>
-  <v-alert type="error" v-model="hasError" color="red lighten-4" class="alert-box mb-4">
+  <v-alert
+    type="error"
+    v-model="hasError"
+    color="red lighten-4"
+    class="alert-box mb-4"
+    transition="scale-transition"
+   >
     <span class="red--text text--darken-4 alert-box body-1">
       {{ errorMessage }}
     </span>
