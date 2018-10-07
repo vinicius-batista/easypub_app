@@ -109,7 +109,7 @@ export default {
         .resolve(result)
         .then(getData('registerUser'))
         .then(this.setTokens)
-        .then(() => this.changeRoute('home'))
+        .then(() => this.changeRoute('home.bars'))
     },
     handleError (error) {
       this.$refs.formErrorMessage.handleError(error)
