@@ -27,7 +27,7 @@
                   :id="`tab-${menuCategory.id}`"
                   lazy
                 >
-                  <MenuItemList :categoryId="menuCategory.id"/>
+                  <MenuItemsList :categoryId="menuCategory.id"/>
                 </v-tab-item>
               </v-tabs-items>
             </v-flex>
@@ -40,12 +40,12 @@
 
 <script>
 import BarDetail from '../components/BarDetail'
-import MenuItemList from '../components/MenuItemList'
+import MenuItemsList from '../components/MenuItemsList'
 import { barQuery } from '@/domains/bar/graphql'
 
 export default {
   name: 'Bar',
-  components: { BarDetail, MenuItemList },
+  components: { BarDetail, MenuItemsList },
   barQuery,
   props: { id: String },
   data: () => ({

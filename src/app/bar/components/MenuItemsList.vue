@@ -26,7 +26,7 @@
 import { menuItemsQuery } from '@/domains/bar/graphql'
 
 export default {
-  name: 'MenuItemList',
+  name: 'MenuItemsList',
   menuItemsQuery,
   props: {
     categoryId: String
