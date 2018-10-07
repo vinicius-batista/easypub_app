@@ -71,7 +71,7 @@ export default {
         label: 'Nome',
         model: 'name',
         icon: 'fa-user',
-        rules: 'required|alpha'
+        rules: 'required|alpha_spaces'
       },
       {
         label: 'Email',

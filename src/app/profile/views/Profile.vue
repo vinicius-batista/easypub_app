@@ -1,31 +1,40 @@
 <template>
   <v-container grid-list-xs class="px-0 py-5">
     <ProfileCard :edit.sync="edit">
-      <FormErrorMessage ref="formErrorMessage"/>
-      <v-form @submit.prevent="" v-model="valid">
-        <v-text-field
-          class="my-2"
-          v-for="{ label, model, icon, type, rules, mask } in form"
-          v-validate="rules"
-          :data-vv-name="model"
-          :data-vv-as="label.toLowerCase()"
-          :key="model"
-          :label="label"
-          v-model="input[model]"
-          :prepend-icon="icon"
-          :error-messages="errors.collect(model)"
-          v-bind="{ type, mask }"
-          box
-          :disabled="!edit"
-        />
-      </v-form>
-      <v-layout justify-center>
-        <v-flex xs6>
-          <v-scale-transition>
-            <SendButton v-if="edit" text="Enviar" :disabled="!valid" />
-          </v-scale-transition>
-        </v-flex>
-      </v-layout>
+      <ApolloMutation
+        :mutation="$options.updateProfileMutation"
+        :update="updateStore"
+        @done="submitSuccess()"
+        @error="handleError"
+      >
+        <template slot-scope="{ mutate, loading }">
+          <FormErrorMessage ref="formErrorMessage"/>
+          <v-form @submit.prevent="mutate({ variables: { input }})" v-model="valid">
+            <v-text-field
+              class="my-2"
+              v-for="{ label, model, icon, type, rules, mask } in form"
+              v-validate="rules"
+              :data-vv-name="model"
+              :data-vv-as="label.toLowerCase()"
+              :key="model"
+              :label="label"
+              v-model="input[model]"
+              :prepend-icon="icon"
+              :error-messages="errors.collect(model)"
+              v-bind="{ type, mask }"
+              box
+              :disabled="!edit"
+            />
+            <v-layout justify-center>
+              <v-flex xs6>
+                <v-scale-transition>
+                  <SendButton v-if="edit" text="Enviar" :disabled="!valid" :loading="loading" />
+                </v-scale-transition>
+              </v-flex>
+            </v-layout>
+          </v-form>
+        </template>
+      </ApolloMutation>
     </ProfileCard>
   </v-container>
 </template>
@@ -34,12 +43,13 @@
 import SendButton from '@/components/SendButton'
 import FormErrorMessage from '@/components/FormErrorMessage'
 import ProfileCard from '../components/ProfileCard'
-import { profileQuery } from '@/domains/user/graphql'
+import { profileQuery, updateProfileMutation } from '@/domains/user/graphql'
 import { merge } from 'ramda'
 
 export default {
   name: 'Profile',
   components: { SendButton, FormErrorMessage, ProfileCard },
+  updateProfileMutation,
   data: () => ({
     valid: true,
     edit: false,
@@ -53,7 +63,7 @@ export default {
         label: 'Nome',
         model: 'name',
         icon: 'fa-user',
-        rules: 'required|alpha'
+        rules: 'required|alpha_spaces'
       },
       {
         label: 'Email',
@@ -70,6 +80,22 @@ export default {
       }
     ]
   }),
+  methods: {
+    handleError (error) {
+      this.$refs.formErrorMessage.handleError(error)
+    },
+    submitSuccess () {
+      this.edit = false
+      this.$refs.formErrorMessage.reset()
+    },
+    updateStore (store, { data: updateProfile }) {
+      const { profile } = store.readQuery({ query: profileQuery })
+      store.writeQuery({
+        query: profileQuery,
+        data: { profile: merge(profile, updateProfile) }
+      })
+    }
+  },
   apollo: {
     profile: {
       query: profileQuery,
