@@ -3,7 +3,7 @@
     <v-flex xs12>
       <v-card class="pa-4">
         <v-btn outline small round color="primary" @click="listeners['update:edit'](!props.edit)">
-            Editar dados
+          Editar dados
         </v-btn>
         <slot></slot>
       </v-card>
