@@ -1,6 +1,8 @@
 <template>
-  <v-alert type="error" v-model="hasError">
-    {{ errorMessage }}
+  <v-alert type="error" v-model="hasError" color="red lighten-4" class="alert-box mb-4">
+    <span class="red--text text--darken-4 alert-box body-1">
+      {{ errorMessage }}
+    </span>
   </v-alert>
 </template>
 
@@ -23,3 +25,9 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+.alert-box {
+  border-color: rgba(183, 28, 28, 0.788) !important;
+}
+</style>
