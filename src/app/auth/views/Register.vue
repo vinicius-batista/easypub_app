@@ -28,17 +28,11 @@
                 v-bind="{ type, mask }"
                 box
               />
-              <v-btn
-                type="submit"
-                round
-                color="primary"
-                block
-                large
+              <SendButton
+                text="Enviar"
+                v-bind="{loading}"
                 :disabled="!valid"
-                v-bind="{ loading }"
-              >
-                Enviar
-              </v-btn>
+              />
             </v-form>
           </template>
       </ApolloMutation>
@@ -50,6 +44,7 @@
 import LogoCard from '../components/LogoCard'
 import FormCard from '../components/FormCard'
 import FormErrorMessage from '@/components/FormErrorMessage'
+import SendButton from '@/components/SendButton'
 import { registerUserMutation } from '@/domains/auth/graphql'
 import { getData } from '@/helpers/graphql'
 import { mapActions } from 'vuex'
@@ -59,7 +54,8 @@ export default {
   components: {
     LogoCard,
     FormCard,
-    FormErrorMessage
+    FormErrorMessage,
+    SendButton
   },
   registerUserMutation,
   data: () => ({

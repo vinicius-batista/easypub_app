@@ -35,17 +35,11 @@
               >
                 Esqueceu sua senha?
               </h6>
-              <v-btn
-                type="submit"
-                round
-                color="primary"
-                block
-                large
+              <SendButton
+                text="Acessar"
+                v-bind="{loading}"
                 :disabled="!valid"
-                v-bind="{ loading }"
-              >
-                Acessar
-              </v-btn>
+              />
             </v-form>
           </template>
       </ApolloMutation>
@@ -57,6 +51,7 @@
 import LogoCard from '../components/LogoCard'
 import FormCard from '../components/FormCard'
 import FormErrorMessage from '@/components/FormErrorMessage'
+import SendButton from '@/components/SendButton'
 import { getData } from '@/helpers/graphql'
 import { mapActions } from 'vuex'
 import { loginUserMutation } from '@/domains/auth/graphql'
@@ -66,7 +61,8 @@ export default {
   components: {
     LogoCard,
     FormCard,
-    FormErrorMessage
+    FormErrorMessage,
+    SendButton
   },
   loginUserMutation,
   data: () => ({
