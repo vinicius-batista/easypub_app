@@ -16,7 +16,7 @@ export default [
     name: 'home.menuitem',
     path: '/bar/menu-item/:id',
     meta: { requiresAuth: true },
-    component: () => import(/* webpackChunkName: "home" */ './views/ItemDetails'),
+    component: () => import(/* webpackChunkName: "home" */ './views/MenuItem'),
     props: true
   }
 ]

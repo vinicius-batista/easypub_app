@@ -1,0 +1,11 @@
+query($id:String!){
+  menuItem(id:$id) {
+    id,
+    name,
+    price,
+    photo,
+    waitingTime,
+    description,
+    peopleCount
+  }
+}
