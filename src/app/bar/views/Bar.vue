@@ -3,6 +3,7 @@
     <ApolloQuery
       :query="$options.barQuery"
       :variables="{ id }"
+      @result="changeToolbarTitle"
     >
       <template slot-scope="{ result: { data } }">
         <div v-if="data">
@@ -42,6 +43,7 @@
 import BarDetail from '../components/BarDetail'
 import MenuItemsList from '../components/MenuItemsList'
 import { barQuery } from '@/domains/bar/graphql'
+import { mapMutations } from 'vuex'
 
 export default {
   name: 'Bar',
@@ -50,6 +52,16 @@ export default {
   props: { id: String },
   data: () => ({
     category: ''
-  })
+  }),
+  mounted () {
+    this.showBackButton()
+  },
+  methods: {
+    ...mapMutations('home', ['showBackButton', 'setTitle']),
+    changeToolbarTitle ({ data }) {
+      const { bar } = data
+      this.setTitle(bar.name)
+    }
+  }
 }
 </script>

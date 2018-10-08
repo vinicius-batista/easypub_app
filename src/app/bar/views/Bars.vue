@@ -17,6 +17,7 @@
 import SearchInput from '../components/SearchInput'
 import BarsList from '../components/BarsList'
 import { barsQuery } from '@/domains/bar/graphql'
+import { mapMutations } from 'vuex'
 
 export default {
   name: 'Bars',
@@ -24,6 +25,13 @@ export default {
   barsQuery,
   data: () => ({
     search: ''
-  })
+  }),
+  mounted () {
+    this.hiddenBackButton()
+    this.setTitle('EasyPub')
+  },
+  methods: {
+    ...mapMutations('home', ['hiddenBackButton', 'setTitle'])
+  }
 }
 </script>

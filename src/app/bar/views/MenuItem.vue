@@ -6,6 +6,7 @@
           <ApolloQuery
             :query="$options.menuItemQuery"
             :variables="{ id }"
+            @result="changeToolbarTitle"
           >
             <template slot-scope="{ result: { data } }">
               <div v-if="data">
@@ -34,6 +35,7 @@
 <script>
 import MenuItemDescription from '../components/MenuItemDescription'
 import { menuItemQuery } from '@/domains/bar/graphql'
+import { mapMutations } from 'vuex'
 
 export default {
   name: 'MenuItem',
@@ -44,6 +46,16 @@ export default {
   },
   data: () => ({
     showObservation: false
-  })
+  }),
+  mounted () {
+    this.showBackButton()
+  },
+  methods: {
+    ...mapMutations('home', ['showBackButton', 'setTitle']),
+    changeToolbarTitle ({ data }) {
+      const { menuItem } = data
+      this.setTitle(menuItem.name)
+    }
+  }
 }
 </script>

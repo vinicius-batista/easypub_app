@@ -1,11 +1,13 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import { authStore } from '@/domains/auth'
+import { homeStore } from '@/domains/home'
 
 Vue.use(Vuex)
 
 export default new Vuex.Store({
   modules: {
-    auth: authStore
+    auth: authStore,
+    home: homeStore
   }
 })
