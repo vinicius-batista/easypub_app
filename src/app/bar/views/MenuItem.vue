@@ -6,23 +6,11 @@
           <ApolloQuery
             :query="$options.menuItemQuery"
             :variables="{ id }"
-            @result="changeToolbarTitle"
           >
             <template slot-scope="{ result: { data } }">
               <div v-if="data">
                 <MenuItemDescription v-bind="data.menuItem" />
-                <v-card-actions>
-                  <v-btn @click="showObservation = !showObservation" flat block large color="secondary">
-                    Adicionar observação
-                    <v-icon right>fas fa-plus</v-icon>
-                  </v-btn>
-                </v-card-actions>
-                <v-textarea v-if="showObservation" outline placeholder="Digite aqui sua obersavação"></v-textarea>
-                <v-card-actions class="text-xs-center">
-                  <v-spacer></v-spacer>
-                  <v-btn round block color="primary">PEDIR</v-btn>
-                  <v-spacer></v-spacer>
-                </v-card-actions>
+                <MenuItemOrder :itemId="id" :price="data.menuItem.price"/>
               </div>
             </template>
           </ApolloQuery>
@@ -34,28 +22,23 @@
 
 <script>
 import MenuItemDescription from '../components/MenuItemDescription'
+import MenuItemOrder from '../components/MenuItemOrder'
 import { menuItemQuery } from '@/domains/bar/graphql'
 import { mapMutations } from 'vuex'
 
 export default {
   name: 'MenuItem',
   menuItemQuery,
-  components: { MenuItemDescription },
+  components: { MenuItemDescription, MenuItemOrder },
   props: {
     id: String
   },
-  data: () => ({
-    showObservation: false
-  }),
   mounted () {
     this.showBackButton()
+    this.setTitle('DETALHES')
   },
   methods: {
-    ...mapMutations('home', ['showBackButton', 'setTitle']),
-    changeToolbarTitle ({ data }) {
-      const { menuItem } = data
-      this.setTitle(menuItem.name)
-    }
+    ...mapMutations('home', ['showBackButton', 'setTitle'])
   }
 }
 </script>
