@@ -42,7 +42,7 @@
       <v-btn block color="primary" large>
         PEDIR
         <v-spacer></v-spacer>
-        R$ {{ totalPrice }}
+        {{ totalPrice | formatMoney }}
       </v-btn>
     </v-card-actions>
   </div>

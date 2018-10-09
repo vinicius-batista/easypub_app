@@ -4,7 +4,7 @@
       <div class="headline"> <span>{{props.name}}</span>
       </div>
       <v-spacer></v-spacer>
-      <v-subheader class="headline">R$ {{props.price}}</v-subheader>
+      <v-subheader class="headline">{{props.price | formatMoney}}</v-subheader>
     </v-card-title>
 
     <v-img

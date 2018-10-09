@@ -14,7 +14,7 @@
             <v-list-tile-title>{{ name }}</v-list-tile-title>
           </v-list-tile-content>
           <v-list-tile-action>
-            <v-subheader> R$ {{ price }}</v-subheader>
+            <v-subheader> {{ price | formatMoney }}</v-subheader>
           </v-list-tile-action>
         </v-list-tile>
       </v-list>
