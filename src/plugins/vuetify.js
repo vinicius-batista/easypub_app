@@ -13,6 +13,6 @@ Vue.use(Vuetify, {
   theme: {
     primary: colors.blue.darken4,
     secondary: colors.lightBlue.lighten2,
-    tertiary: colors.blueGrey.darken2
+    tertiary: colors.grey.darken3
   }
 })

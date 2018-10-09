@@ -1,11 +1,9 @@
 <template functional>
   <div>
     <v-card-title primary-title>
-      <div class="headline tertiary--text font-weight-bold">
+      <h4 class="headline tertiary--text font-weight-bold">
         {{props.name}}
-      </div>
-      <v-spacer></v-spacer>
-      <v-subheader class="headline">{{props.price | formatMoney}}</v-subheader>
+      </h4>
     </v-card-title>
 
     <v-img
