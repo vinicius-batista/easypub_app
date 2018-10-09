@@ -5,10 +5,8 @@
         <v-layout row align-center>
           <v-flex xs7>
             <v-card-title primary-title>
-              <div>
-                <div class="headline">{{ name }}</div>
-                <div>{{ address }}</div>
-              </div>
+              <div class="headline tertiary--text font-weight-medium">{{ name }}</div>
+              <div class="tertiary--text subheading py-2">{{ address }}</div>
             </v-card-title>
           </v-flex>
           <v-flex xs5>

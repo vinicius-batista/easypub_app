@@ -1,7 +1,8 @@
 <template functional>
   <div>
     <v-card-title primary-title>
-      <div class="headline"> <span>{{props.name}}</span>
+      <div class="headline tertiary--text font-weight-bold">
+        {{props.name}}
       </div>
       <v-spacer></v-spacer>
       <v-subheader class="headline">{{props.price | formatMoney}}</v-subheader>
@@ -15,20 +16,20 @@
       class="mx-4"
     />
 
-    <v-card-text>
-      <v-subheader>{{props.description}}</v-subheader>
+    <v-card-text class="body-2 pa-4 font-weight-regular">
+      {{props.description}}
     </v-card-text>
 
-    <v-card-text class="text-xs-center">
-      <span class="body-2 mr-3" v-if="props.waitingTime">
-        <v-icon>fa-clock</v-icon>
-        {{props.waitingTime}}
-      </span>
-      <span class="body-2 ml-2" v-if="props.peopleCount">
-        <v-icon>fa-users</v-icon>
-        {{props.peopleCount}} Pessoas
-      </span>
-    </v-card-text>
+    <v-layout justify-center class="py-4">
+      <v-flex xs4 class="body-2" v-if="props.waitingTime">
+        <v-icon color="grey">fa-clock</v-icon>
+        <span class="tertiary--text px-2 font-weight-bold">{{props.waitingTime}}</span>
+      </v-flex>
+      <v-flex xs4 class="body-2" v-if="props.peopleCount">
+        <v-icon color="grey">fa-users</v-icon>
+        <span class="tertiary--text px-2 font-weight-bold">{{props.peopleCount}} Pessoas</span>
+      </v-flex>
+    </v-layout>
   </div>
 </template>
 
