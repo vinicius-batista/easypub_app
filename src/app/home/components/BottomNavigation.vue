@@ -33,7 +33,8 @@ export default {
       },
       {
         text: 'Pedidos',
-        icon: 'fa-history'
+        icon: 'fa-history',
+        to: { name: 'home.orders' }
       },
       {
         text: 'Perfil',
