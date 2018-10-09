@@ -1,7 +1,6 @@
 <template functional>
   <v-btn
     type="submit"
-    round
     color="primary"
     block
     :disabled="props.disabled"
