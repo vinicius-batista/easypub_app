@@ -45,6 +45,7 @@ import FormErrorMessage from '@/components/FormErrorMessage'
 import ProfileCard from '../components/ProfileCard'
 import { profileQuery, updateProfileMutation } from '@/domains/user/graphql'
 import { merge } from 'ramda'
+import { mapMutations } from 'vuex'
 
 export default {
   name: 'Profile',
@@ -80,7 +81,12 @@ export default {
       }
     ]
   }),
+  mounted () {
+    this.hiddenBackButton()
+    this.setTitle('EasyPub')
+  },
   methods: {
+    ...mapMutations('home', ['hiddenBackButton', 'setTitle']),
     handleError (error) {
       this.$refs.formErrorMessage.handleError(error)
     },
