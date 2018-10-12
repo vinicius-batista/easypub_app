@@ -1,0 +1,48 @@
+<template>
+  <v-dialog
+    :value="display"
+    full-width
+    max-width="600px"
+    transition="dialog-transition"
+    @input="updateDisplay"
+  >
+    <v-card>
+      <QrcodeReader v-if="display" @decode="onDecode" @init="onInit">
+        <v-progress-circular indeterminate size="50" v-if="loading" color="secondary"/>
+      </QrcodeReader>
+    </v-card>
+  </v-dialog>
+</template>
+
+<script>
+import { QrcodeReader } from 'vue-qrcode-reader'
+
+export default {
+  name: 'ModalQrReader',
+  props: {
+    display: Boolean
+  },
+  data: () => ({
+    loading: false
+  }),
+  components: { QrcodeReader },
+  methods: {
+    updateDisplay (e) {
+      this.$emit('update:display', e)
+    },
+    onDecode (result) {
+      this.$emit('decode', result)
+      this.updateDisplay(false)
+    },
+    stopLoading () {
+      this.loading = false
+    },
+    async onInit (promise) {
+      this.loading = true
+      promise
+        .then(this.stopLoading)
+        .catch(this.stopLoading)
+    }
+  }
+}
+</script>
