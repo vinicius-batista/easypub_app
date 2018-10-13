@@ -2,6 +2,7 @@
   <div>
     <ApolloMutation
       :mutation="$options.addItemToOrderMutation"
+      :refetchQueries="refetchQueries"
       @done="submitSucess"
       @error="handleError"
     >
@@ -45,7 +46,12 @@
           />
         </v-scale-transition>
         <v-card-actions class="mx-4">
-          <v-btn block color="primary" large @click="sendOrder(mutate)" :disabled="status === 'fechado'">
+          <v-btn
+            block color="primary" large
+            @click="sendOrder(mutate)"
+            :disabled="status === 'fechado'"
+            :loading="loading"
+          >
             PEDIR
             <v-spacer></v-spacer>
             {{ totalPrice | formatMoney }}
@@ -62,13 +68,14 @@
 import { multiply, inc, dec, equals, assoc } from 'ramda'
 import { mapState, mapMutations } from 'vuex'
 import ModalQrReader from './ModalQrReader'
-import { addItemToOrderMutation } from '@/domains/order/graphql'
+import { addItemToOrderMutation, currentOrderQuery } from '@/domains/order/graphql'
 import FormErrorMessage from '@/components/FormErrorMessage'
 
 export default {
   name: 'MenuItemOrder',
   components: { ModalQrReader, FormErrorMessage },
   addItemToOrderMutation,
+  currentOrderQuery,
   props: {
     itemId: String,
     price: String,
@@ -93,6 +100,13 @@ export default {
       this.input.tableId = this.tableId
       const input = assoc('itemId', this.itemId, this.input)
       mutate({ variables: { input } })
+    },
+    refetchQueries () {
+      return [
+        {
+          query: this.$options.currentOrderQuery
+        }
+      ]
     },
     decodeQrCode (mutate, result) {
       this.input.tableId = result

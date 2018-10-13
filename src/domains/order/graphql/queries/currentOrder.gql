@@ -1,0 +1,14 @@
+{
+  currentOrder{
+    id,
+    status,
+    items {
+      id,
+      quantity,
+      menuItem {
+        name,
+        price
+      }
+    }
+  }
+}
