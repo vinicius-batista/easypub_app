@@ -18,6 +18,7 @@ import SearchInput from '../components/SearchInput'
 import BarsList from '../components/BarsList'
 import { barsQuery } from '@/domains/bar/graphql'
 import { mapMutations } from 'vuex'
+import { currentOrderQuery } from '@/domains/order/graphql'
 
 export default {
   name: 'Bars',
@@ -32,6 +33,19 @@ export default {
   },
   methods: {
     ...mapMutations('home', ['hiddenBackButton', 'setTitle'])
+  },
+  apollo: {
+    currentOrder: {
+      query: currentOrderQuery,
+      manual: true,
+      result ({ data: { currentOrder } }) {
+        if (currentOrder) {
+          const { bar } = currentOrder.table
+          const params = { id: bar.id }
+          this.$router.push({ name: 'home.bar', params })
+        }
+      }
+    }
   }
 }
 </script>

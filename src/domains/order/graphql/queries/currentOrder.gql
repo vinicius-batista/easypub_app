@@ -2,6 +2,11 @@
   currentOrder{
     id,
     status,
+    table {
+      bar {
+        id
+      }
+    },
     items {
       id,
       quantity,
