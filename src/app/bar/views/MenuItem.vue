@@ -10,7 +10,11 @@
             <template slot-scope="{ result: { data } }">
               <div v-if="data">
                 <MenuItemDescription v-bind="data.menuItem" />
-                <MenuItemOrder :itemId="id" :price="data.menuItem.price"/>
+                <MenuItemOrder
+                  :itemId="id"
+                  :price="data.menuItem.price"
+                  :status="data.menuItem.menuCategory.bar.status"
+                />
               </div>
             </template>
           </ApolloQuery>

@@ -45,7 +45,7 @@
           />
         </v-scale-transition>
         <v-card-actions class="mx-4">
-          <v-btn block color="primary" large @click="sendOrder(mutate)">
+          <v-btn block color="primary" large @click="sendOrder(mutate)" :disabled="status === 'fechado'">
             PEDIR
             <v-spacer></v-spacer>
             {{ totalPrice | formatMoney }}
@@ -71,7 +71,8 @@ export default {
   addItemToOrderMutation,
   props: {
     itemId: String,
-    price: String
+    price: String,
+    status: String
   },
   data: () => ({
     input: {
