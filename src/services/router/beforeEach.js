@@ -2,6 +2,11 @@ import store from '../store'
 
 export default function (to, from, next) {
   const { requiresAuth } = to.meta
+  const storePath = store.state.route && store.state.route.path
+
+  if (storePath !== to.path && to.path === from.path) {
+    return next(storePath)
+  }
 
   return store
     .dispatch('auth/isLogged')

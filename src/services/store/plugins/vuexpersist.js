@@ -1,10 +1,7 @@
 import VuexPersist from 'vuex-persist'
-import localforage from 'localforage'
 
 const vuexLocal = new VuexPersist({
-  storage: localforage,
-  asyncStorage: true,
-  modules: ['home', 'order']
+  modules: ['home', 'order', 'route']
 })
 
 export default vuexLocal.plugin
