@@ -10,11 +10,10 @@
           <BarDetail v-bind="data.bar"/>
           <v-layout row wrap class="mt-2">
             <v-flex xs12>
-              <v-tabs v-model="category" centered color="white" slider-color="primary">
+              <v-tabs v-model="category" centered color="white" slider-color="primary" show-arrows>
                 <v-tab
                   v-for="menuCategory in data.bar.menuCategories"
                   :key="menuCategory.id"
-                  :href="`#tab-${menuCategory.id}`"
                 >
                   <span class="primary--text">{{ menuCategory.name }}</span>
                 </v-tab>
@@ -25,7 +24,6 @@
                 <v-tab-item
                   v-for="menuCategory in data.bar.menuCategories"
                   :key="menuCategory.id"
-                  :id="`tab-${menuCategory.id}`"
                   lazy
                 >
                   <MenuItemsList :categoryId="menuCategory.id"/>
