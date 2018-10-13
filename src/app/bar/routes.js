@@ -1,20 +1,20 @@
 export default [
   {
     name: 'home.bars',
-    path: '/',
+    path: '/home',
     meta: { requiresAuth: true },
     component: () => import(/* webpackChunkName: "home" */ './views/Bars')
   },
   {
     name: 'home.bar',
-    path: '/bar/:id',
+    path: '/home/bar/:id',
     meta: { requiresAuth: true },
     component: () => import(/* webpackChunkName: "home" */ './views/Bar'),
     props: true
   },
   {
     name: 'home.menuitem',
-    path: '/bar/menu-item/:id',
+    path: '/home/bar/menu-item/:id',
     meta: { requiresAuth: true },
     component: () => import(/* webpackChunkName: "home" */ './views/MenuItem'),
     props: true
