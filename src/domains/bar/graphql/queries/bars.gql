@@ -3,6 +3,7 @@ query($name:String!) {
     id,
     name,
     status,
-    insertedAt
+    insertedAt,
+    avatar
   }
 }
