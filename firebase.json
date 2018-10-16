@@ -14,8 +14,10 @@
     ],
     "headers": [ {
       "source" : "service-worker.js",
-      "key" : "Cache-Control",
-      "value" : "max-age=0"
+      "headers" : [ {
+        "key" : "Cache-Control",
+        "value" : "max-age=0"
+      }]
     }]
   }
 }
