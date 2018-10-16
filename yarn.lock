@@ -11767,6 +11767,11 @@ vm-browserify@0.0.4:
   dependencies:
     indexof "0.0.1"
 
+vue-analytics@^5.16.0:
+  version "5.16.0"
+  resolved "https://registry.yarnpkg.com/vue-analytics/-/vue-analytics-5.16.0.tgz#82e88703a0678cba076d51acacd6569bc8f7d54c"
+  integrity sha512-WOdI1Ot/Tq3xHIIu3a5hiLawMrQeHsgqwcvHdZb5CNV4IM3RWZ3rw1gCnsAGbSWGPQw88mjkY9wuG5CXmfsssA==
+
 vue-apollo@^3.0.0-beta.11:
   version "3.0.0-beta.25"
   resolved "https://registry.yarnpkg.com/vue-apollo/-/vue-apollo-3.0.0-beta.25.tgz#05a9a699b2ba6103639e9bd6c3bb88ca04c4b637"
