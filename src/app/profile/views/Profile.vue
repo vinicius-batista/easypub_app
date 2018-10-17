@@ -55,9 +55,9 @@ export default {
     valid: true,
     edit: false,
     input: {
-      name: 'Jose da silva',
-      email: 'random@random.com',
-      phone: '12233355333'
+      name: '',
+      email: '',
+      phone: ''
     },
     form: [
       {
@@ -74,6 +74,7 @@ export default {
       },
       {
         label: 'Telefone',
+        type: 'tel',
         model: 'phone',
         icon: 'fa-phone',
         rules: 'required',

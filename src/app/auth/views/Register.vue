@@ -84,7 +84,8 @@ export default {
         model: 'phone',
         icon: 'fa-phone',
         rules: 'required',
-        mask: '(##) ##### - ####'
+        mask: '(##) ##### - ####',
+        type: 'tel'
       },
       {
         label: 'Senha',
