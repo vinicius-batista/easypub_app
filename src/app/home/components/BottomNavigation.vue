@@ -1,19 +1,23 @@
 <template>
-  <v-footer app height="56" class="white elevation-4">
-    <v-btn
-      v-for="{text, icon, to} in buttons"
-      :key="text"
-      class="grey--text nav-button-group"
-      active-class="primary--text"
-      flat
-      :to="to"
-      block
+  <v-footer app height="56">
+    <v-bottom-nav
+      :active.sync="activeBtn"
+      :value="true"
+      absolute
+      color="white"
     >
-      <div class="nav-button-group__items font-weight-regular">
+      <v-btn
+        v-for="{text, icon, to} in buttons"
+        :key="text"
+        color="primary"
+        flat
+        :to="to"
+        :ripple="false"
+      >
         {{text}}
         <v-icon>{{icon}}</v-icon>
-      </div>
-    </v-btn>
+      </v-btn>
+    </v-bottom-nav>
   </v-footer>
 </template>
 
@@ -42,14 +46,3 @@ export default {
   })
 }
 </script>
-
-<style scoped>
-.nav-button-group {
-  padding: 2em 0em
-}
-.nav-button-group__items {
-  display: flex;
-  flex-direction: column-reverse;
-  justify-content: center;
-}
-</style>
