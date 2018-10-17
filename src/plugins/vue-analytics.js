@@ -11,7 +11,7 @@ export default function (router) {
       exception: true
     },
     debug: {
-      enable: !isProd,
+      enabled: !isProd,
       sendHitTask: isProd
     }
   })
