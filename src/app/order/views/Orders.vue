@@ -7,6 +7,7 @@
           <v-card-title primary-title class="tertiary--text subheading">
             Histórico de pedidos
           </v-card-title>
+          <OrdersList />
         </v-card>
       </v-flex>
     </v-layout>
@@ -16,10 +17,11 @@
 <script>
 import { mapMutations } from 'vuex'
 import CurrentOrder from '../components/CurrentOrder'
+import OrdersList from '../components/OrdersList'
 
 export default {
   name: 'Orders',
-  components: { CurrentOrder },
+  components: { CurrentOrder, OrdersList },
   mounted () {
     this.hiddenBackButton()
     this.setTitle('EasyPub')

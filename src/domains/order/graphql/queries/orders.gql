@@ -1,0 +1,11 @@
+query FetchOrders {
+  orders {
+    id,
+    insertedAt,
+    table {
+      bar {
+        name
+      }
+    }
+  }
+}
