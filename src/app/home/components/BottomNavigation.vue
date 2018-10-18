@@ -1,7 +1,7 @@
 <template>
   <v-footer app height="56">
     <v-bottom-nav
-      :active.sync="activeBtn"
+      :active="activeBtn"
       :value="true"
       absolute
       color="white"
@@ -13,6 +13,7 @@
         flat
         :to="to"
         :ripple="false"
+        :value="to.name"
       >
         {{text}}
         <v-icon>{{icon}}</v-icon>
@@ -25,7 +26,6 @@
 export default {
   name: 'BottomNavigation',
   data: () => ({
-    activeBtn: 0,
     buttons: [
       {
         text: 'Home',
@@ -43,6 +43,11 @@ export default {
         to: { name: 'home.profile' }
       }
     ]
-  })
+  }),
+  computed: {
+    activeBtn () {
+      return this.$route.name
+    }
+  }
 }
 </script>
