@@ -46,6 +46,9 @@ export default {
   }),
   computed: {
     activeBtn () {
+      if (this.$route.name === 'orders.detail') {
+        return 'orders'
+      }
       return this.$route.name
     }
   }

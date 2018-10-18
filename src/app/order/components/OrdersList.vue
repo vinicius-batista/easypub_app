@@ -9,6 +9,7 @@
             v-for="{ id, insertedAt, table, rating } in data.orders"
             :key="id"
             avatar
+            :to="{ name: 'orders.detail', params: { id } }"
           >
             <v-list-tile-avatar color="grey lighten-2" size="60" tile>
               <span class="pa-2">{{ formateDate(insertedAt) }}</span>

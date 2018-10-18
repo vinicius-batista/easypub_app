@@ -1,0 +1,17 @@
+query FetchOrder ($id: String!) {
+  order(id: $id){
+    table {
+      bar {
+        name
+      }
+    },
+    items {
+      id,
+      quantity,
+      menuItem {
+        name,
+        price
+      }
+    }
+  }
+}

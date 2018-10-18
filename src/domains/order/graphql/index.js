@@ -2,3 +2,4 @@ export { default as addItemToOrderMutation } from './mutations/addItemToOrder.gq
 export { default as currentOrderQuery } from './queries/currentOrder.gql'
 export { default as closeOrderMutation } from './mutations/closeOrder.gql'
 export { default as ordersQuery } from './queries/orders.gql'
+export { default as orderQuery } from './queries/order.gql'
