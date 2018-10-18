@@ -1,7 +1,7 @@
 <template functional>
   <v-layout justify-center wrap>
     <v-flex xs12>
-      <v-card class="pa-4">
+      <v-card class="pa-4" flat>
         <v-btn outline small round color="primary" @click="listeners['update:edit'](!props.edit)">
           Editar dados
         </v-btn>

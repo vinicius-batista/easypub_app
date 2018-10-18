@@ -2,7 +2,7 @@
   <v-container grid-list-xs style="padding: 1em 0">
     <v-layout row wrap>
       <v-flex xs12>
-        <v-card class="pb-4">
+        <v-card class="pb-4" flat>
           <ApolloQuery
             :query="$options.menuItemQuery"
             :variables="{ id }"

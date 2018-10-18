@@ -3,7 +3,7 @@
     <CurrentOrder />
     <v-layout class="mt-3">
       <v-flex xs12>
-        <v-card>
+        <v-card flat>
           <v-card-title primary-title class="tertiary--text subheading">
             Histórico de pedidos
           </v-card-title>

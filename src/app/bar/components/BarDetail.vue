@@ -1,7 +1,7 @@
 <template>
   <v-layout wrap>
     <v-flex xs12>
-      <v-card>
+      <v-card flat>
         <v-layout row align-center>
           <v-flex xs7>
             <v-card-title primary-title>

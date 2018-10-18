@@ -1,7 +1,7 @@
 <template>
   <v-layout>
     <v-flex xs12>
-      <v-card>
+      <v-card flat>
         <v-card-title primary-title class="tertiary--text subheading font-weight-bold">
           Pedido atual
         </v-card-title>
