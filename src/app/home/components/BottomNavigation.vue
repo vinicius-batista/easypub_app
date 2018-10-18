@@ -35,12 +35,12 @@ export default {
       {
         text: 'Pedidos',
         icon: 'fa-history',
-        to: { name: 'home.orders' }
+        to: { name: 'orders' }
       },
       {
         text: 'Perfil',
         icon: 'fa-user',
-        to: { name: 'home.profile' }
+        to: { name: 'profile' }
       }
     ]
   }),
