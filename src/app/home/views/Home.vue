@@ -2,7 +2,9 @@
   <div>
     <Toolbar />
     <v-content app>
-      <router-view></router-view>
+      <v-slide-x-transition leave-absolute>
+        <router-view></router-view>
+      </v-slide-x-transition>
     </v-content>
     <BottomNavigation />
   </div>
