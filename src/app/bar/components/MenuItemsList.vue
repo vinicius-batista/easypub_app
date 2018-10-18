@@ -3,8 +3,9 @@
     :query="$options.menuItemsQuery"
     :variables="{ categoryId }"
   >
-     <template slot-scope="{ result: { data } }">
-      <v-list two-line v-if="data">
+     <template slot-scope="{ result: { data, loading } }">
+      <Loading v-if="loading" />
+      <v-list two-line v-else-if="data">
         <v-list-tile
           v-for="{id, name, price} in data.menuItems"
           :key="id"

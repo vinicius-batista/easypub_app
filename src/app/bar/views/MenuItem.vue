@@ -7,8 +7,9 @@
             :query="$options.menuItemQuery"
             :variables="{ id }"
           >
-            <template slot-scope="{ result: { data } }">
-              <div v-if="data">
+            <template slot-scope="{ result: { data, loading } }">
+              <Loading v-if="loading" />
+              <div v-else-if="data">
                 <MenuItemDescription v-bind="data.menuItem" />
                 <MenuItemOrder
                   :itemId="id"

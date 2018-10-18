@@ -6,7 +6,7 @@
       :variables="{ name: search }"
     >
       <template slot-scope="{ result: { data, loading } }">
-        <v-progress-circular v-if="loading" indeterminate color="secondary"/>  <!-- #TODO: ALIGN CENTER -->
+        <Loading v-if="loading" />
         <BarsList v-else v-bind="data" />
       </template>
     </ApolloQuery>

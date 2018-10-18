@@ -8,8 +8,9 @@
         <ApolloQuery
           :query="$options.currentOrderQuery"
         >
-          <template slot-scope="{ result: { data } }">
-            <div v-if="data && data.currentOrder">
+          <template slot-scope="{ result: { data, loading } }">
+            <Loading v-if="loading" />
+            <div v-else-if="data && data.currentOrder">
               <v-card-text class="text-xs-center">
                 <h6 class="subheading grey--text text--darken-3 font-weight-medium">
                  {{ calculateTotal(data.currentOrder.items) | formatMoney }}
