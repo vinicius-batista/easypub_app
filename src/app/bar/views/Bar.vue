@@ -5,8 +5,8 @@
       :variables="{ id }"
       @result="changeToolbarTitle"
     >
-      <template slot-scope="{ result: { data, loading } }">
-        <Loading v-if="loading" />
+      <template slot-scope="{ result: { data }, isLoading }">
+        <Loading v-if="isLoading" />
         <div v-else-if="data">
           <BarDetail v-bind="data.bar"/>
           <v-layout row wrap class="mt-2">

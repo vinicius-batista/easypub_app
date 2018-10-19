@@ -3,8 +3,8 @@
     <ApolloQuery
       :query="$options.ordersQuery"
     >
-      <template slot-scope="{ result: { data, loading } }">
-        <Loading v-if="loading" />
+      <template slot-scope="{ result: { data }, isLoading }">
+        <Loading v-if="isLoading" />
         <div v-else-if="data">
           <v-list-tile
             v-for="{ id, insertedAt, table, rating } in data.orders"

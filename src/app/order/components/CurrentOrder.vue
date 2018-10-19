@@ -8,8 +8,8 @@
         <ApolloQuery
           :query="$options.currentOrderQuery"
         >
-          <template slot-scope="{ result: { data, loading } }">
-            <Loading v-if="loading" />
+          <template slot-scope="{ result: { data }, isLoading }">
+            <Loading v-if="isLoading" />
             <div v-else-if="data && data.currentOrder">
               <v-card-text class="text-xs-center">
                 <h6 class="subheading grey--text text--darken-3 font-weight-medium">

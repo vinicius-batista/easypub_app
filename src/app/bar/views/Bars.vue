@@ -5,8 +5,8 @@
       :query="$options.barsQuery"
       :variables="{ name: search }"
     >
-      <template slot-scope="{ result: { data, loading } }">
-        <Loading v-if="loading" />
+      <template slot-scope="{ result: { data }, isLoading }">
+        <Loading v-if="isLoading" />
         <BarsList v-else v-bind="data" />
       </template>
     </ApolloQuery>

@@ -7,8 +7,8 @@
             :variables="{ id }"
             :query="$options.orderQuery"
           >
-            <template slot-scope="{ result: { data, loading } }">
-              <Loading v-if="loading" />
+            <template slot-scope="{ result: { data }, isLoading }">
+              <Loading v-if="isLoading" />
               <div v-else-if="data">
                 <v-card-title primary-title class="tertiary--text subheading font-weight-bold">
                   <h2 class="title">{{ data.order.table.bar.name }}</h2>
