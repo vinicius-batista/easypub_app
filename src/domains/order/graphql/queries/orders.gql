@@ -4,6 +4,7 @@ query FetchOrders {
     insertedAt,
     table {
       bar {
+        id,
         name
       }
     }
