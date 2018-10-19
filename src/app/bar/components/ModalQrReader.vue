@@ -11,7 +11,7 @@
         <h5 class="title tertiary--text">Leia o QRCode que está na sua mesa</h5>
       </v-card-title>
       <QrcodeReader v-if="display" @decode="onDecode" @init="onInit">
-        <v-progress-circular indeterminate size="50" v-if="loading" color="secondary"/>
+        <Loading v-if="loading" />
       </QrcodeReader>
     </v-card>
   </v-dialog>
