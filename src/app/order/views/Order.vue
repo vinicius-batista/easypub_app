@@ -10,8 +10,18 @@
             <template slot-scope="{ result: { data }, isLoading }">
               <Loading v-if="isLoading" />
               <div v-else-if="data">
-                <v-card-title primary-title class="tertiary--text subheading font-weight-bold">
-                  <h2 class="title">{{ data.order.table.bar.name }}</h2>
+                <v-card-title primary-title class="pr-0">
+                  <h2 class="title tertiary--text">{{ data.order.table.bar.name }}</h2>
+                  <v-spacer></v-spacer>
+                  <v-btn
+                    :to="{ name: 'orders.feedback', params: { orderId: id } }"
+                    flat
+                    small
+                    color="primary"
+                    :ripple="false"
+                  >
+                    VEJA SUA AVALIAÇÃO
+                  </v-btn>
                 </v-card-title>
                 <v-card-text class="px-0">
                   <OrderItemsList :items="data.order.items"/>

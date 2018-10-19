@@ -26,7 +26,6 @@
                   readonly
                   :value="rating"
                   small
-                  color="yellow darken-3"
                   style="display: inline-block;"
                   dense
                   half-increments

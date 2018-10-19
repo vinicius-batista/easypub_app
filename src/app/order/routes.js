@@ -11,5 +11,12 @@ export default [
     props: true,
     meta: { requiresAuth: true },
     component: () => import(/* webpackChunkName: "orders" */ './views/Order')
+  },
+  {
+    name: 'orders.feedback',
+    path: '/orders/feedback/:orderId',
+    props: true,
+    meta: { requiresAuth: true },
+    component: () => import(/* webpackChunkName: "orders" */ './views/Feedback')
   }
 ]

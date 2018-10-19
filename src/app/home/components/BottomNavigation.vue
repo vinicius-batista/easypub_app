@@ -23,6 +23,8 @@
 </template>
 
 <script>
+import { contains } from 'ramda'
+
 export default {
   name: 'BottomNavigation',
   data: () => ({
@@ -46,7 +48,11 @@ export default {
   }),
   computed: {
     activeBtn () {
-      if (this.$route.name === 'orders.detail') {
+      const ordersRoutes = [
+        'orders.detail',
+        'orders.feedback'
+      ]
+      if (contains(this.$route.name, ordersRoutes)) {
         return 'orders'
       }
       return this.$route.name

@@ -24,6 +24,7 @@
                 :mutation="$options.closeOrderMutation"
                 :variables="{ orderId: data.currentOrder.id }"
                 :update="updateStore"
+                @done="goToFeedBack(data.currentOrder.id)"
               >
                 <template slot-scope="{ mutate, loading }">
                   <v-card-actions class="pa-4">
@@ -72,6 +73,9 @@ export default {
         data: { currentOrder: null }
       })
       this.setTableId('')
+    },
+    goToFeedBack (orderId) {
+      this.$router.push({ name: 'orders.feedback', params: { orderId } })
     }
   }
 }
