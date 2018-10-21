@@ -7,6 +7,10 @@ query FetchOrders {
         id,
         name
       }
+    },
+    feedback {
+      id,
+      barRating
     }
   }
 }

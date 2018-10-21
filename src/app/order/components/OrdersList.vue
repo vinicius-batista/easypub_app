@@ -7,7 +7,7 @@
         <Loading v-if="isLoading" />
         <div v-else-if="data">
           <v-list-tile
-            v-for="{ id, insertedAt, table, rating } in data.orders"
+            v-for="{ id, insertedAt, table, feedback } in data.orders"
             :key="id"
             avatar
             :to="{ name: 'orders.detail', params: { id } }"
@@ -18,13 +18,13 @@
 
             <v-list-tile-content class="ml-4">
               <v-list-tile-title>{{ table.bar.name }}</v-list-tile-title>
-              <div v-if="rating">
+              <div v-if="feedback">
                 <span class="grey--text text--darken-1 subheading">
-                  ({{ rating }})
+                  ({{ feedback.barRating }})
                 </span>
                 <v-rating
                   readonly
-                  :value="rating"
+                  :value="parseFloat(feedback.barRating)"
                   small
                   style="display: inline-block;"
                   dense
