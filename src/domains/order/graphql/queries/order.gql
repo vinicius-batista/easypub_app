@@ -2,6 +2,7 @@ query FetchOrder ($id: String!) {
   order(id: $id){
     table {
       bar {
+        id,
         name
       }
     },

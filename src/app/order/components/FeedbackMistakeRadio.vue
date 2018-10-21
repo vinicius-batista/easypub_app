@@ -6,6 +6,7 @@
       @input="listeners.input"
       row
       hide-details
+      :readonly="props.readonly"
     >
       <v-container grid-list-xs style="width: 100vw; padding: 0">
         <v-layout justify-center>
@@ -25,7 +26,8 @@
 export default {
   name: 'FeedbackMistakeRadio',
   props: {
-    value: Boolean
+    value: Boolean,
+    readonly: Boolean
   }
 }
 </script>

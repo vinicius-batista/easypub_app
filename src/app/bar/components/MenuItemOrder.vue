@@ -3,7 +3,7 @@
     <ApolloMutation
       :mutation="$options.addItemToOrderMutation"
       :refetchQueries="refetchQueries"
-      @done="submitSucess"
+      @done="submitSuccess"
       @error="handleError"
     >
       <template slot-scope="{ mutate, loading }">

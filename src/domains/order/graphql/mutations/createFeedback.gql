@@ -1,0 +1,9 @@
+mutation CreateFeedback ($input:CreateFeedbackInput!) {
+  createFeedback(input:$input) {
+    id,
+    appRating,
+    barRating,
+    hasMistake,
+    indication
+  }
+}
