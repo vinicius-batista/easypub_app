@@ -1,4 +1,4 @@
-mutation($orderId:String!) {
+mutation CloseOrder ($orderId:String!) {
   closeOrder(orderId:$orderId) {
     id
   }

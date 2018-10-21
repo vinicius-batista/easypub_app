@@ -1,4 +1,4 @@
-mutation($input:UpdateProfileInput!) {
+mutation UpdateProfile ($input:UpdateProfileInput!) {
   updateProfile(input:$input){
     name,
     phone,

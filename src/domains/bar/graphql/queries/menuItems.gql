@@ -1,4 +1,4 @@
-query($categoryId:String!){
+query FetchMenuItems ($categoryId:String!){
   menuItems(categoryId:$categoryId) {
     id,
     name,

@@ -1,4 +1,4 @@
-mutation($input:AddItemInput!) {
+mutation AddItemToOrder ($input:AddItemInput!) {
   addItemToOrder(input:$input){
     id
   }

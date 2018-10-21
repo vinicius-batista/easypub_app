@@ -1,4 +1,4 @@
-query($name:String!) {
+query FetchBars ($name:String!) {
   bars(name: $name) {
     id,
     name,

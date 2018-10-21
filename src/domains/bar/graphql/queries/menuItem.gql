@@ -1,4 +1,4 @@
-query($id:String!){
+query FetchMenuItem ($id:String!){
   menuItem(id:$id) {
     id,
     name,
@@ -9,6 +9,7 @@ query($id:String!){
     peopleCount,
     menuCategory {
       bar {
+        id,
         status
       }
     }

@@ -1,5 +1,6 @@
-query($id: String!) {
+query FetchBar ($id: String!) {
   bar(id: $id) {
+    id,
     name,
     address,
     avatar,
