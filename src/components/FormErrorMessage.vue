@@ -12,15 +12,22 @@
   </v-alert>
 </template>
 
-<script>
-export default {
+<script lang="ts">
+import { GraphQLError } from 'graphql'
+import Vue from 'vue'
+
+interface ErrorHandler {
+  graphQLErrors: GraphQLError[]
+}
+
+export default Vue.extend({
   name: 'FormErrorMessage',
   data: () => ({
     errorMessage: '',
     hasError: false
   }),
   methods: {
-    handleError (error) {
+    handleError (error: ErrorHandler) {
       this.errorMessage = error.graphQLErrors[0].message
       this.hasError = true
     },
@@ -29,7 +36,7 @@ export default {
       this.errorMessage = ''
     }
   }
-}
+})
 </script>
 
 <style scoped>

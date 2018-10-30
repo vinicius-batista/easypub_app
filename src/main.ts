@@ -8,7 +8,7 @@ import vueAnalytics from './plugins/vue-analytics'
 import syncRouter from './plugins/vuex-router-sync'
 
 import App from './App.vue'
-import Loading from './components/Loading'
+import Loading from './components/Loading.vue'
 import { router, store, apollo } from './services'
 import './registerServiceWorker'
 

@@ -10,13 +10,15 @@
   </v-btn>
 </template>
 
-<script>
-export default {
+<script lang="ts">
+import Vue from 'vue'
+
+export default Vue.extend({
   name: 'SendButton',
   props: {
     disabled: Boolean,
     loading: Boolean,
     text: String
   }
-}
+})
 </script>
