@@ -23,8 +23,8 @@
               <ApolloMutation
                 :mutation="$options.closeOrderMutation"
                 :variables="{ orderId: data.currentOrder.id }"
-                :update="updateStore"
-                @done="goToFeedBack(data.currentOrder.id)"
+                :refetchQueries="refetchQueries"
+                @done="goToFeedBack"
               >
                 <template slot-scope="{ mutate, loading }">
                   <v-card-actions class="pa-4">
@@ -52,6 +52,7 @@ import { currentOrderQuery, closeOrderMutation } from '@/domains/order/graphql'
 import { path, sum, map, pipe } from 'ramda'
 import { mapMutations } from 'vuex'
 import OrderItemsList from './OrderItemsList'
+import { getData } from '../../../helpers/graphql'
 
 export default {
   name: 'CurrentOrder',
@@ -66,16 +67,24 @@ export default {
         sum
       )(items)
     },
+    refetchQueries () {
+      return [
+        {
+          query: this.$options.currentOrderQuery
+        }
+      ]
+    },
     updateStore (store) {
       const { currentOrderQuery } = this.$options
       store.writeQuery({
         query: currentOrderQuery,
         data: { currentOrder: null }
       })
-      this.setTableId('')
     },
-    goToFeedBack (orderId) {
-      this.$router.push({ name: 'orders.feedback', params: { orderId } })
+    goToFeedBack (result) {
+      const closeOrder = getData('closeOrder', result)
+      this.setTableId('')
+      this.$router.push({ name: 'orders.feedback', params: { orderId: closeOrder.id } })
     }
   }
 }
