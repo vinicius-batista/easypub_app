@@ -16,14 +16,16 @@
   </v-layout>
 </template>
 
-<script>
-export default {
+<script lang="ts">
+import Vue from 'vue'
+
+export default Vue.extend({
   name: 'FormCard',
   props: {
     helperText: String,
     actionText: String
   }
-}
+})
 </script>
 
 <style scoped>

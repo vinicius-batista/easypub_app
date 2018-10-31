@@ -8,55 +8,58 @@
     >
       <FormErrorMessage ref="formErrorMessage" />
       <ApolloMutation
-          :mutation="$options.loginUserMutation"
-          @done="submitSuccess"
-          @error="handleError"
-        >
-          <template slot-scope="{ mutate, loading }">
-            <v-form v-model="valid" @submit.prevent="mutate({ variables: { input } })">
-              <v-text-field
-                class="my-2"
-                v-for="{ label, model, icon, type, rules } in form"
-                v-validate="rules"
-                :data-vv-name="model"
-                :data-vv-as="label.toLowerCase()"
-                :type="type"
-                :key="model"
-                :label="label"
-                v-model="input[model]"
-                :prepend-icon="icon"
-                :error-messages="errors.collect(model)"
-                box
-              />
-              <h6
-                class="tertiary--text body-2 font-weight-medium mb-3"
-                @click="changeRoute('auth.register')"
-                style="cursor: pointer;"
-              >
-                Esqueceu sua senha?
-              </h6>
-              <SendButton
-                text="Acessar"
-                v-bind="{loading}"
-                :disabled="!valid"
-              />
-            </v-form>
-          </template>
+        :mutation="loginUserMutation"
+        @done="submitSuccess"
+        @error="handleError"
+      >
+        <template slot-scope="{ mutate, loading }">
+          <v-form v-model="valid" @submit.prevent="mutate({ variables: { input } })">
+            <v-text-field
+              class="my-2"
+              v-for="{ label, model, icon, type, rules } in form"
+              v-validate="rules"
+              :data-vv-name="model"
+              :data-vv-as="label.toLowerCase()"
+              :type="type"
+              :key="model"
+              :label="label"
+              v-model="input[model]"
+              :prepend-icon="icon"
+              :error-messages="errors.collect(model)"
+              box
+            />
+            <h6
+              class="tertiary--text body-2 font-weight-medium mb-3"
+              @click="changeRoute('auth.register')"
+              style="cursor: pointer;"
+            >
+              Esqueceu sua senha?
+            </h6>
+            <SendButton
+              text="Acessar"
+              v-bind="{loading}"
+              :disabled="!valid"
+            />
+          </v-form>
+        </template>
       </ApolloMutation>
     </FormCard>
   </div>
 </template>
 
-<script>
-import LogoCard from '../components/LogoCard'
-import FormCard from '../components/FormCard'
-import FormErrorMessage from '@/components/FormErrorMessage'
-import SendButton from '@/components/SendButton'
+<script lang="ts">
+import Vue from 'vue'
+import LogoCard from '../components/LogoCard.vue'
+import FormCard from '../components/FormCard.vue'
+import FormErrorMessage from '@/components/FormErrorMessage.vue'
+import SendButton from '@/components/SendButton.vue'
 import { getData } from '@/helpers/graphql'
 import { mapActions } from 'vuex'
 import { loginUserMutation } from '@/domains/auth/graphql'
+import { QueryResult } from 'vue-apollo/types/vue-apollo'
+import { ErrorHandler } from '@/components/types'
 
-export default {
+export default Vue.extend({
   name: 'Login',
   components: {
     LogoCard,
@@ -64,8 +67,8 @@ export default {
     FormErrorMessage,
     SendButton
   },
-  loginUserMutation,
   data: () => ({
+    loginUserMutation,
     valid: false,
     input: {
       email: '',
@@ -88,20 +91,21 @@ export default {
     ]
   }),
   methods: {
-    ...mapActions('auth', ['setTokens']),
-    changeRoute (name) {
+    setTokens: mapActions('auth', ['setTokens']).setTokens,
+    changeRoute (name: string) {
       this.$router.push({ name })
     },
-    submitSuccess (result) {
+    submitSuccess (result: QueryResult<{ loginUser: object }>) {
       return Promise
         .resolve(result)
         .then(getData('loginUser'))
         .then(this.setTokens)
         .then(() => this.changeRoute('home.bars'))
     },
-    handleError (error) {
-      this.$refs.formErrorMessage.handleError(error)
+    handleError (error: ErrorHandler) {
+      const formErrorMessage = this.$refs.formErrorMessage as any
+      formErrorMessage.handleError(error)
     }
   }
-}
+})
 </script>

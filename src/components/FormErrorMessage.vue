@@ -13,12 +13,8 @@
 </template>
 
 <script lang="ts">
-import { GraphQLError } from 'graphql'
+import { ErrorHandler } from './types'
 import Vue from 'vue'
-
-interface ErrorHandler {
-  graphQLErrors: GraphQLError[]
-}
 
 export default Vue.extend({
   name: 'FormErrorMessage',
