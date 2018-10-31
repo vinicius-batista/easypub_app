@@ -8,48 +8,52 @@
     >
       <FormErrorMessage ref="formErrorMessage" />
       <ApolloMutation
-          :mutation="$options.registerUserMutation"
-          @done="submitSuccess"
-          @error="handleError"
-        >
-          <template slot-scope="{ mutate, loading }">
-            <v-form v-model="valid" @submit.prevent="mutate({ variables: { input } })">
-              <v-text-field
-                class="my-2"
-                v-for="{ label, model, icon, type, rules, mask } in form"
-                v-validate="rules"
-                :data-vv-name="model"
-                :data-vv-as="label.toLowerCase()"
-                :key="model"
-                :label="label"
-                v-model="input[model]"
-                :prepend-icon="icon"
-                :error-messages="errors.collect(model)"
-                v-bind="{ type, mask }"
-                box
-              />
-              <SendButton
-                text="Enviar"
-                v-bind="{loading}"
-                :disabled="!valid"
-              />
-            </v-form>
-          </template>
+        :mutation="registerUserMutation"
+        @done="submitSuccess"
+        @error="handleError"
+      >
+        <template slot-scope="{ mutate, loading }">
+          <v-form v-model="valid" @submit.prevent="mutate({ variables: { input } })">
+            <v-text-field
+              class="my-2"
+              v-for="{ label, model, icon, type, rules, mask } in form"
+              v-validate="rules"
+              :data-vv-name="model"
+              :data-vv-as="label.toLowerCase()"
+              :key="model"
+              :label="label"
+              v-model="input[model]"
+              :prepend-icon="icon"
+              :error-messages="errors.collect(model)"
+              v-bind="{ type, mask }"
+              box
+            />
+            <SendButton
+              text="Enviar"
+              v-bind="{loading}"
+              :disabled="!valid"
+            />
+          </v-form>
+        </template>
       </ApolloMutation>
     </FormCard>
   </div>
 </template>
 
-<script>
-import LogoCard from '../components/LogoCard'
-import FormCard from '../components/FormCard'
-import FormErrorMessage from '@/components/FormErrorMessage'
-import SendButton from '@/components/SendButton'
+<script lang="ts">
+import Vue from 'vue'
+import LogoCard from '../components/LogoCard.vue'
+import FormCard from '../components/FormCard.vue'
+import FormErrorMessage from '@/components/FormErrorMessage.vue'
+import SendButton from '@/components/SendButton.vue'
 import { registerUserMutation } from '@/domains/auth/graphql'
 import { getData } from '@/helpers/graphql'
 import { mapActions } from 'vuex'
+import { QueryResult } from 'vue-apollo/types/vue-apollo'
+import { RegisterUserMutation } from '@/domains/auth/graphql/types'
+import { ErrorHandler } from '@/components/types'
 
-export default {
+export default Vue.extend({
   name: 'Register',
   components: {
     LogoCard,
@@ -57,8 +61,8 @@ export default {
     FormErrorMessage,
     SendButton
   },
-  registerUserMutation,
   data: () => ({
+    registerUserMutation,
     valid: false,
     input: {
       name: '',
@@ -97,20 +101,21 @@ export default {
     ]
   }),
   methods: {
-    ...mapActions('auth', ['setTokens']),
-    changeRoute (name) {
+    setTokens: mapActions('auth', ['setTokens']).setTokens,
+    changeRoute (name: string) {
       this.$router.push({ name })
     },
-    submitSuccess (result) {
+    submitSuccess (result: QueryResult<RegisterUserMutation>) {
       return Promise
         .resolve(result)
         .then(getData('registerUser'))
         .then(this.setTokens)
         .then(() => this.changeRoute('home.bars'))
     },
-    handleError (error) {
-      this.$refs.formErrorMessage.handleError(error)
+    handleError (error: ErrorHandler) {
+      const formErrorMessage = this.$refs.formErrorMessage as any
+      formErrorMessage.handleError(error)
     }
   }
-}
+})
 </script>

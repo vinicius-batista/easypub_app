@@ -56,6 +56,7 @@ import SendButton from '@/components/SendButton.vue'
 import { getData } from '@/helpers/graphql'
 import { mapActions } from 'vuex'
 import { loginUserMutation } from '@/domains/auth/graphql'
+import { LoginUserMutation } from '@/domains/auth/graphql/types'
 import { QueryResult } from 'vue-apollo/types/vue-apollo'
 import { ErrorHandler } from '@/components/types'
 
@@ -95,7 +96,7 @@ export default Vue.extend({
     changeRoute (name: string) {
       this.$router.push({ name })
     },
-    submitSuccess (result: QueryResult<{ loginUser: object }>) {
+    submitSuccess (result: QueryResult<LoginUserMutation>) {
       return Promise
         .resolve(result)
         .then(getData('loginUser'))
