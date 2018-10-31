@@ -1,4 +1,7 @@
-export default {
+import { MutationTree } from 'vuex'
+import { HomeState } from '@/domains/home/store/types'
+
+const mutations: MutationTree<HomeState> = {
   setTitle (state, title) {
     state.title = title
   },
@@ -9,3 +12,5 @@ export default {
     state.isBackButtonVisible = false
   }
 }
+
+export default mutations

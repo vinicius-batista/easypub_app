@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import Vuetify from 'vuetify'
 import '@/assets/styles/main.styl'
-import pt from 'vuetify/es5/locale/pt'
+import pt from 'vuetify/src/locale/pt'
 import colors from 'vuetify/es5/util/colors'
 
 Vue.use(Vuetify, {

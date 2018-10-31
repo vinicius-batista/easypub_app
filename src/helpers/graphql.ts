@@ -1,15 +1,12 @@
-import { prop, pipe, curry } from 'ramda'
+import { curry } from 'ramda'
 
 export const getData = curry(
-  (path, response) => pipe(
-    prop('data'),
-    prop(path)
-  )(response)
+  (path: string, response: any) => response.data[path]
 )
 
 const endpoint = process.env.VUE_APP_GRAPHQL_ENDPOINT || 'http://0.0.0.0:4000/graphql'
 
-export const graphqlRequest = (query, variables) =>
+export const graphqlRequest = (query: string, variables: object) =>
   fetch(endpoint, {
     headers: {
       'Content-Type': 'application/json'

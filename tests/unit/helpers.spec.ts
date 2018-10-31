@@ -1,6 +1,7 @@
 import { getData } from '@/helpers/graphql'
 import { isExpired, authHeader } from '@/helpers/auth'
 import { formatMoney } from '@/helpers/format'
+import { GraphQLRequest } from 'apollo-link'
 
 describe('Helpers tests', () => {
   test('getData test', () => {
@@ -22,13 +23,15 @@ describe('Helpers tests', () => {
   })
 
   test('authHeader test', () => {
-    const requestMock = {
+    const requestMock: any = {
       foo: 'bar',
+      query: '',
       bar: 'foo',
       headers: {}
     }
     const expected = {
       foo: 'bar',
+      query: '',
       bar: 'foo',
       headers: {
         authorization: 'Bearer some-token'
@@ -39,8 +42,8 @@ describe('Helpers tests', () => {
   })
 
   test('formatMoney test', () => {
-    expect(formatMoney(22.22)).toEqual('R$ 22,22')
-    expect(formatMoney(11.2)).toEqual('R$ 11,20')
-    expect(formatMoney(11)).toEqual('R$ 11,00')
+    expect(formatMoney('22.22')).toEqual('R$ 22,22')
+    expect(formatMoney('11.2')).toEqual('R$ 11,20')
+    expect(formatMoney('11')).toEqual('R$ 11,00')
   })
 })

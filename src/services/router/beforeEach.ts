@@ -1,6 +1,7 @@
-import store from '../store'
+import store from '@/services/store'
+import { NavigationGuard } from 'vue-router'
 
-export default function (to, from, next) {
+const beforeEach: NavigationGuard = (to, from, next) => {
   const { requiresAuth } = to.meta
   const storePath = store.state.route && store.state.route.path
 
@@ -21,3 +22,5 @@ export default function (to, from, next) {
         : next()
     )
 }
+
+export default beforeEach

@@ -1,19 +1,22 @@
-import localforage from 'localforage'
+import * as localforage from 'localforage'
+import { ActionTree } from 'vuex'
+import { AuthState } from '@/domains/auth/store/types'
+import { RootState } from '@/services/store/types'
 
-export default {
+const actions: ActionTree<AuthState, RootState> = {
   setTokens ({ dispatch }, { accessToken, refreshToken }) {
-    return Promise.all([
+    return Promise.all<string, string>([
       dispatch('setAccessToken', accessToken),
       dispatch('setRefreshToken', refreshToken)
     ])
   },
   setAccessToken ({ commit }, accessToken) {
     commit('setAccessToken', accessToken)
-    return localforage.setItem('accessToken', accessToken)
+    return localforage.setItem<string>('accessToken', accessToken)
   },
   setRefreshToken ({ commit }, refreshToken) {
     commit('setRefreshToken', refreshToken)
-    return localforage.setItem('refreshToken', refreshToken)
+    return localforage.setItem<string>('refreshToken', refreshToken)
   },
   accessToken ({ state, commit }) {
     const { accessToken } = state
@@ -22,8 +25,8 @@ export default {
     }
 
     return localforage
-      .getItem('accessToken')
-      .then(accessToken => {
+      .getItem<string>('accessToken')
+      .then((accessToken: string) => {
         commit('setAccessToken', accessToken)
         return accessToken
       })
@@ -35,20 +38,22 @@ export default {
     }
 
     return localforage
-      .getItem('refreshToken')
-      .then(refreshToken => {
+      .getItem<string>('refreshToken')
+      .then((refreshToken: string) => {
         commit('setRefreshToken', refreshToken)
         return refreshToken
       })
   },
   isLogged ({ dispatch }) {
     return dispatch('refreshToken')
-      .then(refreshToken => {
+      .then((refreshToken: string) => {
         if (refreshToken) {
-          return refreshToken
+          return Promise.resolve(refreshToken)
         }
 
         return Promise.reject(new Error('NO_TOKEN'))
       })
   }
 }
+
+export default actions
