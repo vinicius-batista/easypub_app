@@ -9,6 +9,7 @@
     <v-img
       v-if="props.photo"
       :alt="description"
+      max-height="300px"
       height="auto"
       :src="props.photo"
       class="mx-4"
