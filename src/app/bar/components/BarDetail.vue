@@ -4,7 +4,7 @@
       <v-card flat>
         <v-layout row align-center wrap>
           <v-flex xs12 justify-center>
-            <v-img :src="avatar" height="auto" contain aspect-ratio="2.75"/>
+            <v-img :src="avatar" aspect-ratio="2" height="300px"/>
           </v-flex>
           <!-- <v-flex xs7>
             <v-card-title primary-title>
