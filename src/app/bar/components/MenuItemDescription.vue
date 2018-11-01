@@ -10,9 +10,9 @@
       v-if="props.photo"
       :alt="description"
       max-height="300px"
+      contain
       height="auto"
       :src="props.photo"
-      class="mx-4"
     />
 
     <v-card-text class="body-2 pa-4 font-weight-regular">
