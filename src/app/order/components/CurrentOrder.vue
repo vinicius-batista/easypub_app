@@ -23,8 +23,8 @@
               <ApolloMutation
                 :mutation="$options.closeOrderMutation"
                 :variables="{ orderId: data.currentOrder.id }"
-                :update="updateStore"
-                @done="goToFeedBack(data.currentOrder.id)"
+                :refetchQueries="refetchQueries"
+                @done="goToFeedBack"
               >
                 <template slot-scope="{ mutate, loading }">
                   <v-card-actions class="pa-4">
@@ -49,9 +49,10 @@
 
 <script>
 import { currentOrderQuery, closeOrderMutation } from '@/domains/order/graphql'
-import { path, sum, map, pipe } from 'ramda'
+import { reduce } from 'ramda'
 import { mapMutations } from 'vuex'
 import OrderItemsList from './OrderItemsList'
+import { getData } from '../../../helpers/graphql'
 
 export default {
   name: 'CurrentOrder',
@@ -61,10 +62,18 @@ export default {
   methods: {
     ...mapMutations('order', ['setTableId']),
     calculateTotal (items) {
-      return pipe(
-        map(path(['menuItem', 'price'])),
-        sum
-      )(items)
+      const sumTotal = (acc, item) => {
+        const { quantity, menuItem } = item
+        return acc + (quantity * menuItem.price)
+      }
+      return reduce(sumTotal, 0, items)
+    },
+    refetchQueries () {
+      return [
+        {
+          query: this.$options.currentOrderQuery
+        }
+      ]
     },
     updateStore (store) {
       const { currentOrderQuery } = this.$options
@@ -72,10 +81,11 @@ export default {
         query: currentOrderQuery,
         data: { currentOrder: null }
       })
-      this.setTableId('')
     },
-    goToFeedBack (orderId) {
-      this.$router.push({ name: 'orders.feedback', params: { orderId } })
+    goToFeedBack (result) {
+      const closeOrder = getData('closeOrder', result)
+      this.setTableId('')
+      this.$router.push({ name: 'orders.feedback', params: { orderId: closeOrder.id } })
     }
   }
 }

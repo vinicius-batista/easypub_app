@@ -9,16 +9,17 @@
     <v-img
       v-if="props.photo"
       :alt="description"
+      max-height="300px"
+      contain
       height="auto"
       :src="props.photo"
-      class="mx-4"
     />
 
     <v-card-text class="body-2 pa-4 font-weight-regular">
       {{props.description}}
     </v-card-text>
 
-    <v-layout justify-center class="py-4">
+    <v-layout justify-center class="py-4" v-if="props.waitingTime || props.peopleCount">
       <v-flex xs4 class="body-2" v-if="props.waitingTime">
         <v-icon color="grey">fa-clock</v-icon>
         <span class="tertiary--text px-2 font-weight-bold">{{props.waitingTime}}</span>

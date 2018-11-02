@@ -2,6 +2,7 @@
   <ApolloMutation
     :mutation="$options.createFeedbackMutation"
     :variables="{ input }"
+    :refetchQueries="refetchQueries"
     @done="submitSuccess"
     :update="updateStore"
   >
@@ -48,7 +49,7 @@
 <script>
 import FeedbackMistakeRadio from './FeedbackMistakeRadio'
 import SendButton from '@/components/SendButton'
-import { createFeedbackMutation, feedbackQuery } from '@/domains/order/graphql'
+import { createFeedbackMutation, feedbackQuery, ordersQuery } from '@/domains/order/graphql'
 import { assocPath } from 'ramda'
 
 export default {
@@ -90,6 +91,13 @@ export default {
   methods: {
     submitSuccess () {
       this.$router.go(-1)
+    },
+    refetchQueries () {
+      return [
+        {
+          query: ordersQuery
+        }
+      ]
     },
     updateStore (store, { data: { createFeedback } }) {
       const { feedbackQuery } = this.$options

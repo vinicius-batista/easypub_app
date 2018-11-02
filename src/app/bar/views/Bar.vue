@@ -50,7 +50,7 @@ export default {
   barQuery,
   props: { id: String },
   data: () => ({
-    category: ''
+    category: 0
   }),
   mounted () {
     this.showBackButton()

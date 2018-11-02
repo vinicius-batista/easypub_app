@@ -114,10 +114,11 @@ export default {
       const input = assoc('itemId', this.itemId, this.input)
       mutate({ variables: { input } })
     },
-    submitSucess () {
+    submitSuccess () {
       this.$router.go(-1)
     },
     handleError (error) {
+      this.setTableId('')
       this.$refs.formErrorMessage.handleError(error)
     },
     incrementQuantity () {
