@@ -19,7 +19,7 @@
       {{props.description}}
     </v-card-text>
 
-    <v-layout justify-center class="py-4">
+    <v-layout justify-center class="py-4" v-if="props.waitingTime || props.peopleCount">
       <v-flex xs4 class="body-2" v-if="props.waitingTime">
         <v-icon color="grey">fa-clock</v-icon>
         <span class="tertiary--text px-2 font-weight-bold">{{props.waitingTime}}</span>
