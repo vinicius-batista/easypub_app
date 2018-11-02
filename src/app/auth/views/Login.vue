@@ -57,8 +57,8 @@ import { getData } from '@/helpers/graphql'
 import { mapActions } from 'vuex'
 import { loginUserMutation } from '@/domains/auth/graphql'
 import { LoginUserMutation } from '@/domains/auth/graphql/types'
-import { QueryResult } from 'vue-apollo/types/vue-apollo'
 import { ErrorHandler } from '@/components/types'
+import { ApolloQueryResult } from 'apollo-client'
 
 export default Vue.extend({
   name: 'Login',
@@ -96,7 +96,7 @@ export default Vue.extend({
     changeRoute (name: string) {
       this.$router.push({ name })
     },
-    submitSuccess (result: QueryResult<LoginUserMutation>) {
+    submitSuccess (result: ApolloQueryResult<LoginUserMutation>) {
       return Promise
         .resolve(result)
         .then(getData('loginUser'))
