@@ -49,7 +49,7 @@
 
 <script>
 import { currentOrderQuery, closeOrderMutation } from '@/domains/order/graphql'
-import { path, sum, map, pipe } from 'ramda'
+import { reduce } from 'ramda'
 import { mapMutations } from 'vuex'
 import OrderItemsList from './OrderItemsList'
 import { getData } from '../../../helpers/graphql'
@@ -62,10 +62,11 @@ export default {
   methods: {
     ...mapMutations('order', ['setTableId']),
     calculateTotal (items) {
-      return pipe(
-        map(path(['menuItem', 'price'])),
-        sum
-      )(items)
+      const sumTotal = (acc, item) => {
+        const { quantity, menuItem } = item
+        return acc + (quantity * menuItem.price)
+      }
+      return reduce(sumTotal, 0, items)
     },
     refetchQueries () {
       return [
