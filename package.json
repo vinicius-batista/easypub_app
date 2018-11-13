@@ -7,7 +7,8 @@
     "build": "vue-cli-service build --modern --mode production",
     "lint": "vue-cli-service lint",
     "test:e2e": "vue-cli-service test:e2e",
-    "test:unit": "vue-cli-service test:unit"
+    "test:unit": "vue-cli-service test:unit",
+    "format": "prettier-eslint \"src/**/*.*(vue|ts|js)\" --write"
   },
   "dependencies": {
     "@absinthe/socket": "^0.1.10",
@@ -54,6 +55,7 @@
     "babel-loader": "^8.0.4",
     "graphql-tag": "^2.9.0",
     "lint-staged": "^7.2.2",
+    "prettier-eslint-cli": "^4.7.1",
     "stylus": "^0.54.5",
     "stylus-loader": "^3.0.2",
     "ts-jest": "^23.0.0",
@@ -67,10 +69,17 @@
   },
   "lint-staged": {
     "*.js": [
+      "prettier-eslint \"src/**/*.js\" --write",
+      "vue-cli-service lint",
+      "git add"
+    ],
+    "*.ts": [
+      "prettier-eslint \"src/**/*.ts\" --write",
       "vue-cli-service lint",
       "git add"
     ],
     "*.vue": [
+      "prettier-eslint \"src/**/*.vue\" --write",
       "vue-cli-service lint",
       "git add"
     ]

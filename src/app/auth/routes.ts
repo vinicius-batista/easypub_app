@@ -5,12 +5,18 @@ const routes: RouteConfig[] = [
   {
     path: '/auth/register',
     name: 'auth.register',
-    component: () => import(/* webpackChunkName: "auth" */ './views/Register.vue').then(getDefault)
+    component: () =>
+      import(/* webpackChunkName: "auth" */ './views/Register.vue').then(
+        getDefault
+      )
   },
   {
     path: '/auth/login',
     name: 'auth.login',
-    component: () => import(/* webpackChunkName: "auth" */ './views/Login.vue').then(getDefault)
+    component: () =>
+      import(/* webpackChunkName: "auth" */ './views/Login.vue').then(
+        getDefault
+      )
   }
 ]
 

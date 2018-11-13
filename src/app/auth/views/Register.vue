@@ -13,7 +13,10 @@
         @error="handleError"
       >
         <template slot-scope="{ mutate, loading }">
-          <v-form v-model="valid" @submit.prevent="mutate({ variables: { input } })">
+          <v-form
+            v-model="valid"
+            @submit.prevent="mutate({ variables: { input } })"
+          >
             <v-text-field
               class="my-2"
               v-for="{ label, model, icon, type, rules, mask } in form"
@@ -28,11 +31,7 @@
               v-bind="{ type, mask }"
               box
             />
-            <SendButton
-              text="Enviar"
-              v-bind="{loading}"
-              :disabled="!valid"
-            />
+            <SendButton text="Enviar" v-bind="{ loading }" :disabled="!valid" />
           </v-form>
         </template>
       </ApolloMutation>
@@ -106,8 +105,7 @@ export default Vue.extend({
       this.$router.push({ name })
     },
     submitSuccess (result: ApolloQueryResult<RegisterUserMutation>) {
-      return Promise
-        .resolve(result)
+      return Promise.resolve(result)
         .then(getData('registerUser'))
         .then(this.setTokens)
         .then(() => this.changeRoute('home.bars'))

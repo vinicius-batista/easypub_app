@@ -1,13 +1,8 @@
 <template>
   <v-footer app height="56">
-    <v-bottom-nav
-      :active="activeBtn"
-      :value="true"
-      absolute
-      color="white"
-    >
+    <v-bottom-nav :active="activeBtn" :value="true" absolute color="white">
       <v-btn
-        v-for="{text, icon, to} in buttons"
+        v-for="{ text, icon, to } in buttons"
         :key="text"
         color="primary"
         flat
@@ -15,8 +10,8 @@
         :ripple="false"
         :value="to.name"
       >
-        {{text}}
-        <v-icon>{{icon}}</v-icon>
+        {{ text }}
+        <v-icon>{{ icon }}</v-icon>
       </v-btn>
     </v-bottom-nav>
   </v-footer>
@@ -48,10 +43,7 @@ export default {
   }),
   computed: {
     activeBtn () {
-      const ordersRoutes = [
-        'orders.detail',
-        'orders.feedback'
-      ]
+      const ordersRoutes = ['orders.detail', 'orders.feedback']
       if (contains(this.$route.name, ordersRoutes)) {
         return 'orders'
       }

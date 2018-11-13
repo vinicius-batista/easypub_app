@@ -12,12 +12,11 @@ const routes: RouteConfig[] = [
   {
     path: '/home',
     meta: { requiresAuth: true },
-    component: () => import(/* webpackChunkName: "home" */ './home/views/Home.vue').then(getDefault),
-    children: [
-      ...barRoutes,
-      ...profileRoutes,
-      ...orderRoutes
-    ]
+    component: () =>
+      import(/* webpackChunkName: "home" */ './home/views/Home.vue').then(
+        getDefault
+      ),
+    children: [...barRoutes, ...profileRoutes, ...orderRoutes]
   }
 ]
 

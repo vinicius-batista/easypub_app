@@ -1,13 +1,10 @@
 <template>
-  <ApolloQuery
-    :query="$options.menuItemsQuery"
-    :variables="{ categoryId }"
-  >
-     <template slot-scope="{ result: { data }, isLoading }">
+  <ApolloQuery :query="$options.menuItemsQuery" :variables="{ categoryId }">
+    <template slot-scope="{ result: { data }, isLoading }">
       <Loading v-if="isLoading" />
       <v-list two-line v-else-if="data">
         <v-list-tile
-          v-for="{id, name, price} in data.menuItems"
+          v-for="{ id, name, price } in data.menuItems"
           :key="id"
           :to="{ name: 'home.menuitem', params: { id } }"
         >

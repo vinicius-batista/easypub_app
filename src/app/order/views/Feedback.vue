@@ -3,10 +3,7 @@
     <v-layout row wrap>
       <v-flex xs12>
         <v-card flat class="pb-3">
-          <ApolloQuery
-            :query="$options.feedbackQuery"
-            :variables="{ orderId }"
-          >
+          <ApolloQuery :query="$options.feedbackQuery" :variables="{ orderId }">
             <template slot-scope="{ result: { data, error }, isLoading }">
               <span>{{ error }} </span>
               <Loading v-if="isLoading" />

@@ -11,16 +11,8 @@ const beforeEach: NavigationGuard = (to, from, next) => {
 
   return store
     .dispatch('auth/isLogged')
-    .then(() =>
-      requiresAuth
-        ? next()
-        : next({ name: 'home.bars' })
-    )
-    .catch(() =>
-      requiresAuth
-        ? next({ name: 'auth.login' })
-        : next()
-    )
+    .then(() => (requiresAuth ? next() : next({ name: 'home.bars' })))
+    .catch(() => (requiresAuth ? next({ name: 'auth.login' }) : next()))
 }
 
 export default beforeEach

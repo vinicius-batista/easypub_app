@@ -1,5 +1,5 @@
 <template functional>
-   <v-card-text class="text-xs-center">
+  <v-card-text class="text-xs-center">
     <h5 class="title">Ocorreu algum erro durante pedido?</h5>
     <v-radio-group
       :value="props.value"

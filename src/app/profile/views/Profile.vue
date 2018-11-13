@@ -8,8 +8,11 @@
         @error="handleError"
       >
         <template slot-scope="{ mutate, loading }">
-          <FormErrorMessage ref="formErrorMessage"/>
-          <v-form @submit.prevent="mutate({ variables: { input }})" v-model="valid">
+          <FormErrorMessage ref="formErrorMessage" />
+          <v-form
+            @submit.prevent="mutate({ variables: { input } })"
+            v-model="valid"
+          >
             <v-text-field
               class="my-2"
               v-for="{ label, model, icon, type, rules, mask } in form"
@@ -28,7 +31,12 @@
             <v-layout justify-center>
               <v-flex xs6>
                 <v-scale-transition>
-                  <SendButton v-if="edit" text="Enviar" :disabled="!valid" :loading="loading" />
+                  <SendButton
+                    v-if="edit"
+                    text="Enviar"
+                    :disabled="!valid"
+                    :loading="loading"
+                  />
                 </v-scale-transition>
               </v-flex>
             </v-layout>
@@ -109,10 +117,7 @@ export default {
       manual: true,
       result ({ data: { profile } }) {
         const { name, email, phone } = profile
-        this.input = merge(
-          this.input,
-          { name, email, phone }
-        )
+        this.input = merge(this.input, { name, email, phone })
       }
     }
   }

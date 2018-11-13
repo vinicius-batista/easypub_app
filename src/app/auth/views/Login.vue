@@ -13,7 +13,10 @@
         @error="handleError"
       >
         <template slot-scope="{ mutate, loading }">
-          <v-form v-model="valid" @submit.prevent="mutate({ variables: { input } })">
+          <v-form
+            v-model="valid"
+            @submit.prevent="mutate({ variables: { input } })"
+          >
             <v-text-field
               class="my-2"
               v-for="{ label, model, icon, type, rules } in form"
@@ -37,7 +40,7 @@
             </h6>
             <SendButton
               text="Acessar"
-              v-bind="{loading}"
+              v-bind="{ loading }"
               :disabled="!valid"
             />
           </v-form>
@@ -97,8 +100,7 @@ export default Vue.extend({
       this.$router.push({ name })
     },
     submitSuccess (result: ApolloQueryResult<LoginUserMutation>) {
-      return Promise
-        .resolve(result)
+      return Promise.resolve(result)
         .then(getData('loginUser'))
         .then(this.setTokens)
         .then(() => this.changeRoute('home.bars'))

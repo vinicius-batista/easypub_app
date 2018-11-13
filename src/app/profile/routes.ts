@@ -6,7 +6,10 @@ const routes: RouteConfig[] = [
     name: 'profile',
     path: '/profile',
     meta: { requiresAuth: true },
-    component: () => import(/* webpackChunkName: "profile" */ '@/app/profile/views/Profile.vue').then(getDefault)
+    component: () =>
+      import(/* webpackChunkName: "profile" */ '@/app/profile/views/Profile.vue').then(
+        getDefault
+      )
   }
 ]
 

@@ -5,7 +5,8 @@ const routes: RouteConfig[] = [
   {
     path: '/',
     name: 'main',
-    component: () => import(/* webpackChunkName: "main" */ './views/Main.vue').then(getDefault)
+    component: () =>
+      import(/* webpackChunkName: "main" */ './views/Main.vue').then(getDefault)
   }
 ]
 

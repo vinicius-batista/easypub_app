@@ -1,5 +1,5 @@
 interface AuthTokens {
-  accessToken: string,
+  accessToken: string
   refreshToken: string
 }
 

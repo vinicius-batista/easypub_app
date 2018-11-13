@@ -21,12 +21,7 @@
           <h6 class="subheading mx-2 black--text font-weight-bold">
             {{ input.quantity }}
           </h6>
-          <v-btn
-            icon
-            flat
-            color="primary"
-            @click="incrementQuantity"
-          >
+          <v-btn icon flat color="primary" @click="incrementQuantity">
             <v-icon>fa-plus</v-icon>
           </v-btn>
           <v-spacer></v-spacer>
@@ -47,7 +42,9 @@
         </v-scale-transition>
         <v-card-actions class="mx-4">
           <v-btn
-            block color="primary" large
+            block
+            color="primary"
+            large
             @click="sendOrder(mutate)"
             :disabled="status === 'fechado'"
             :loading="loading"
@@ -56,9 +53,12 @@
             <v-spacer></v-spacer>
             {{ totalPrice | formatMoney }}
           </v-btn>
-          <FormErrorMessage ref="formErrorMessage"/>
+          <FormErrorMessage ref="formErrorMessage" />
         </v-card-actions>
-        <ModalQrReader :display.sync="showQrReader" @decode="decodeQrCode(mutate, $event)"/>
+        <ModalQrReader
+          :display.sync="showQrReader"
+          @decode="decodeQrCode(mutate, $event)"
+        />
       </template>
     </ApolloMutation>
   </div>
@@ -68,7 +68,10 @@
 import { multiply, inc, dec, equals, assoc } from 'ramda'
 import { mapState, mapMutations } from 'vuex'
 import ModalQrReader from './ModalQrReader'
-import { addItemToOrderMutation, currentOrderQuery } from '@/domains/order/graphql'
+import {
+  addItemToOrderMutation,
+  currentOrderQuery
+} from '@/domains/order/graphql'
 import FormErrorMessage from '@/components/FormErrorMessage'
 
 export default {
@@ -131,7 +134,10 @@ export default {
   computed: {
     ...mapState('order', ['tableId']),
     totalPrice () {
-      const { input: { quantity }, price } = this
+      const {
+        input: { quantity },
+        price
+      } = this
       return multiply(quantity, price)
     },
     disableDecrement () {

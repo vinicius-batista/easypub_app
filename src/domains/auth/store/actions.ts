@@ -45,14 +45,13 @@ const actions: ActionTree<AuthState, RootState> = {
       })
   },
   isLogged ({ dispatch }) {
-    return dispatch('refreshToken')
-      .then((refreshToken: string) => {
-        if (refreshToken) {
-          return Promise.resolve(refreshToken)
-        }
+    return dispatch('refreshToken').then((refreshToken: string) => {
+      if (refreshToken) {
+        return Promise.resolve(refreshToken)
+      }
 
-        return Promise.reject(new Error('NO_TOKEN'))
-      })
+      return Promise.reject(new Error('NO_TOKEN'))
+    })
   }
 }
 

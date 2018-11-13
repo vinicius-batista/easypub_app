@@ -42,9 +42,7 @@ export default {
     },
     async onInit (promise) {
       this.loading = true
-      promise
-        .then(this.stopLoading)
-        .catch(this.stopLoading)
+      promise.then(this.stopLoading).catch(this.stopLoading)
     }
   }
 }

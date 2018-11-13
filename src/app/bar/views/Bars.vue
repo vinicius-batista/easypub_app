@@ -1,10 +1,7 @@
 <template>
   <v-container grid-list-xs style="padding: 1em 0">
     <SearchInput v-model="search" />
-    <ApolloQuery
-      :query="$options.barsQuery"
-      :variables="{ name: search }"
-    >
+    <ApolloQuery :query="$options.barsQuery" :variables="{ name: search }">
       <template slot-scope="{ result: { data }, isLoading }">
         <Loading v-if="isLoading" />
         <BarsList v-else v-bind="data" />

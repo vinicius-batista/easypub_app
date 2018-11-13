@@ -1,4 +1,4 @@
 export interface HomeState {
-  title: string,
+  title: string
   isBackButtonVisible: boolean
 }

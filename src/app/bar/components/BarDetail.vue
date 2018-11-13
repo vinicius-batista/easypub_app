@@ -4,14 +4,16 @@
       <v-card flat>
         <v-layout row align-center wrap>
           <v-flex xs12 justify-center>
-            <v-img :src="avatar" aspect-ratio="2" height="300px"/>
+            <v-img :src="avatar" aspect-ratio="2" height="300px" />
           </v-flex>
-          <!-- <v-flex xs7>
-            <v-card-title primary-title>
-              <h5 class="headline tertiary--text font-weight-medium">{{ name }}</h5>
+          <!--
+            <v-flex xs7>
+              <v-card-title primary-title>
+                <h5 class="headline tertiary--text font-weight-medium">{{ name }}</h5>
 
-            </v-card-title>
-          </v-flex> -->
+              </v-card-title>
+            </v-flex>
+          -->
         </v-layout>
         <v-card-actions class="py-3">
           <BarStatusChip :status="status" />

@@ -38,7 +38,7 @@
 
         <v-card-actions class="my-3" v-if="!readOnly">
           <v-spacer></v-spacer>
-          <SendButton text="AVALIAR" v-bind="{ loading }"/>
+          <SendButton text="AVALIAR" v-bind="{ loading }" />
           <v-spacer></v-spacer>
         </v-card-actions>
       </v-form>
@@ -49,7 +49,11 @@
 <script>
 import FeedbackMistakeRadio from './FeedbackMistakeRadio'
 import SendButton from '@/components/SendButton'
-import { createFeedbackMutation, feedbackQuery, ordersQuery } from '@/domains/order/graphql'
+import {
+  createFeedbackMutation,
+  feedbackQuery,
+  ordersQuery
+} from '@/domains/order/graphql'
 import { assocPath } from 'ramda'
 
 export default {
@@ -99,12 +103,24 @@ export default {
         }
       ]
     },
-    updateStore (store, { data: { createFeedback } }) {
+    updateStore (
+      store,
+      {
+        data: { createFeedback }
+      }
+    ) {
       const { feedbackQuery } = this.$options
       const { orderId } = this
 
-      const feedbackData = store.readQuery({ query: feedbackQuery, variables: { orderId } })
-      const newFeedbackData = assocPath(['order', 'feedback'], createFeedback, feedbackData)
+      const feedbackData = store.readQuery({
+        query: feedbackQuery,
+        variables: { orderId }
+      })
+      const newFeedbackData = assocPath(
+        ['order', 'feedback'],
+        createFeedback,
+        feedbackData
+      )
       store.writeQuery({
         query: feedbackQuery,
         variables: { orderId },

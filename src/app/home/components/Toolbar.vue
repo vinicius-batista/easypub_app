@@ -1,9 +1,5 @@
 <template>
-  <v-toolbar
-    app
-    flat
-    class="primary"
-  >
+  <v-toolbar app flat class="primary">
     <v-flex xs2>
       <v-btn icon dark v-if="isBackButtonVisible" @click="backOneRoute">
         <v-icon>fas fa-chevron-left</v-icon>

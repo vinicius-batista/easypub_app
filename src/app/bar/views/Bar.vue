@@ -8,10 +8,15 @@
       <template slot-scope="{ result: { data }, isLoading }">
         <Loading v-if="isLoading" />
         <div v-else-if="data">
-          <BarDetail v-bind="data.bar"/>
+          <BarDetail v-bind="data.bar" />
           <v-layout row wrap class="mt-2">
             <v-flex xs12>
-              <v-tabs v-model="category" centered color="white" slider-color="primary">
+              <v-tabs
+                v-model="category"
+                centered
+                color="white"
+                slider-color="primary"
+              >
                 <v-tab
                   v-for="menuCategory in data.bar.menuCategories"
                   :key="menuCategory.id"
@@ -27,7 +32,7 @@
                   :key="menuCategory.id"
                   lazy
                 >
-                  <MenuItemsList :categoryId="menuCategory.id"/>
+                  <MenuItemsList :categoryId="menuCategory.id" />
                 </v-tab-item>
               </v-tabs-items>
             </v-flex>

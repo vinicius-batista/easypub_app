@@ -8,12 +8,7 @@
   >
     Aberto
   </v-chip>
-  <v-chip
-    v-else
-    small
-    color="red lighten-4"
-    class="red--text text--darken-4"
-  >
+  <v-chip v-else small color="red lighten-4" class="red--text text--darken-4">
     Fechado
   </v-chip>
 </template>

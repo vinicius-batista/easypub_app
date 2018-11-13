@@ -1,4 +1,4 @@
 export interface AuthState {
-  accessToken: null | string,
+  accessToken: null | string
   refreshToken: null | string
 }
