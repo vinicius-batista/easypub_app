@@ -1,4 +1,5 @@
 import { curry } from 'ramda'
+import { DocumentNode } from 'graphql'
 
 export const getData = curry(
   (path: string, response: any) => response.data[path]
@@ -15,3 +16,11 @@ export const graphqlRequest = (query: string, variables: object) =>
     body: JSON.stringify({ query, variables }),
     method: 'POST'
   }).then(response => response.json())
+
+export function hasSubscription (documentNode: DocumentNode) {
+  return documentNode.definitions.some(
+    definition =>
+      definition.kind === 'OperationDefinition' &&
+      definition.operation === 'subscription'
+  )
+}

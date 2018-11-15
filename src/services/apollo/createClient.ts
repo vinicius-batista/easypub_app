@@ -1,12 +1,20 @@
 import { ApolloClient } from 'apollo-client'
-import { createSocketLink } from './createSocketLink'
-import { withAuthToken } from './authContext'
+import { createSocketLink } from '@/services/apollo/createSocketLink'
+import { withAuthToken } from '@/services/apollo/authContext'
 import { ApolloLink } from 'apollo-link'
 import { InMemoryCache } from 'apollo-cache-inmemory'
-import { hasSubscription } from '@jumpn/utils-graphql'
+import { hasSubscription } from '@/helpers/graphql'
 import { createLink } from 'apollo-absinthe-upload-link'
 
-export const createApolloClient = ({ httpEndpoint, socketEndpoint }) => {
+interface ICreateClientOpts {
+  httpEndpoint: string
+  socketEndpoint: string
+}
+
+export const createApolloClient = ({
+  httpEndpoint,
+  socketEndpoint
+}: ICreateClientOpts) => {
   const httpLink = createLink({ uri: httpEndpoint })
   const wsLink = createSocketLink(socketEndpoint)
 
@@ -16,10 +24,7 @@ export const createApolloClient = ({ httpEndpoint, socketEndpoint }) => {
     httpLink
   )
 
-  const authLink = ApolloLink.from([
-    withAuthToken,
-    link
-  ])
+  const authLink = ApolloLink.from([withAuthToken, link])
 
   return new ApolloClient({
     link: authLink,

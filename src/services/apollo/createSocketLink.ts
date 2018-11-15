@@ -1,11 +1,12 @@
 import * as AbsintheSocket from '@absinthe/socket'
 import { createAbsintheSocketLink } from '@absinthe/socket-apollo-link'
-import { ApolloLink } from 'apollo-link'
+import { ApolloLink, Operation, NextLink } from 'apollo-link'
 import { Socket as PhoenixSocket } from 'phoenix'
 import store from '../store'
 import { equals, prop } from 'ramda'
 
-const createPhoenixSocket = (url, accessToken) =>
+const createPhoenixSocket = (url: string, accessToken: string) =>
+  // @ts-ignore
   new PhoenixSocket(url, {
     reconnect: true,
     params: {
@@ -13,15 +14,24 @@ const createPhoenixSocket = (url, accessToken) =>
     }
   })
 
-const createAbsSocketLink = (phoenixSocket) => {
+const createAbsSocketLink = (phoenixSocket: PhoenixSocket) => {
   const absintheSocket = AbsintheSocket.create(phoenixSocket)
   return createAbsintheSocketLink(absintheSocket)
 }
 
-const createBearerToken = (accessToken) => `Bearer ${accessToken}`
+const createBearerToken = (accessToken: string) => `Bearer ${accessToken}`
+
+interface ISocketLinkConstructor {
+  url: string
+}
 
 class SocketLink extends ApolloLink {
-  constructor ({ url }) {
+  url: string
+  accessToken: string = ''
+  socket!: PhoenixSocket
+  link!: ApolloLink
+
+  constructor ({ url }: ISocketLinkConstructor) {
     super()
     this.url = url
 
@@ -35,7 +45,7 @@ class SocketLink extends ApolloLink {
       })
   }
 
-  request (operation, forward) {
+  request (operation: Operation, forward: NextLink) {
     const { authorization } = prop('headers', operation.getContext())
     if (equals(authorization, this.accessToken)) {
       return this.link.request(operation, forward)
@@ -50,4 +60,4 @@ class SocketLink extends ApolloLink {
   }
 }
 
-export const createSocketLink = (url) => new SocketLink({ url })
+export const createSocketLink = (url: string) => new SocketLink({ url })

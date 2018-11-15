@@ -5,12 +5,12 @@ const dispatchEvent = (name, timeout = 8000) => {
     document.dispatchEvent(new Event(name))
   }, timeout)
 }
-window.addEventListener('beforeinstallprompt', (event) => {
+window.addEventListener('beforeinstallprompt', event => {
   // Prevent Chrome <= 67 from automatically showing the prompt
   event.preventDefault()
   // Show the modal add to home screen dialog
   event.prompt()
-  event.userChoice.then((choice) => {
+  event.userChoice.then(choice => {
     dispatchEvent(`install:${choice.outcome}`)
   })
 })
@@ -32,13 +32,15 @@ if (process.env.NODE_ENV === 'production') {
   register(`${process.env.BASE_URL}service-worker.js`, {
     ...common,
     ready () {
-    // console.log('Service worker is active.')
+      // console.log('Service worker is active.')
     },
     cached (registration) {
-    // console.log('Content has been cached for offline use.')
+      // console.log('Content has been cached for offline use.')
     },
     offline () {
-      console.log('No internet connection found. App is running in offline mode.')
+      console.log(
+        'No internet connection found. App is running in offline mode.'
+      )
     }
   })
 }

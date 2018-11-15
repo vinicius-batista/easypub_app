@@ -4,8 +4,9 @@ import newAccessTokenQuery from './newAccessTokenQuery'
 import { authHeader, checkTokenExpired } from '@/helpers/auth'
 import store from '../store'
 import { prop } from 'ramda'
+import { GraphQLRequest } from 'apollo-link'
 
-const newAccessToken = (request) =>
+const newAccessToken = (request: GraphQLRequest) =>
   store
     .dispatch('auth/refreshToken')
     .then(refreshToken => graphqlRequest(newAccessTokenQuery, { refreshToken }))
@@ -15,7 +16,7 @@ const newAccessToken = (request) =>
     .then(authHeader(request))
     .catch(() => request)
 
-export const withAuthToken = setContext((request) => {
+export const withAuthToken = setContext(request => {
   return store
     .dispatch('auth/accessToken')
     .then(accessToken => {
