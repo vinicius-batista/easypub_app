@@ -1,12 +1,12 @@
-query FetchBar ($id: String!) {
+query FetchBar($id: String!) {
   bar(id: $id) {
-    id,
-    name,
-    address,
-    avatar,
-    status,
+    id
+    name
+    address
+    avatar
+    status
     menuCategories {
-      id,
+      id
       name
     }
   }

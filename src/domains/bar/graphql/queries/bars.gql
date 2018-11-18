@@ -1,9 +1,9 @@
-query FetchBars ($name:String!) {
+query FetchBars($name: String!) {
   bars(name: $name) {
-    id,
-    name,
-    status,
-    insertedAt,
+    id
+    name
+    status
+    insertedAt
     avatar
   }
 }

@@ -1,15 +1,15 @@
-query FetchMenuItem ($id:String!){
-  menuItem(id:$id) {
-    id,
-    name,
-    price,
-    photo,
-    waitingTime,
-    description,
-    peopleCount,
+query FetchMenuItem($id: String!) {
+  menuItem(id: $id) {
+    id
+    name
+    price
+    photo
+    waitingTime
+    description
+    peopleCount
     menuCategory {
       bar {
-        id,
+        id
         status
       }
     }

@@ -1,17 +1,17 @@
 query FetchCurrentOrder {
-  currentOrder{
-    id,
-    status,
+  currentOrder {
+    id
+    status
     table {
       bar {
         id
       }
-    },
+    }
     items {
-      id,
-      quantity,
+      id
+      quantity
       menuItem {
-        name,
+        name
         price
       }
     }

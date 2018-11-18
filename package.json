@@ -8,7 +8,7 @@
     "lint": "vue-cli-service lint",
     "test:e2e": "vue-cli-service test:e2e",
     "test:unit": "vue-cli-service test:unit",
-    "format": "prettier-eslint \"src/**/*.*(vue|ts|js)\" --write"
+    "format": "prettier-eslint \"src/**/*.*(vue|ts|js|gql)\" --write"
   },
   "dependencies": {
     "@absinthe/socket": "^0.1.10",
@@ -80,6 +80,10 @@
     "*.vue": [
       "prettier-eslint \"src/**/*.vue\" --write",
       "vue-cli-service lint",
+      "git add"
+    ],
+    "*.gql": [
+      "prettier-eslint \"src/**/*.gql\" --write",
       "git add"
     ]
   }

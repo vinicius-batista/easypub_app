@@ -1,7 +1,7 @@
-query FetchMenuItems ($categoryId:String!){
-  menuItems(categoryId:$categoryId) {
-    id,
-    name,
+query FetchMenuItems($categoryId: String!) {
+  menuItems(categoryId: $categoryId) {
+    id
+    name
     price
   }
 }

@@ -1,16 +1,16 @@
-query FetchFeedbackAndBar ($orderId: String!) {
+query FetchFeedbackAndBar($orderId: String!) {
   order(id: $orderId) {
     table {
       bar {
-        id,
+        id
         name
       }
-    },
+    }
     feedback {
-      id,
-      appRating,
-      barRating,
-      indication,
+      id
+      appRating
+      barRating
+      indication
       hasMistake
     }
   }

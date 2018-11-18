@@ -1,6 +1,6 @@
-mutation RegisterUser ($input: RegisterUserInput!) {
+mutation RegisterUser($input: RegisterUserInput!) {
   registerUser(input: $input) {
-    accessToken,
+    accessToken
     refreshToken
   }
 }

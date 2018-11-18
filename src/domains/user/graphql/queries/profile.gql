@@ -1,8 +1,8 @@
 query FetchProfile {
-  profile{
-    id,
-    name,
-    email,
+  profile {
+    id
+    name
+    email
     phone
   }
 }

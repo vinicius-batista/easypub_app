@@ -1,5 +1,5 @@
-mutation AddItemToOrder ($input:AddItemInput!) {
-  addItemToOrder(input:$input){
+mutation AddItemToOrder($input: AddItemInput!) {
+  addItemToOrder(input: $input) {
     id
   }
 }

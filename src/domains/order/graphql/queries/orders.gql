@@ -1,15 +1,15 @@
 query FetchOrders {
   orders {
-    id,
-    insertedAt,
+    id
+    insertedAt
     table {
       bar {
-        id,
+        id
         name
       }
-    },
+    }
     feedback {
-      id,
+      id
       barRating
     }
   }

@@ -1,16 +1,16 @@
-query FetchOrder ($id: String!) {
-  order(id: $id){
+query FetchOrder($id: String!) {
+  order(id: $id) {
     table {
       bar {
-        id,
+        id
         name
       }
-    },
+    }
     items {
-      id,
-      quantity,
+      id
+      quantity
       menuItem {
-        name,
+        name
         price
       }
     }
