@@ -1,8 +1,14 @@
 <template functional>
-  <v-row justify="center" >
+  <v-row justify="center">
     <v-col cols="12">
       <v-card class="pa-4">
-        <v-btn outlined small round color="primary" @click="listeners['update:edit'](!props.edit)">
+        <v-btn
+          outlined
+          small
+          round
+          color="primary"
+          @click="listeners['update:edit'](!props.edit)"
+        >
           Editar dados
         </v-btn>
         <slot></slot>
@@ -15,7 +21,7 @@
 export default {
   name: 'ProfileCard',
   props: {
-    edit: Boolean
-  }
+    edit: Boolean,
+  },
 }
 </script>

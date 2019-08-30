@@ -1,12 +1,9 @@
 <template>
   <v-container style="padding: 1em 0">
-    <v-row  >
+    <v-row>
       <v-col cols="12">
         <v-card class="pb-4" flat>
-          <ApolloQuery
-            :query="$options.menuItemQuery"
-            :variables="{ id }"
-          >
+          <ApolloQuery :query="$options.menuItemQuery" :variables="{ id }">
             <template slot-scope="{ result: { data }, isLoading }">
               <Loading v-if="isLoading" />
               <div v-else-if="data">
@@ -36,14 +33,14 @@ export default {
   menuItemQuery,
   components: { MenuItemDescription, MenuItemOrder },
   props: {
-    id: String
+    id: String,
   },
-  mounted () {
+  mounted() {
     this.showBackButton()
     this.setTitle('DETALHES')
   },
   methods: {
-    ...mapMutations('home', ['showBackButton', 'setTitle'])
-  }
+    ...mapMutations('home', ['showBackButton', 'setTitle']),
+  },
 }
 </script>

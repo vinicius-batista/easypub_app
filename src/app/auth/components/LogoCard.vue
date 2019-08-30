@@ -1,5 +1,5 @@
 <template functional>
-  <v-row class="primary py-5" justify="center" >
+  <v-row class="primary py-5" justify="center">
     <v-col cols="6" class="white logo-card">
       <v-img :src="require('@/assets/images/logo.png')"></v-img>
     </v-col>
@@ -13,8 +13,8 @@
 export default {
   name: 'LogoCard',
   props: {
-    title: String
-  }
+    title: String,
+  },
 }
 </script>
 

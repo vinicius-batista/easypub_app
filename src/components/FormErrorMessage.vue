@@ -5,7 +5,7 @@
     color="red lighten-4"
     class="alert-box mb-4"
     transition="scale-transition"
-   >
+  >
     <span class="red--text text--darken-4 alert-box body-1">
       {{ errorMessage }}
     </span>
@@ -17,18 +17,18 @@ export default {
   name: 'FormErrorMessage',
   data: () => ({
     errorMessage: '',
-    hasError: false
+    hasError: false,
   }),
   methods: {
-    handleError (error) {
+    handleError(error) {
       this.errorMessage = error.graphQLErrors[0].message
       this.hasError = true
     },
-    reset () {
+    reset() {
       this.hasError = false
       this.errorMessage = ''
-    }
-  }
+    },
+  },
 }
 </script>
 

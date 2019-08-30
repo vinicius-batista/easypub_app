@@ -11,7 +11,7 @@ export default new Vuex.Store({
   modules: {
     auth: authStore,
     home: homeStore,
-    order: orderStore
+    order: orderStore,
   },
-  plugins: [vuexpersistPlugin]
+  plugins: [vuexpersistPlugin],
 })

@@ -23,7 +23,7 @@ new Vue({
   apolloProvider: apollo,
   vuetify,
   render: h => h(App),
-  mounted () {
+  mounted() {
     syncRouter(store, router)
-  }
+  },
 }).$mount('#app')

@@ -1,12 +1,9 @@
 <template>
   <v-container style="padding: 1em 0">
-    <v-row  >
+    <v-row>
       <v-col cols="12">
         <v-card flat class="pb-3">
-          <ApolloQuery
-            :query="$options.feedbackQuery"
-            :variables="{ orderId }"
-          >
+          <ApolloQuery :query="$options.feedbackQuery" :variables="{ orderId }">
             <template slot-scope="{ result: { data, error }, isLoading }">
               <span>{{ error }} </span>
               <Loading v-if="isLoading" />
@@ -37,14 +34,14 @@ export default {
   feedbackQuery,
   components: { FeedbackForm },
   props: {
-    orderId: String
+    orderId: String,
   },
-  mounted () {
+  mounted() {
     this.showBackButton()
     this.setTitle('AVALIAÇÃO')
   },
   methods: {
-    ...mapMutations('home', ['showBackButton', 'setTitle'])
-  }
+    ...mapMutations('home', ['showBackButton', 'setTitle']),
+  },
 }
 </script>

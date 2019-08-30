@@ -10,18 +10,18 @@ Vue.use(Vuetify)
 export default new Vuetify({
   lang: {
     locales: { pt },
-    current: 'pt'
+    current: 'pt',
   },
   icons: {
-    iconfont: 'fa'
+    iconfont: 'fa',
   },
   theme: {
     themes: {
       light: {
         primary: colors.blue.darken4,
         secondary: colors.lightBlue.lighten2,
-        tertiary: colors.blueGrey.darken2
-      }
-    }
-  }
+        tertiary: colors.blueGrey.darken2,
+      },
+    },
+  },
 })

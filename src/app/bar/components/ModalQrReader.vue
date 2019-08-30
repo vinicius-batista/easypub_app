@@ -23,29 +23,27 @@ import { QrcodeStream } from 'vue-qrcode-reader'
 export default {
   name: 'ModalQrReader',
   props: {
-    display: Boolean
+    display: Boolean,
   },
   data: () => ({
-    loading: false
+    loading: false,
   }),
   components: { QrcodeStream },
   methods: {
-    updateDisplay (e) {
+    updateDisplay(e) {
       this.$emit('update:display', e)
     },
-    onDecode (result) {
+    onDecode(result) {
       this.$emit('decode', result)
       this.updateDisplay(false)
     },
-    stopLoading () {
+    stopLoading() {
       this.loading = false
     },
-    async onInit (promise) {
+    async onInit(promise) {
       this.loading = true
-      promise
-        .then(this.stopLoading)
-        .catch(this.stopLoading)
-    }
-  }
+      promise.then(this.stopLoading).catch(this.stopLoading)
+    },
+  },
 }
 </script>

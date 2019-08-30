@@ -17,7 +17,7 @@
 export default {
   name: 'SearchInput',
   props: {
-    value: String
-  }
+    value: String,
+  },
 }
 </script>

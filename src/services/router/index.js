@@ -6,7 +6,7 @@ import beforeEach from './beforeEach'
 Vue.use(Router)
 
 const router = new Router({
-  routes
+  routes,
 })
 
 router.beforeEach(beforeEach)

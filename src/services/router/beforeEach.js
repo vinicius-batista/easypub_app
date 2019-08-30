@@ -1,6 +1,6 @@
 import store from '../store'
 
-export default function (to, from, next) {
+export default function(to, from, next) {
   const { requiresAuth } = to.meta
   const storePath = store.state.route && store.state.route.path
 
@@ -10,14 +10,6 @@ export default function (to, from, next) {
 
   return store
     .dispatch('auth/isLogged')
-    .then(() =>
-      requiresAuth
-        ? next()
-        : next({ name: 'home.bars' })
-    )
-    .catch(() =>
-      requiresAuth
-        ? next({ name: 'auth.login' })
-        : next()
-    )
+    .then(() => (requiresAuth ? next() : next({ name: 'home.bars' })))
+    .catch(() => (requiresAuth ? next({ name: 'auth.login' }) : next()))
 }

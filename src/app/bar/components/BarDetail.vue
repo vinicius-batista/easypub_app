@@ -2,9 +2,9 @@
   <v-row>
     <v-col cols="12">
       <v-card flat>
-        <v-row  align="center" >
-          <v-col class="justify-center" cols="12" >
-            <v-img :src="avatar" aspect-ratio="2" height="300px"/>
+        <v-row align="center">
+          <v-col class="justify-center" cols="12">
+            <v-img :src="avatar" aspect-ratio="2" height="300px" />
           </v-col>
           <!-- <v-flex xs7>
             <v-card-title primary-title>
@@ -32,7 +32,7 @@ export default {
     name: String,
     address: String,
     status: String,
-    avatar: String
-  }
+    avatar: String,
+  },
 }
 </script>

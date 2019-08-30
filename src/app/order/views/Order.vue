@@ -1,17 +1,16 @@
 <template>
   <v-container style="padding: 1em 0">
-    <v-row  >
+    <v-row>
       <v-col cols="12">
         <v-card flat class="py-5">
-          <ApolloQuery
-            :variables="{ id }"
-            :query="$options.orderQuery"
-          >
+          <ApolloQuery :variables="{ id }" :query="$options.orderQuery">
             <template slot-scope="{ result: { data }, isLoading }">
               <Loading v-if="isLoading" />
               <div v-else-if="data">
                 <v-card-title primary-title class="pr-0">
-                  <h2 class="title tertiary--text">{{ data.order.table.bar.name }}</h2>
+                  <h2 class="title tertiary--text">
+                    {{ data.order.table.bar.name }}
+                  </h2>
                   <v-spacer></v-spacer>
                   <v-btn
                     :to="{ name: 'orders.feedback', params: { orderId: id } }"
@@ -24,12 +23,14 @@
                   </v-btn>
                 </v-card-title>
                 <v-card-text class="px-0">
-                  <OrderItemsList :items="data.order.items"/>
+                  <OrderItemsList :items="data.order.items" />
                 </v-card-text>
                 <v-card-actions class="px-3">
                   <span class="title">Total</span>
                   <v-spacer></v-spacer>
-                  <span class="title text-right">{{ calculateTotal(data.order.items) | formatMoney }}</span>
+                  <span class="title text-right">{{
+                    calculateTotal(data.order.items) | formatMoney
+                  }}</span>
                 </v-card-actions>
               </div>
             </template>
@@ -51,20 +52,20 @@ export default {
   orderQuery,
   components: { OrderItemsList },
   props: {
-    id: String
+    id: String,
   },
-  mounted () {
+  mounted() {
     this.showBackButton()
     this.setTitle('DETALHES')
   },
   methods: {
     ...mapMutations('home', ['showBackButton', 'setTitle']),
-    calculateTotal (items) {
+    calculateTotal(items) {
       return pipe(
         map(path(['menuItem', 'price'])),
         sum
       )(items)
-    }
-  }
+    },
+  },
 }
 </script>

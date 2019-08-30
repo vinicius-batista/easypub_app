@@ -11,10 +11,6 @@ export default [
     path: '/home',
     meta: { requiresAuth: true },
     component: () => import(/* webpackChunkName: "home" */ './home/views/Home'),
-    children: [
-      ...barRoutes,
-      ...profileRoutes,
-      ...orderRoutes
-    ]
-  }
+    children: [...barRoutes, ...profileRoutes, ...orderRoutes],
+  },
 ]

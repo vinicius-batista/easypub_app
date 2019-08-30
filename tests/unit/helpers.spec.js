@@ -7,9 +7,9 @@ describe('Helpers tests', () => {
     const responseMock = {
       data: {
         somePath: {
-          foo: 'bar'
-        }
-      }
+          foo: 'bar',
+        },
+      },
     }
     expect(getData('somePath', responseMock)).toEqual({ foo: 'bar' })
   })
@@ -25,14 +25,14 @@ describe('Helpers tests', () => {
     const requestMock = {
       foo: 'bar',
       bar: 'foo',
-      headers: {}
+      headers: {},
     }
     const expected = {
       foo: 'bar',
       bar: 'foo',
       headers: {
-        authorization: 'Bearer some-token'
-      }
+        authorization: 'Bearer some-token',
+      },
     }
 
     expect(authHeader(requestMock, 'some-token')).toEqual(expected)

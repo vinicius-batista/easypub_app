@@ -9,19 +9,19 @@ const createPhoenixSocket = (url, accessToken) =>
   new PhoenixSocket(url, {
     reconnect: true,
     params: {
-      Authorization: accessToken
-    }
+      Authorization: accessToken,
+    },
   })
 
-const createAbsSocketLink = (phoenixSocket) => {
+const createAbsSocketLink = phoenixSocket => {
   const absintheSocket = AbsintheSocket.create(phoenixSocket)
   return createAbsintheSocketLink(absintheSocket)
 }
 
-const createBearerToken = (accessToken) => `Bearer ${accessToken}`
+const createBearerToken = accessToken => `Bearer ${accessToken}`
 
 class SocketLink extends ApolloLink {
-  constructor ({ url }) {
+  constructor({ url }) {
     super()
     this.url = url
 
@@ -35,7 +35,7 @@ class SocketLink extends ApolloLink {
       })
   }
 
-  request (operation, forward) {
+  request(operation, forward) {
     const { authorization } = prop('headers', operation.getContext())
     if (equals(authorization, this.accessToken)) {
       return this.link.request(operation, forward)
@@ -50,4 +50,4 @@ class SocketLink extends ApolloLink {
   }
 }
 
-export const createSocketLink = (url) => new SocketLink({ url })
+export const createSocketLink = url => new SocketLink({ url })

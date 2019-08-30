@@ -16,13 +16,10 @@ export const createApolloClient = ({ httpEndpoint, socketEndpoint }) => {
     httpLink
   )
 
-  const authLink = ApolloLink.from([
-    withAuthToken,
-    link
-  ])
+  const authLink = ApolloLink.from([withAuthToken, link])
 
   return new ApolloClient({
     link: authLink,
-    cache: new InMemoryCache()
+    cache: new InMemoryCache(),
   })
 }

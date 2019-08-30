@@ -1,8 +1,6 @@
 <template>
   <v-list two-line>
-    <ApolloQuery
-      :query="$options.ordersQuery"
-    >
+    <ApolloQuery :query="$options.ordersQuery">
       <template slot-scope="{ result: { data }, isLoading }">
         <Loading v-if="isLoading" />
         <div v-else-if="data">
@@ -46,9 +44,12 @@ export default {
   name: 'OrdersList',
   ordersQuery,
   methods: {
-    formateDate (date) {
-      return new Date(date).toLocaleString(navigator.language, { month: 'short', day: 'numeric' })
-    }
-  }
+    formateDate(date) {
+      return new Date(date).toLocaleString(navigator.language, {
+        month: 'short',
+        day: 'numeric',
+      })
+    },
+  },
 }
 </script>

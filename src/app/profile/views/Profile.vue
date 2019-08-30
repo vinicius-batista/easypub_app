@@ -8,8 +8,11 @@
         @error="handleError"
       >
         <template slot-scope="{ mutate, loading }">
-          <FormErrorMessage ref="formErrorMessage"/>
-          <v-form @submit.prevent="mutate({ variables: { input }})" v-model="valid">
+          <FormErrorMessage ref="formErrorMessage" />
+          <v-form
+            @submit.prevent="mutate({ variables: { input } })"
+            v-model="valid"
+          >
             <v-text-field
               class="my-4"
               v-for="{ label, model, icon, type, rules, mask } in form"
@@ -29,7 +32,12 @@
             <v-row justify="center">
               <v-col cols="6">
                 <v-scale-transition>
-                  <SendButton v-if="edit" text="Enviar" :disabled="!valid" :loading="loading" />
+                  <SendButton
+                    v-if="edit"
+                    text="Enviar"
+                    :disabled="!valid"
+                    :loading="loading"
+                  />
                 </v-scale-transition>
               </v-col>
             </v-row>
@@ -58,20 +66,20 @@ export default {
     input: {
       name: '',
       email: '',
-      phone: ''
+      phone: '',
     },
     form: [
       {
         label: 'Nome',
         model: 'name',
         icon: 'fa-user',
-        rules: 'required|alpha_spaces'
+        rules: 'required|alpha_spaces',
       },
       {
         label: 'Email',
         model: 'email',
         icon: 'fa-envelope',
-        rules: 'required|email'
+        rules: 'required|email',
       },
       {
         label: 'Telefone',
@@ -79,43 +87,40 @@ export default {
         model: 'phone',
         icon: 'fa-phone',
         rules: 'required',
-        mask: '(##) ##### - ####'
-      }
-    ]
+        mask: '(##) ##### - ####',
+      },
+    ],
   }),
-  mounted () {
+  mounted() {
     this.hiddenBackButton()
     this.setTitle('EasyPub')
   },
   methods: {
     ...mapMutations('home', ['hiddenBackButton', 'setTitle']),
-    handleError (error) {
+    handleError(error) {
       this.$refs.formErrorMessage.handleError(error)
     },
-    submitSuccess () {
+    submitSuccess() {
       this.edit = false
       this.$refs.formErrorMessage.reset()
     },
-    updateStore (store, { data: updateProfile }) {
+    updateStore(store, { data: updateProfile }) {
       const { profile } = store.readQuery({ query: profileQuery })
       store.writeQuery({
         query: profileQuery,
-        data: { profile: merge(profile, updateProfile) }
+        data: { profile: merge(profile, updateProfile) },
       })
-    }
+    },
   },
   apollo: {
     profile: {
       query: profileQuery,
       manual: true,
-      result ({ data: { profile } }) {
+      result({ data: { profile } }) {
         const { name, email, phone } = profile
-        this.input = merge(
-          this.input,
-          { name, email, phone }
-        )
-      }
-    }
-  }
+        this.input = merge(this.input, { name, email, phone })
+      },
+    },
+  },
 }
 </script>

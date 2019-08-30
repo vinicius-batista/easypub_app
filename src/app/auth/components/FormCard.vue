@@ -21,8 +21,8 @@ export default {
   name: 'FormCard',
   props: {
     helperText: String,
-    actionText: String
-  }
+    actionText: String,
+  },
 }
 </script>
 

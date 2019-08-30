@@ -1,5 +1,5 @@
 export default {
-  setTableId (state, tableId) {
+  setTableId(state, tableId) {
     state.tableId = tableId
-  }
+  },
 }

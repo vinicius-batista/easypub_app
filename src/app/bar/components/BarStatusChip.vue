@@ -7,12 +7,7 @@
   >
     Aberto
   </v-chip>
-  <v-chip
-    v-else
-    small
-    color="red lighten-4"
-    text-color="red darken-4"
-  >
+  <v-chip v-else small color="red lighten-4" text-color="red darken-4">
     Fechado
   </v-chip>
 </template>
@@ -21,7 +16,7 @@
 export default {
   name: 'BarStatusChip',
   props: {
-    status: String
-  }
+    status: String,
+  },
 }
 </script>

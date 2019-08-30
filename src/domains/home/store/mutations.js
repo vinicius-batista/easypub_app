@@ -1,11 +1,11 @@
 export default {
-  setTitle (state, title) {
+  setTitle(state, title) {
     state.title = title
   },
-  showBackButton (state) {
+  showBackButton(state) {
     state.isBackButtonVisible = true
   },
-  hiddenBackButton (state) {
+  hiddenBackButton(state) {
     state.isBackButtonVisible = false
-  }
+  },
 }

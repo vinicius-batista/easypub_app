@@ -1,8 +1,8 @@
 export default {
-  setAccessToken (state, accessToken) {
+  setAccessToken(state, accessToken) {
     state.accessToken = accessToken
   },
-  setRefreshToken (state, refreshToken) {
+  setRefreshToken(state, refreshToken) {
     state.refreshToken = refreshToken
-  }
+  },
 }

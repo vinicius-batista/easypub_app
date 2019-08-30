@@ -22,12 +22,12 @@ import OrdersList from '../components/OrdersList'
 export default {
   name: 'Orders',
   components: { CurrentOrder, OrdersList },
-  mounted () {
+  mounted() {
     this.hiddenBackButton()
     this.setTitle('EasyPub')
   },
   methods: {
-    ...mapMutations('home', ['hiddenBackButton', 'setTitle'])
-  }
+    ...mapMutations('home', ['hiddenBackButton', 'setTitle']),
+  },
 }
 </script>

@@ -38,7 +38,7 @@
 
         <v-card-actions class="my-3" v-if="!readOnly">
           <v-spacer></v-spacer>
-          <SendButton text="AVALIAR" v-bind="{ loading }"/>
+          <SendButton text="AVALIAR" v-bind="{ loading }" />
           <v-spacer></v-spacer>
         </v-card-actions>
       </v-form>
@@ -49,7 +49,11 @@
 <script>
 import FeedbackMistakeRadio from './FeedbackMistakeRadio'
 import SendButton from '@/components/SendButton'
-import { createFeedbackMutation, feedbackQuery, ordersQuery } from '@/domains/order/graphql'
+import {
+  createFeedbackMutation,
+  feedbackQuery,
+  ordersQuery,
+} from '@/domains/order/graphql'
 import { assocPath } from 'ramda'
 
 export default {
@@ -60,12 +64,12 @@ export default {
     barRating: { type: String, default: '0' },
     appRating: { type: String, default: '0' },
     indication: { type: Number, default: 0 },
-    readOnly: Boolean
+    readOnly: Boolean,
   },
   components: { SendButton, FeedbackMistakeRadio },
   createFeedbackMutation,
   feedbackQuery,
-  data () {
+  data() {
     const { orderId, hasMistake, barRating, appRating, indication } = this
 
     return {
@@ -74,43 +78,55 @@ export default {
         hasMistake,
         barRating: parseFloat(barRating),
         appRating: parseFloat(appRating),
-        indication
+        indication,
       },
       fiveStarsRate: [
         {
           model: 'barRating',
-          text: 'Como você avalia o bar?'
+          text: 'Como você avalia o bar?',
         },
         {
           model: 'appRating',
-          text: 'Como foi a sua experiência com o EasyPub?'
-        }
-      ]
+          text: 'Como foi a sua experiência com o EasyPub?',
+        },
+      ],
     }
   },
   methods: {
-    submitSuccess () {
+    submitSuccess() {
       this.$router.go(-1)
     },
-    refetchQueries () {
+    refetchQueries() {
       return [
         {
-          query: ordersQuery
-        }
+          query: ordersQuery,
+        },
       ]
     },
-    updateStore (store, { data: { createFeedback } }) {
+    updateStore(
+      store,
+      {
+        data: { createFeedback },
+      }
+    ) {
       const { feedbackQuery } = this.$options
       const { orderId } = this
 
-      const feedbackData = store.readQuery({ query: feedbackQuery, variables: { orderId } })
-      const newFeedbackData = assocPath(['order', 'feedback'], createFeedback, feedbackData)
+      const feedbackData = store.readQuery({
+        query: feedbackQuery,
+        variables: { orderId },
+      })
+      const newFeedbackData = assocPath(
+        ['order', 'feedback'],
+        createFeedback,
+        feedbackData
+      )
       store.writeQuery({
         query: feedbackQuery,
         variables: { orderId },
-        data: newFeedbackData
+        data: newFeedbackData,
       })
-    }
-  }
+    },
+  },
 }
 </script>

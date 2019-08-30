@@ -21,18 +21,19 @@
           <h6 class="subtitle-1 mx-2 black--text font-weight-bold">
             {{ input.quantity }}
           </h6>
-          <v-btn
-            icon
-            text
-            color="primary"
-            @click="incrementQuantity"
-          >
+          <v-btn icon text color="primary" @click="incrementQuantity">
             <v-icon>fa-plus</v-icon>
           </v-btn>
           <v-spacer></v-spacer>
         </v-card-actions>
         <v-card-actions>
-          <v-btn @click="showNote = !showNote" block large color="primary" outlined>
+          <v-btn
+            @click="showNote = !showNote"
+            block
+            large
+            color="primary"
+            outlined
+          >
             Adicionar observação
           </v-btn>
         </v-card-actions>
@@ -47,7 +48,9 @@
         </v-scale-transition>
         <v-card-actions>
           <v-btn
-            block color="primary" large
+            block
+            color="primary"
+            large
             @click="sendOrder(mutate)"
             :disabled="status === 'fechado'"
             :loading="loading"
@@ -56,9 +59,12 @@
             <v-spacer></v-spacer>
             {{ totalPrice | formatMoney }}
           </v-btn>
-          <FormErrorMessage ref="formErrorMessage"/>
+          <FormErrorMessage ref="formErrorMessage" />
         </v-card-actions>
-        <ModalQrReader :display.sync="showQrReader" @decode="decodeQrCode(mutate, $event)"/>
+        <ModalQrReader
+          :display.sync="showQrReader"
+          @decode="decodeQrCode(mutate, $event)"
+        />
       </template>
     </ApolloMutation>
   </div>
@@ -68,7 +74,10 @@
 import { multiply, inc, dec, equals, assoc } from 'ramda'
 import { mapState, mapMutations } from 'vuex'
 import ModalQrReader from './ModalQrReader'
-import { addItemToOrderMutation, currentOrderQuery } from '@/domains/order/graphql'
+import {
+  addItemToOrderMutation,
+  currentOrderQuery,
+} from '@/domains/order/graphql'
 import FormErrorMessage from '@/components/FormErrorMessage'
 
 export default {
@@ -79,20 +88,20 @@ export default {
   props: {
     itemId: String,
     price: String,
-    status: String
+    status: String,
   },
   data: () => ({
     input: {
       tableId: '',
       quantity: 1,
-      note: ''
+      note: '',
     },
     showNote: false,
-    showQrReader: false
+    showQrReader: false,
   }),
   methods: {
     ...mapMutations('order', ['setTableId']),
-    sendOrder (mutate) {
+    sendOrder(mutate) {
       if (!this.tableId) {
         this.showQrReader = true
         return
@@ -101,42 +110,45 @@ export default {
       const input = assoc('itemId', this.itemId, this.input)
       mutate({ variables: { input } })
     },
-    refetchQueries () {
+    refetchQueries() {
       return [
         {
-          query: this.$options.currentOrderQuery
-        }
+          query: this.$options.currentOrderQuery,
+        },
       ]
     },
-    decodeQrCode (mutate, result) {
+    decodeQrCode(mutate, result) {
       this.input.tableId = result
       this.setTableId(result)
       const input = assoc('itemId', this.itemId, this.input)
       mutate({ variables: { input } })
     },
-    submitSuccess () {
+    submitSuccess() {
       this.$router.go(-1)
     },
-    handleError (error) {
+    handleError(error) {
       this.setTableId('')
       this.$refs.formErrorMessage.handleError(error)
     },
-    incrementQuantity () {
+    incrementQuantity() {
       this.input.quantity = inc(this.input.quantity)
     },
-    decrementQuantity () {
+    decrementQuantity() {
       this.input.quantity = dec(this.input.quantity)
-    }
+    },
   },
   computed: {
     ...mapState('order', ['tableId']),
-    totalPrice () {
-      const { input: { quantity }, price } = this
+    totalPrice() {
+      const {
+        input: { quantity },
+        price,
+      } = this
       return multiply(quantity, price)
     },
-    disableDecrement () {
+    disableDecrement() {
       return equals(this.input.quantity, 1)
-    }
-  }
+    },
+  },
 }
 </script>

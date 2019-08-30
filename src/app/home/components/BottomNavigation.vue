@@ -1,18 +1,14 @@
 <template>
   <v-footer app height="56">
-    <v-bottom-navigation
-      :value="activeBtn"
-      absolute
-      color="primary"
-    >
+    <v-bottom-navigation :value="activeBtn" absolute color="primary">
       <v-btn
-        v-for="{text, icon, to} in buttons"
+        v-for="{ text, icon, to } in buttons"
         :key="text"
         :to="to"
         :value="to.name"
       >
-        {{text}}
-        <v-icon>{{icon}}</v-icon>
+        {{ text }}
+        <v-icon>{{ icon }}</v-icon>
       </v-btn>
     </v-bottom-navigation>
   </v-footer>
@@ -28,31 +24,28 @@ export default {
       {
         text: 'Home',
         icon: 'fa-home',
-        to: { name: 'home.bars' }
+        to: { name: 'home.bars' },
       },
       {
         text: 'Pedidos',
         icon: 'fa-history',
-        to: { name: 'orders' }
+        to: { name: 'orders' },
       },
       {
         text: 'Perfil',
         icon: 'fa-user',
-        to: { name: 'profile' }
-      }
-    ]
+        to: { name: 'profile' },
+      },
+    ],
   }),
   computed: {
-    activeBtn () {
-      const ordersRoutes = [
-        'orders.detail',
-        'orders.feedback'
-      ]
+    activeBtn() {
+      const ordersRoutes = ['orders.detail', 'orders.feedback']
       if (contains(this.$route.name, ordersRoutes)) {
         return 'orders'
       }
       return this.$route.name
-    }
-  }
+    },
+  },
 }
 </script>

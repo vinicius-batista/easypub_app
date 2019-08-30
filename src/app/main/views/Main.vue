@@ -1,5 +1,5 @@
 <template>
-  <v-row justify="center" class="full-screen"  align-content="center">
+  <v-row justify="center" class="full-screen" align-content="center">
     <v-col cols="8">
       <v-img :src="require('@/assets/images/logo.png')"></v-img>
     </v-col>
@@ -36,10 +36,10 @@
 export default {
   name: 'Home',
   methods: {
-    changeRoute (name) {
+    changeRoute(name) {
       this.$router.push({ name })
-    }
-  }
+    },
+  },
 }
 </script>
 

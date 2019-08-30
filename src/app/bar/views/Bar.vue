@@ -8,10 +8,16 @@
       <template slot-scope="{ result: { data }, isLoading }">
         <Loading v-if="isLoading" />
         <div v-else-if="data">
-          <BarDetail v-bind="data.bar"/>
+          <BarDetail v-bind="data.bar" />
           <v-row>
             <v-col cols="12">
-              <v-tabs v-model="category" center-active show-arrows color="white" slider-color="primary">
+              <v-tabs
+                v-model="category"
+                center-active
+                show-arrows
+                color="white"
+                slider-color="primary"
+              >
                 <v-tab
                   v-for="menuCategory in data.bar.menuCategories"
                   :key="menuCategory.id"
@@ -26,7 +32,7 @@
                   v-for="menuCategory in data.bar.menuCategories"
                   :key="menuCategory.id"
                 >
-                  <MenuItemsList :categoryId="menuCategory.id"/>
+                  <MenuItemsList :categoryId="menuCategory.id" />
                 </v-tab-item>
               </v-tabs-items>
             </v-col>
@@ -49,17 +55,17 @@ export default {
   barQuery,
   props: { id: String },
   data: () => ({
-    category: 0
+    category: 0,
   }),
-  mounted () {
+  mounted() {
     this.showBackButton()
   },
   methods: {
     ...mapMutations('home', ['showBackButton', 'setTitle']),
-    changeToolbarTitle ({ data }) {
+    changeToolbarTitle({ data }) {
       const { bar } = data
       this.setTitle(bar.name)
-    }
-  }
+    },
+  },
 }
 </script>

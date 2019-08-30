@@ -16,7 +16,7 @@ export default {
   props: {
     disabled: Boolean,
     loading: Boolean,
-    text: String
-  }
+    text: String,
+  },
 }
 </script>
