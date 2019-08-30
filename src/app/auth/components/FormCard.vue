@@ -1,10 +1,10 @@
 <template functional>
-  <v-layout justify-center>
-    <v-flex xs10>
+  <v-row justify="center">
+    <v-col cols="10">
       <v-card flat class="form-card">
         <slot></slot>
         <h6
-          class="tertiary--text text-xs-center body-1 mt-4 font-weight-regular"
+          class="tertiary--text text-center body-1 mt-4 font-weight-regular"
           @click="listeners.actionClick"
           style="cursor: pointer;"
         >
@@ -12,8 +12,8 @@
           <span class="font-weight-medium">{{ props.actionText }}</span>
         </h6>
       </v-card>
-    </v-flex>
-  </v-layout>
+    </v-col>
+  </v-row>
 </template>
 
 <script>

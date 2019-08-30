@@ -6,20 +6,20 @@
       <template slot-scope="{ result: { data }, isLoading }">
         <Loading v-if="isLoading" />
         <div v-else-if="data">
-          <v-list-tile
+          <v-list-item
             v-for="{ id, insertedAt, table, feedback } in data.orders"
             :key="id"
             avatar
             :to="{ name: 'orders.detail', params: { id } }"
           >
-            <v-list-tile-avatar color="grey lighten-2" size="60" tile>
+            <v-list-item-avatar color="grey lighten-2" size="60" item>
               <span class="pa-2">{{ formateDate(insertedAt) }}</span>
-            </v-list-tile-avatar>
+            </v-list-item-avatar>
 
-            <v-list-tile-content class="ml-4">
-              <v-list-tile-title>{{ table.bar.name }}</v-list-tile-title>
+            <v-list-item-content class="ml-4">
+              <v-list-item-title>{{ table.bar.name }}</v-list-item-title>
               <div v-if="feedback">
-                <span class="grey--text text--darken-1 subheading">
+                <span class="grey--text text--darken-1 subtitle-1">
                   ({{ feedback.barRating }})
                 </span>
                 <v-rating
@@ -31,8 +31,8 @@
                   half-increments
                 />
               </div>
-            </v-list-tile-content>
-          </v-list-tile>
+            </v-list-item-content>
+          </v-list-item>
         </div>
       </template>
     </ApolloQuery>

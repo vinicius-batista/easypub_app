@@ -1,5 +1,5 @@
 <template>
-  <v-container grid-list-xs class="px-0 py-5">
+  <v-container class="px-0 py-5">
     <ProfileCard :edit.sync="edit">
       <ApolloMutation
         :mutation="$options.updateProfileMutation"
@@ -11,7 +11,7 @@
           <FormErrorMessage ref="formErrorMessage"/>
           <v-form @submit.prevent="mutate({ variables: { input }})" v-model="valid">
             <v-text-field
-              class="my-2"
+              class="my-4"
               v-for="{ label, model, icon, type, rules, mask } in form"
               v-validate="rules"
               :data-vv-name="model"
@@ -21,17 +21,18 @@
               v-model="input[model]"
               :prepend-icon="icon"
               :error-messages="errors.collect(model)"
-              v-bind="{ type, mask }"
-              box
+              v-bind="{ type }"
+              v-mask="mask"
+              filled
               :disabled="!edit"
             />
-            <v-layout justify-center>
-              <v-flex xs6>
+            <v-row justify="center">
+              <v-col cols="6">
                 <v-scale-transition>
                   <SendButton v-if="edit" text="Enviar" :disabled="!valid" :loading="loading" />
                 </v-scale-transition>
-              </v-flex>
-            </v-layout>
+              </v-col>
+            </v-row>
           </v-form>
         </template>
       </ApolloMutation>

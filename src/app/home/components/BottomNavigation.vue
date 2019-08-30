@@ -1,24 +1,20 @@
 <template>
   <v-footer app height="56">
-    <v-bottom-nav
-      :active="activeBtn"
-      :value="true"
+    <v-bottom-navigation
+      :value="activeBtn"
       absolute
-      color="white"
+      color="primary"
     >
       <v-btn
         v-for="{text, icon, to} in buttons"
         :key="text"
-        color="primary"
-        flat
         :to="to"
-        :ripple="false"
         :value="to.name"
       >
         {{text}}
         <v-icon>{{icon}}</v-icon>
       </v-btn>
-    </v-bottom-nav>
+    </v-bottom-navigation>
   </v-footer>
 </template>
 

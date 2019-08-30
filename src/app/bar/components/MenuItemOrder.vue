@@ -11,19 +11,19 @@
           <v-spacer></v-spacer>
           <v-btn
             icon
-            flat
+            text
             color="primary"
             :disabled="disableDecrement"
             @click="decrementQuantity"
           >
             <v-icon>fa-minus</v-icon>
           </v-btn>
-          <h6 class="subheading mx-2 black--text font-weight-bold">
+          <h6 class="subtitle-1 mx-2 black--text font-weight-bold">
             {{ input.quantity }}
           </h6>
           <v-btn
             icon
-            flat
+            text
             color="primary"
             @click="incrementQuantity"
           >
@@ -32,7 +32,7 @@
           <v-spacer></v-spacer>
         </v-card-actions>
         <v-card-actions>
-          <v-btn @click="showNote = !showNote" flat block large color="primary">
+          <v-btn @click="showNote = !showNote" block large color="primary" outlined>
             Adicionar observação
           </v-btn>
         </v-card-actions>
@@ -41,11 +41,11 @@
             v-if="showNote"
             v-model="input.note"
             class="mx-4"
-            box
-            placeholder="Digite aqui sua obersavação"
+            filled
+            placeholder="Digite aqui sua observação"
           />
         </v-scale-transition>
-        <v-card-actions class="mx-4">
+        <v-card-actions>
           <v-btn
             block color="primary" large
             @click="sendOrder(mutate)"

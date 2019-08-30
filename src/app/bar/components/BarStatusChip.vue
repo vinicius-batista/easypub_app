@@ -2,9 +2,8 @@
   <v-chip
     v-if="props.status === 'aberto'"
     small
-    disabled
+    text-color="green darken-4"
     color="green lighten-4"
-    class="green--text text--darken-4"
   >
     Aberto
   </v-chip>
@@ -12,7 +11,7 @@
     v-else
     small
     color="red lighten-4"
-    class="red--text text--darken-4"
+    text-color="red darken-4"
   >
     Fechado
   </v-chip>

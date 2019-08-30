@@ -26,7 +26,7 @@
                 v-model="input[model]"
                 :prepend-icon="icon"
                 :error-messages="errors.collect(model)"
-                box
+                filled
               />
               <h6
                 class="tertiary--text body-2 font-weight-medium mb-3"

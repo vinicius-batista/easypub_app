@@ -1,18 +1,27 @@
 import Vue from 'vue'
-import Vuetify from 'vuetify'
-import '@/assets/styles/main.styl'
+import { colors } from 'vuetify/lib'
 import pt from 'vuetify/es5/locale/pt'
-import colors from 'vuetify/es5/util/colors'
+import Vuetify from 'vuetify'
+import VueTheMask from 'vue-the-mask'
+Vue.use(VueTheMask)
 
-Vue.use(Vuetify, {
-  iconfont: 'fa',
+Vue.use(Vuetify)
+
+export default new Vuetify({
   lang: {
     locales: { pt },
     current: 'pt'
   },
+  icons: {
+    iconfont: 'fa'
+  },
   theme: {
-    primary: colors.blue.darken4,
-    secondary: colors.lightBlue.lighten2,
-    tertiary: colors.grey.darken3
+    themes: {
+      light: {
+        primary: colors.blue.darken4,
+        secondary: colors.lightBlue.lighten2,
+        tertiary: colors.blueGrey.darken2
+      }
+    }
   }
 })

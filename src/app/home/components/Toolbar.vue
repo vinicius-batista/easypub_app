@@ -1,20 +1,20 @@
 <template>
-  <v-toolbar
+  <v-app-bar
     app
     flat
     class="primary"
   >
-    <v-flex xs2>
+    <v-col cols="2">
       <v-btn icon dark v-if="isBackButtonVisible" @click="backOneRoute">
         <v-icon>fas fa-chevron-left</v-icon>
       </v-btn>
-    </v-flex>
-    <v-flex xs8 text-xs-center>
+    </v-col>
+    <v-col class="text-center" cols="8" >
       <v-toolbar-title>
         <h4 class="white--text title">{{ title }}</h4>
       </v-toolbar-title>
-    </v-flex>
-  </v-toolbar>
+    </v-col>
+  </v-app-bar>
 </template>
 
 <script>

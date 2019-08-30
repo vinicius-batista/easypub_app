@@ -19,16 +19,16 @@
       {{props.description}}
     </v-card-text>
 
-    <v-layout justify-center class="py-4" v-if="props.waitingTime || props.peopleCount">
-      <v-flex xs4 class="body-2" v-if="props.waitingTime">
+    <v-row justify="center" class="py-4" v-if="props.waitingTime || props.peopleCount">
+      <v-col cols="4" class="body-2" v-if="props.waitingTime">
         <v-icon color="grey">fa-clock</v-icon>
         <span class="tertiary--text px-2 font-weight-bold">{{props.waitingTime}}</span>
-      </v-flex>
-      <v-flex xs4 class="body-2" v-if="props.peopleCount">
+      </v-col>
+      <v-col cols="4" class="body-2" v-if="props.peopleCount">
         <v-icon color="grey">fa-users</v-icon>
         <span class="tertiary--text px-2 font-weight-bold">{{props.peopleCount}} Pessoas</span>
-      </v-flex>
-    </v-layout>
+      </v-col>
+    </v-row>
   </div>
 </template>
 

@@ -1,7 +1,7 @@
 import Vue from 'vue'
 
 /** PLUGINS */
-import './plugins/vuetify'
+import vuetify from './plugins/vuetify'
 import './plugins/veevalidate'
 import './plugins/filters'
 import vueAnalytics from './plugins/vue-analytics'
@@ -21,6 +21,7 @@ new Vue({
   router,
   store,
   apolloProvider: apollo,
+  vuetify,
   render: h => h(App),
   mounted () {
     syncRouter(store, router)

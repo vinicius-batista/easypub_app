@@ -1,8 +1,8 @@
 <template>
-  <v-layout>
-    <v-flex xs12>
+  <v-row>
+    <v-col cols="12">
       <v-card flat>
-        <v-card-title primary-title class="tertiary--text subheading font-weight-bold">
+        <v-card-title primary-title class="tertiary--text subtitle-1 font-weight-bold">
           Pedido atual
         </v-card-title>
         <ApolloQuery
@@ -11,8 +11,8 @@
           <template slot-scope="{ result: { data }, isLoading }">
             <Loading v-if="isLoading" />
             <div v-else-if="data && data.currentOrder">
-              <v-card-text class="text-xs-center">
-                <h6 class="subheading grey--text text--darken-3 font-weight-medium">
+              <v-card-text class="text-center">
+                <h6 class="subtitle-1 grey--text text--darken-3 font-weight-medium">
                  {{ calculateTotal(data.currentOrder.items) | formatMoney }}
                 </h6>
               </v-card-text>
@@ -36,15 +36,15 @@
               </ApolloMutation>
             </div>
             <div v-else>
-              <v-card-text class="text-xs-center pa-4">
-                <h5 class="grey--text text--darken-2 subheading">Você não possui um pedido em andamento</h5>
+              <v-card-text class="text-center pa-4">
+                <h5 class="grey--text text--darken-2 subtitle-1">Você não possui um pedido em andamento</h5>
               </v-card-text>
             </div>
           </template>
         </ApolloQuery>
       </v-card>
-    </v-flex>
-  </v-layout>
+    </v-col>
+  </v-row>
 </template>
 
 <script>

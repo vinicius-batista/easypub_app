@@ -1,5 +1,5 @@
 <template>
-  <v-container grid-list-xs style="padding: 1em 0">
+  <v-container style="padding: 0">
     <ApolloQuery
       :query="$options.barQuery"
       :variables="{ id }"
@@ -9,9 +9,9 @@
         <Loading v-if="isLoading" />
         <div v-else-if="data">
           <BarDetail v-bind="data.bar"/>
-          <v-layout row wrap class="mt-2">
-            <v-flex xs12>
-              <v-tabs v-model="category" centered color="white" slider-color="primary">
+          <v-row>
+            <v-col cols="12">
+              <v-tabs v-model="category" center-active show-arrows color="white" slider-color="primary">
                 <v-tab
                   v-for="menuCategory in data.bar.menuCategories"
                   :key="menuCategory.id"
@@ -19,19 +19,18 @@
                   <span class="primary--text">{{ menuCategory.name }}</span>
                 </v-tab>
               </v-tabs>
-            </v-flex>
-            <v-flex xs12>
+            </v-col>
+            <v-col cols="12">
               <v-tabs-items v-model="category">
                 <v-tab-item
                   v-for="menuCategory in data.bar.menuCategories"
                   :key="menuCategory.id"
-                  lazy
                 >
                   <MenuItemsList :categoryId="menuCategory.id"/>
                 </v-tab-item>
               </v-tabs-items>
-            </v-flex>
-          </v-layout>
+            </v-col>
+          </v-row>
         </div>
       </template>
     </ApolloQuery>

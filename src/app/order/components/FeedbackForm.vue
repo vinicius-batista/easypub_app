@@ -12,10 +12,10 @@
         <v-card-text
           v-for="{ text, model } in fiveStarsRate"
           :key="model"
-          class="text-xs-center"
+          class="text-center"
         >
           <h5 class="title">{{ text }}</h5>
-          <p class="subheading pt-2 grey--text">Escolha de 1 a 5 estrelas</p>
+          <p class="subtitle-1 pt-2 grey--text">Escolha de 1 a 5 estrelas</p>
           <v-rating
             :readonly="readOnly"
             v-model="input[model]"
@@ -23,9 +23,9 @@
             half-increments
           />
         </v-card-text>
-        <v-card-text class="text-xs-center">
+        <v-card-text class="text-center">
           <h5 class="title">Qual a chance de indicar o EasyPub a um amigo?</h5>
-          <p class="subheading pt-2 grey--text">Em uma escala de 1 a 10</p>
+          <p class="subtitle-1 pt-2 grey--text">Em uma escala de 1 a 10</p>
           <v-rating
             v-model="input.indication"
             length="10"

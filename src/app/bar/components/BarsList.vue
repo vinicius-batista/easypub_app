@@ -1,31 +1,30 @@
 <template>
-  <v-layout row wrap>
-    <v-flex xs12>
+  <v-row style="background-color: #fff">
+    <v-col cols="12">
       <v-list two-line>
         <v-subheader>
           Bares
         </v-subheader>
         <template v-for="{ id, name, avatar, status } in bars">
-          <v-list-tile
+          <v-list-item
             :key="id"
-            avatar
             :to="{ name: 'home.bar', params: { id } }"
           >
-            <v-list-tile-avatar color="secondary">
-              <img v-if="avatar" :src="avatar">
+            <v-list-item-avatar color="secondary">
+              <v-img v-if="avatar" :src="avatar" />
               <span v-else> {{ name.charAt(0).toUpperCase() }} </span>
-            </v-list-tile-avatar>
-            <v-list-tile-content>
-              <v-list-tile-title>{{ name }}</v-list-tile-title>
-            </v-list-tile-content>
-            <v-list-tile-action>
+            </v-list-item-avatar>
+            <v-list-item-content>
+              <v-list-item-title>{{ name }}</v-list-item-title>
+            </v-list-item-content>
+            <v-list-item-action>
               <BarStatusChip v-bind="{ status }"/>
-            </v-list-tile-action>
-          </v-list-tile>
+            </v-list-item-action>
+          </v-list-item>
         </template>
       </v-list>
-    </v-flex>
-  </v-layout>
+    </v-col>
+  </v-row>
 </template>
 
 <script>

@@ -25,8 +25,9 @@
                 v-model="input[model]"
                 :prepend-icon="icon"
                 :error-messages="errors.collect(model)"
-                v-bind="{ type, mask }"
-                box
+                v-bind="{ type }"
+                v-mask="mask"
+                filled
               />
               <SendButton
                 text="Enviar"

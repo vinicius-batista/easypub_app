@@ -10,15 +10,15 @@
       <v-card-title primary-title>
         <h5 class="title tertiary--text">Leia o QRCode que está na sua mesa</h5>
       </v-card-title>
-      <QrcodeReader v-if="display" @decode="onDecode" @init="onInit">
+      <QrcodeStream v-if="display" @decode="onDecode" @init="onInit">
         <Loading v-if="loading" />
-      </QrcodeReader>
+      </QrcodeStream>
     </v-card>
   </v-dialog>
 </template>
 
 <script>
-import { QrcodeReader } from 'vue-qrcode-reader'
+import { QrcodeStream } from 'vue-qrcode-reader'
 
 export default {
   name: 'ModalQrReader',
@@ -28,7 +28,7 @@ export default {
   data: () => ({
     loading: false
   }),
-  components: { QrcodeReader },
+  components: { QrcodeStream },
   methods: {
     updateDisplay (e) {
       this.$emit('update:display', e)

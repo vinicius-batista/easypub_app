@@ -1,18 +1,18 @@
 <template>
   <v-list dense>
-    <v-list-tile
+    <v-list-item
       v-for="item in items"
       :key="item.id"
     >
-      <v-list-tile-content>
-        <v-list-tile-title>{{ item.menuItem.name }}</v-list-tile-title>
-      </v-list-tile-content>
+      <v-list-item-content>
+        <v-list-item-title>{{ item.menuItem.name }}</v-list-item-title>
+      </v-list-item-content>
 
-      <v-list-tile-action-text>
+      <v-list-item-action-text>
         <span class="body-2">{{item.quantity}}X </span>
         <span class="body-2">{{item.menuItem.price | formatMoney}}</span>
-      </v-list-tile-action-text>
-    </v-list-tile>
+      </v-list-item-action-text>
+    </v-list-item>
   </v-list>
 </template>
 

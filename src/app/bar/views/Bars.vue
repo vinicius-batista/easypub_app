@@ -1,5 +1,5 @@
 <template>
-  <v-container grid-list-xs style="padding: 1em 0">
+  <v-container>
     <SearchInput v-model="search" />
     <ApolloQuery
       :query="$options.barsQuery"

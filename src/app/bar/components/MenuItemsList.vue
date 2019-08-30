@@ -6,18 +6,19 @@
      <template slot-scope="{ result: { data }, isLoading }">
       <Loading v-if="isLoading" />
       <v-list two-line v-else-if="data">
-        <v-list-tile
+        <v-list-item
           v-for="{id, name, price} in data.menuItems"
           :key="id"
+          link
           :to="{ name: 'home.menuitem', params: { id } }"
         >
-          <v-list-tile-content>
-            <v-list-tile-title>{{ name }}</v-list-tile-title>
-          </v-list-tile-content>
-          <v-list-tile-action>
+          <v-list-item-content>
+            <v-list-item-title>{{ name }}</v-list-item-title>
+          </v-list-item-content>
+          <v-list-item-action>
             <v-subheader> {{ price | formatMoney }}</v-subheader>
-          </v-list-tile-action>
-        </v-list-tile>
+          </v-list-item-action>
+        </v-list-item>
       </v-list>
     </template>
   </ApolloQuery>

@@ -1,16 +1,16 @@
 <template functional>
-  <v-layout row justify-center style="background-color: #fff" class="pt-4 mb-4">
-    <v-flex xs10>
+  <v-row justify="center" style="background-color: #fff" class="pt-4 mb-4">
+    <v-col cols="12">
       <v-text-field
         placeholder="Pesquise bares..."
-        box
+        filled
         single-line
         prepend-inner-icon="fa-search"
         :value="props.value"
         @input="listeners.input"
       />
-    </v-flex>
-  </v-layout>
+    </v-col>
+  </v-row>
 </template>
 
 <script>

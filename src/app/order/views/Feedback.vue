@@ -1,7 +1,7 @@
 <template>
-  <v-container grid-list-xs style="padding: 1em 0">
-    <v-layout row wrap>
-      <v-flex xs12>
+  <v-container style="padding: 1em 0">
+    <v-row  >
+      <v-col cols="12">
         <v-card flat class="pb-3">
           <ApolloQuery
             :query="$options.feedbackQuery"
@@ -22,8 +22,8 @@
             </template>
           </ApolloQuery>
         </v-card>
-      </v-flex>
-    </v-layout>
+      </v-col>
+    </v-row>
   </v-container>
 </template>
 

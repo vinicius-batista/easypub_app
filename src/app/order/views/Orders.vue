@@ -1,16 +1,16 @@
 <template>
-  <v-container grid-list-xs style="padding: 1em 0">
+  <v-container style="padding: 1em 0">
     <CurrentOrder />
-    <v-layout class="mt-3">
-      <v-flex xs12>
+    <v-row class="mt-3">
+      <v-col cols="12">
         <v-card flat>
-          <v-card-title primary-title class="tertiary--text subheading">
+          <v-card-title primary-title class="tertiary--text">
             Histórico de pedidos
           </v-card-title>
           <OrdersList />
         </v-card>
-      </v-flex>
-    </v-layout>
+      </v-col>
+    </v-row>
   </v-container>
 </template>
 

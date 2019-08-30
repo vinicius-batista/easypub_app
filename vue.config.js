@@ -6,5 +6,6 @@ module.exports = {
     appleMobileWebAppCapable: 'yes',
     appleMobileWebAppStatusBarStyle: 'black'
   },
-  productionSourceMap: false
+  productionSourceMap: false,
+  devServer: { https: true }
 }
