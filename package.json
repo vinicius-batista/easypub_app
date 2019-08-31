@@ -9,12 +9,15 @@
     "packages/*"
   ],
   "scripts": {
-    "serve": "concurrently \"yarn serve:app\"",
+    "serve": "concurrently \"yarn serve:app\" \"yarn serve:landing\"",
     "serve:app": "yarn workspace @easypub/app run serve",
-    "lint": "concurrently \"yarn lint:app\"",
+    "serve:landing": "yarn workspace @easypub/landing run dev",
+    "lint": "concurrently \"yarn lint:app\" \"yarn lint:landing\"",
     "lint:app": "yarn workspace @easypub/app run lint",
-    "build": "concurrently \"yarn build:app\"",
-    "build:app": "yarn workspace @easypub/app run build"
+    "lint:landing": "yarn workspace @easypub/landing run lint",
+    "build": "concurrently \"yarn build:app\" \"yarn build:landing\"",
+    "build:app": "yarn workspace @easypub/app run build",
+    "build:landing": "yarn workspace @easypub/landing run generate"
   },
   "gitHooks": {
     "pre-commit": "lint-staged"

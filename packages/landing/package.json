@@ -1,0 +1,33 @@
+{
+  "name": "@easypub/landing",
+  "version": "1.0.0",
+  "description": "Landing Page for EasyPub",
+  "author": "Vinicius Batista <viniciusbfs2012@gmail.com>",
+  "private": true,
+  "scripts": {
+    "dev": "nuxt",
+    "build": "nuxt build",
+    "start": "nuxt start",
+    "generate": "nuxt generate",
+    "lint": "eslint --fix --ext .js,.vue --ignore-path .gitignore ."
+  },
+  "dependencies": {
+    "@nuxtjs/google-analytics": "^2.0.2",
+    "nuxt": "^2.9.2"
+  },
+  "devDependencies": {
+    "@nuxtjs/vuetify": "^1.6.1",
+    "@vue/cli-plugin-eslint": "^3.11.0",
+    "@vue/eslint-config-prettier": "^5.0.0",
+    "@vue/eslint-config-standard": "^4.0.0",
+    "babel-eslint": "^7.2.3",
+    "eslint": "^6.3.0",
+    "eslint-config-standard": "^14.1.0",
+    "eslint-loader": "^3.0.0",
+    "eslint-plugin-prettier": "^3.1.0",
+    "eslint-plugin-vue": "^5.2.3",
+    "eslint-plugin-vuetify": "^1.0.0-beta.3",
+    "prettier": "^1.18.2",
+    "stylus": "^0.54.5"
+  }
+}
