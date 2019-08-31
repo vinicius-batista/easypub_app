@@ -2,6 +2,7 @@ import Vue from 'vue'
 import { colors } from 'vuetify/lib'
 import pt from 'vuetify/es5/locale/pt'
 import Vuetify from 'vuetify'
+
 import VueTheMask from 'vue-the-mask'
 Vue.use(VueTheMask)
 
