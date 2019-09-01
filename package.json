@@ -9,14 +9,17 @@
     "packages/*"
   ],
   "scripts": {
-    "serve": "concurrently \"yarn serve:app\" \"yarn serve:landing\"",
+    "serve": "concurrently \"yarn serve:app\" \"yarn serve:landing\" \"yarn serve:dashboard\"",
     "serve:app": "yarn workspace @easypub/app run serve",
+    "serve:dashboard": "yarn workspace @easypub/dashboard run serve",
     "serve:landing": "yarn workspace @easypub/landing run dev",
-    "lint": "concurrently \"yarn lint:app\" \"yarn lint:landing\"",
+    "lint": "concurrently \"yarn lint:app\" \"yarn lint:landing\" \"yarn lint:dashboard\"",
     "lint:app": "yarn workspace @easypub/app run lint",
+    "lint:dashboard": "yarn workspace @easypub/dashboard run lint",
     "lint:landing": "yarn workspace @easypub/landing run lint",
-    "build": "concurrently \"yarn build:app\" \"yarn build:landing\"",
+    "build": "concurrently \"yarn build:app\" \"yarn build:landing\" \"yarn build:dashboard\"",
     "build:app": "yarn workspace @easypub/app run build",
+    "build:dashboard": "yarn workspace @easypub/dashboard run build",
     "build:landing": "yarn workspace @easypub/landing run generate"
   },
   "gitHooks": {
@@ -26,6 +29,7 @@
     "@vue/cli-plugin-eslint": "^3.11.0",
     "@vue/cli-service": "^3.11.0",
     "@vue/eslint-config-prettier": "^5.0.0",
+    "babel-eslint": "^10.0.3",
     "concurrently": "^4.1.2",
     "eslint-plugin-prettier": "^3.1.0",
     "eslint-plugin-vue": "^5.2.3",
@@ -34,13 +38,7 @@
     "prettier": "^1.18.2"
   },
   "lint-staged": {
-    "*.js": [
-      "vue-cli-service lint",
-      "prettier --write",
-      "git add"
-    ],
-    "*.vue": [
-      "vue-cli-service lint",
+    "*.gql": [
       "prettier --write",
       "git add"
     ]
