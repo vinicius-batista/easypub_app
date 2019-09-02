@@ -84,7 +84,7 @@ export default {
       {
         label: 'Senha',
         model: 'password',
-        icon: 'fa-lock',
+        icon: 'fas fa-lock',
         type: 'password',
         rules: 'required|min:6',
       },
