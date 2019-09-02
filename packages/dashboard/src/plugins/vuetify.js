@@ -1,5 +1,5 @@
 import Vue from 'vue'
-import Vuetify from 'vuetify/lib'
+import Vuetify, { colors } from 'vuetify/lib'
 import pt from 'vuetify/es5/locale/pt'
 
 Vue.use(Vuetify)
@@ -11,5 +11,14 @@ export default new Vuetify({
   },
   icons: {
     iconfont: 'fa',
+  },
+  theme: {
+    themes: {
+      light: {
+        primary: colors.blue.darken4,
+        secondary: colors.lightBlue.lighten2,
+        tertiary: colors.blueGrey.darken2,
+      },
+    },
   },
 })
