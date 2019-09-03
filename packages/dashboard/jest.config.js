@@ -1,12 +1,12 @@
 module.exports = {
-  moduleFileExtensions: ['js', 'jsx', 'json', 'vue'],
+  moduleFileExtensions: ['js', 'jsx', 'json', 'vue', 'esm.js'],
   transform: {
     '^.+\\.vue$': 'vue-jest',
     '.+\\.(css|styl|less|sass|scss|svg|png|jpg|ttf|woff|woff2)$':
       'jest-transform-stub',
     '^.+\\.jsx?$': 'babel-jest',
   },
-  transformIgnorePatterns: ['/node_modules/'],
+  transformIgnorePatterns: ['/node_modules/veevalidate/'],
   moduleNameMapper: {
     '^@/(.*)$': '<rootDir>/src/$1',
   },

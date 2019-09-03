@@ -1,0 +1,5 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Login.vue provide a corret email and password should not show error messages 1`] = `[Function]`;
+
+exports[`Login.vue provide an incorret email and small password should show error messages 1`] = `[Function]`;

@@ -20,7 +20,8 @@
     "build": "concurrently \"yarn build:app\" \"yarn build:landing\" \"yarn build:dashboard\"",
     "build:app": "yarn workspace @easypub/app run build",
     "build:dashboard": "yarn workspace @easypub/dashboard run build",
-    "build:landing": "yarn workspace @easypub/landing run generate"
+    "build:landing": "yarn workspace @easypub/landing run generate",
+    "test:unit:dashboard": "yarn workspace @easypub/dashboard run test:unit"
   },
   "gitHooks": {
     "pre-commit": "lint-staged"
