@@ -3,21 +3,25 @@
     buttonText="Login"
     helperText="Não possui uma conta?"
     actionText="Cadastre-se agora!"
+    @action-text:clicked="changeRoute('auth.register')"
+    data-testId="login-page"
   >
     <ValidationProvider
-      v-for="{ label, name, icon, type, rules } in form"
-      :key="name"
-      v-bind="{ rules, name }"
+      v-for="{ label, model, icon, type, rules } in form"
+      :key="label"
+      v-bind="{ rules }"
+      :name="label"
     >
       <template v-slot="{ errors }">
         <v-text-field
           class="my-2"
           :type="type"
           :label="label"
-          v-model="input[name]"
+          v-model="input[model]"
           :prepend-icon="icon"
           :error-messages="errors"
           filled
+          :data-testId="model"
         />
       </template>
     </ValidationProvider>
@@ -39,19 +43,23 @@ export default {
     form: [
       {
         label: 'Email',
-        name: 'email',
+        model: 'email',
         icon: 'fa-envelope',
         rules: 'required|email',
       },
       {
         label: 'Senha',
-        name: 'password',
+        model: 'password',
         icon: 'fas fa-lock',
         type: 'password',
         rules: 'required|min:6',
       },
     ],
   }),
-  methods: {},
+  methods: {
+    changeRoute(name) {
+      this.$router.push({ name })
+    },
+  },
 }
 </script>

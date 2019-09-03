@@ -1,0 +1,7 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Register.vue click action-text should change route to register 1`] = `[Function]`;
+
+exports[`Register.vue provide correct inputs should not show error messages 1`] = `[Function]`;
+
+exports[`Register.vue provide incorrect inputs should show error messages 1`] = `[Function]`;

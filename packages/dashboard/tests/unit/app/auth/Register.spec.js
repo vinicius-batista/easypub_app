@@ -13,7 +13,7 @@ const routes = [
   { path: '/auth/login', name: 'auth.login', component: Login },
 ]
 
-describe('Login.vue', () => {
+describe('Register.vue', () => {
   let vuetify
 
   beforeEach(() => {
@@ -22,8 +22,8 @@ describe('Login.vue', () => {
 
   afterEach(cleanup)
 
-  test('provide an incorret email and small password should show error messages', async () => {
-    const { getByTestId, getByText, html } = render(Login, {
+  test('provide incorrect inputs should show error messages', async () => {
+    const { getByTestId, getByText, html } = render(Register, {
       vuetify,
       sync: false,
     })
@@ -34,14 +34,26 @@ describe('Login.vue', () => {
     const passwordInput = getByTestId('password')
     await fireEvent.update(passwordInput, '12345')
 
+    const nameInput = getByTestId('name')
+    await fireEvent.update(nameInput, 'jose ronaldinho123')
+
+    const barAddressInput = getByTestId('barAddress')
+    await fireEvent.update(barAddressInput, '')
+
+    const barNameInput = getByTestId('barName')
+    await fireEvent.update(barNameInput, '')
+
     getByText('O campo Email deve ser um email válido')
     getByText('O campo Senha deve conter pelo menos 6 caracteres')
+    getByText('O campo Nome só pode conter caracteres alfabéticos e espaços')
+    getByText('O campo Endereço do bar é obrigatório')
+    getByText('O campo Nome do bar é obrigatório')
 
     expect(html).toMatchSnapshot()
   })
 
-  test('provide a corret email and password should not show error messages', async () => {
-    const { getByTestId, getByText, html } = render(Login, {
+  test('provide correct inputs should not show error messages', async () => {
+    const { getByTestId, getByText, html } = render(Register, {
       vuetify,
       sync: false,
     })
@@ -52,12 +64,32 @@ describe('Login.vue', () => {
     const passwordInput = getByTestId('password')
     await fireEvent.update(passwordInput, '123456')
 
+    const nameInput = getByTestId('name')
+    await fireEvent.update(nameInput, 'jose ronaldinho')
+
+    const barAddressInput = getByTestId('barAddress')
+    await fireEvent.update(barAddressInput, 'rua das couves, 123')
+
+    const barNameInput = getByTestId('barName')
+    await fireEvent.update(barNameInput, 'bar 234')
+
     expect(() =>
       getByText('O campo Email deve ser um email válido')
     ).toThrowError()
+
     expect(() =>
       getByText('O campo Senha deve conter pelo menos 6 caracteres')
     ).toThrowError()
+
+    expect(() =>
+      getByText('O campo Nome só pode conter caracteres alfabéticos e espaços')
+    ).toThrowError()
+
+    expect(() =>
+      getByText('O campo Endereço do bar é obrigatório')
+    ).toThrowError()
+
+    expect(() => getByText('O campo Nome do bar é obrigatório')).toThrowError()
 
     expect(html).toMatchSnapshot()
   })
@@ -69,12 +101,12 @@ describe('Login.vue', () => {
         vuetify,
         routes,
       },
-      (vue, store, router) => router.push('/auth/login')
+      (vue, store, router) => router.push('/auth/register')
     )
 
     const actionText = getByTestId('action-text')
     await fireEvent.click(actionText)
-    getByTestId('register-page')
+    getByTestId('login-page')
 
     expect(html).toMatchSnapshot()
   })

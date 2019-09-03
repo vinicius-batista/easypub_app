@@ -21,7 +21,8 @@
           <h6
             class="tertiary--text text-center body-1 mt-4 font-weight-regular"
             style="cursor: pointer;"
-            @click="$emit('actionClick')"
+            @click="$emit('action-text:clicked')"
+            data-testId="action-text"
           >
             {{ helperText }}
             <span class="font-weight-medium">{{ actionText }}</span>
