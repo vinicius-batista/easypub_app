@@ -2,7 +2,6 @@ import * as AbsintheSocket from '@absinthe/socket'
 import { createAbsintheSocketLink } from '@absinthe/socket-apollo-link'
 import { ApolloLink } from 'apollo-link'
 import { Socket as PhoenixSocket } from 'phoenix'
-import store from '../store'
 import { equals, prop } from 'ramda'
 
 const createPhoenixSocket = (url, accessToken) =>
@@ -21,7 +20,7 @@ const createAbsSocketLink = phoenixSocket => {
 const createBearerToken = accessToken => `Bearer ${accessToken}`
 
 class SocketLink extends ApolloLink {
-  constructor({ url }) {
+  constructor({ url, store }) {
     super()
     this.url = url
 
@@ -50,4 +49,4 @@ class SocketLink extends ApolloLink {
   }
 }
 
-export const createSocketLink = url => new SocketLink({ url })
+export const createSocketLink = (store, url) => new SocketLink({ url, store })

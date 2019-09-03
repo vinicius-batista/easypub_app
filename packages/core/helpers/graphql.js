@@ -8,7 +8,7 @@ export const getData = curry((path, response) =>
 )
 
 const endpoint =
-  process.env.VUE_APP_GRAPHQL_ENDPOINT || 'http://0.0.0.0:4000/graphql'
+  process.env.VUE_APP_GRAPHQL_ENDPOINT || 'https://0.0.0.0:4443/graphql'
 
 export const graphqlRequest = (query, variables) =>
   fetch(endpoint, {

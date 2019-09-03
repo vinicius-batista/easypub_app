@@ -11,6 +11,7 @@ const options = {
     process.env.VUE_APP_GRAPHQL_SOCKET_ENDPOINT || 'ws://localhost:4433/socket',
 }
 
-export default new VueApollo({
-  defaultClient: createApolloClient(options),
-})
+export default store =>
+  new VueApollo({
+    defaultClient: createApolloClient(store, options),
+  })

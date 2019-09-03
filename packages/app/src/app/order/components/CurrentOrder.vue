@@ -62,7 +62,7 @@ import { currentOrderQuery, closeOrderMutation } from '@/domains/order/graphql'
 import { reduce } from 'ramda'
 import { mapMutations } from 'vuex'
 import OrderItemsList from './OrderItemsList'
-import { getData } from '../../../helpers/graphql'
+import { getData } from '@easypub/core/helpers/graphql'
 
 export default {
   name: 'CurrentOrder',

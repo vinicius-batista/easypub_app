@@ -46,7 +46,7 @@ import FormCard from '../components/FormCard'
 import FormErrorMessage from '@/components/FormErrorMessage'
 import SendButton from '@/components/SendButton'
 import { registerUserMutation } from '@/domains/auth/graphql'
-import { getData } from '@/helpers/graphql'
+import { getData } from '@easypub/core/helpers/graphql'
 import { mapActions } from 'vuex'
 
 export default {

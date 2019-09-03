@@ -6,9 +6,9 @@ import { InMemoryCache } from 'apollo-cache-inmemory'
 import { hasSubscription } from '@jumpn/utils-graphql'
 import { createLink } from 'apollo-absinthe-upload-link'
 
-export const createApolloClient = ({ httpEndpoint, socketEndpoint }) => {
+export const createApolloClient = (store, { httpEndpoint, socketEndpoint }) => {
   const httpLink = createLink({ uri: httpEndpoint })
-  const wsLink = createSocketLink(socketEndpoint)
+  const wsLink = createSocketLink(store, socketEndpoint)
 
   const link = ApolloLink.split(
     operation => hasSubscription(operation.query),
@@ -16,7 +16,7 @@ export const createApolloClient = ({ httpEndpoint, socketEndpoint }) => {
     httpLink
   )
 
-  const authLink = ApolloLink.from([withAuthToken, link])
+  const authLink = ApolloLink.from([withAuthToken(store), link])
 
   return new ApolloClient({
     link: authLink,

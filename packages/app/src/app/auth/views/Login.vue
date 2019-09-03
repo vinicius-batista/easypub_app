@@ -55,7 +55,7 @@ import LogoCard from '../components/LogoCard'
 import FormCard from '../components/FormCard'
 import FormErrorMessage from '@/components/FormErrorMessage'
 import SendButton from '@/components/SendButton'
-import { getData } from '@/helpers/graphql'
+import { getData } from '@easypub/core/helpers/graphql'
 import { mapActions } from 'vuex'
 import { loginUserMutation } from '@/domains/auth/graphql'
 
