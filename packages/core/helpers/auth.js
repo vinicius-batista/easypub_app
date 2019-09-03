@@ -1,5 +1,4 @@
-import { assocPath, curry, pipe, prop } from 'ramda'
-import jwtdecode from 'jwt-decode'
+import { assocPath, curry, prop } from 'ramda'
 
 export const authHeader = curry((request, token) =>
   assocPath(['headers', 'authorization'], `Bearer ${token}`, request)
@@ -16,8 +15,14 @@ export function isExpired(time) {
   return timeUTC - nowUTC < 0.0
 }
 
-export const checkTokenExpired = pipe(
-  jwtdecode,
-  prop('exp'),
-  isExpired
-)
+export function parseJwt(token) {
+  const base64Url = token.split('.')[1]
+  const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/')
+  return JSON.parse(window.atob(base64))
+}
+
+export function checkTokenExpired(token) {
+  const tokenDecoded = parseJwt(token)
+
+  return isExpired(prop('exp', tokenDecoded))
+}

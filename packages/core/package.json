@@ -16,7 +16,6 @@
     "apollo-link": "^1.2.3",
     "apollo-link-context": "^1.0.9",
     "apollo-utilities": "^1.0.25",
-    "jwt-decode": "^2.2.0",
     "ramda": "^0.26.1",
     "vue-apollo": "^3.0.0-rc.2"
   }
