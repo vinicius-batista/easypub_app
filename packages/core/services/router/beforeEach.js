@@ -1,6 +1,4 @@
-import store from '../store'
-
-export default function(to, from, next) {
+export default store => (to, from, next) => {
   const { requiresAuth } = to.meta
   const storePath = store.state.route && store.state.route.path
 

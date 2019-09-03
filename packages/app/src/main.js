@@ -9,9 +9,21 @@ import syncRouter from './plugins/vuex-router-sync'
 
 import App from './App.vue'
 import Loading from './components/Loading'
-import { router, store } from './services'
 import './registerServiceWorker'
-import { apollo } from '@easypub/core'
+
+/** SERVICES */
+import {
+  routerFactory,
+  storeFactory,
+  apolloFactory,
+} from '@easypub/core/services'
+
+import { routes } from '@/app'
+import { modules } from '@/domains/store'
+
+const store = storeFactory(modules)
+const router = routerFactory(routes, store)
+const apolloProvider = apolloFactory(store)
 
 vueAnalytics(router)
 
@@ -21,7 +33,7 @@ Vue.component('Loading', Loading)
 new Vue({
   router,
   store,
-  apolloProvider: apollo(store),
+  apolloProvider,
   vuetify,
   render: h => h(App),
   mounted() {

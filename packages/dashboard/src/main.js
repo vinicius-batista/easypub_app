@@ -1,13 +1,22 @@
 import Vue from 'vue'
 import App from './App.vue'
-import router from './services/router'
-import store from './services/store'
 import './registerServiceWorker'
 
-// plugins
+/** PLUGINS */
 import vuetify from './plugins/vuetify'
 import './plugins/veevalidate'
-import { apollo } from '@easypub/core'
+
+/** SERVICES */
+import {
+  apolloFactory,
+  routerFactory,
+  storeFactory,
+} from '@easypub/core/services'
+import { routes } from '@/app'
+
+const store = storeFactory({})
+const apolloProvider = apolloFactory(store)
+const router = routerFactory(routes, store)
 
 Vue.config.productionTip = false
 
@@ -15,6 +24,6 @@ new Vue({
   router,
   store,
   vuetify,
-  apolloProvider: apollo(store),
+  apolloProvider,
   render: h => h(App),
 }).$mount('#app')
