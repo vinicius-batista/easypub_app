@@ -1,6 +1,6 @@
 export default [
   {
-    name: 'home.bars',
+    name: 'home',
     path: '/home',
     meta: { requiresAuth: true },
     component: () => import(/* webpackChunkName: "home" */ './views/Bars'),

@@ -45,7 +45,7 @@ import LogoCard from '../components/LogoCard'
 import FormCard from '../components/FormCard'
 import FormErrorMessage from '@/components/FormErrorMessage'
 import SendButton from '@/components/SendButton'
-import { registerUserMutation } from '@/domains/auth/graphql'
+import { registerUserMutation } from '@easypub/core/domains/auth/graphql'
 import { getData } from '@easypub/core/helpers/graphql'
 import { mapActions } from 'vuex'
 
@@ -105,7 +105,7 @@ export default {
       return Promise.resolve(result)
         .then(getData('registerUser'))
         .then(this.setTokens)
-        .then(() => this.changeRoute('home.bars'))
+        .then(() => this.changeRoute('home'))
     },
     handleError(error) {
       this.$refs.formErrorMessage.handleError(error)

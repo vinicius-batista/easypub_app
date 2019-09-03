@@ -13,8 +13,9 @@ import {
   storeFactory,
 } from '@easypub/core/services'
 import { routes } from '@/app'
+import { modules } from '@/domains/store'
 
-const store = storeFactory({})
+const store = storeFactory(modules)
 const apolloProvider = apolloFactory(store)
 const router = routerFactory(routes, store)
 

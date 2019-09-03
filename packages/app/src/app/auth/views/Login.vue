@@ -57,7 +57,7 @@ import FormErrorMessage from '@/components/FormErrorMessage'
 import SendButton from '@/components/SendButton'
 import { getData } from '@easypub/core/helpers/graphql'
 import { mapActions } from 'vuex'
-import { loginUserMutation } from '@/domains/auth/graphql'
+import { loginUserMutation } from '@easypub/core/domains/auth/graphql'
 
 export default {
   name: 'Login',
@@ -99,7 +99,7 @@ export default {
       return Promise.resolve(result)
         .then(getData('loginUser'))
         .then(this.setTokens)
-        .then(() => this.changeRoute('home.bars'))
+        .then(() => this.changeRoute('home'))
     },
     handleError(error) {
       this.$refs.formErrorMessage.handleError(error)

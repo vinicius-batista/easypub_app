@@ -24,7 +24,7 @@ export default {
       {
         text: 'Home',
         icon: 'fa-home',
-        to: { name: 'home.bars' },
+        to: { name: 'home' },
       },
       {
         text: 'Pedidos',
