@@ -1,40 +1,55 @@
 <template>
-  <AuthForm
-    buttonText="Login"
-    helperText="Não possui uma conta?"
-    actionText="Cadastre-se agora!"
-    @action-text:clicked="changeRoute('auth.register')"
-    data-testId="login-page"
+  <ApolloMutation
+    :mutation="$options.loginUserMutation"
+    :variables="{ input }"
+    @done="submitSuccess"
   >
-    <ValidationProvider
-      v-for="{ label, model, icon, type, rules } in form"
-      :key="label"
-      v-bind="{ rules }"
-      :name="label"
-    >
-      <template v-slot="{ errors }">
-        <v-text-field
-          class="my-2"
-          :type="type"
-          :label="label"
-          v-model="input[model]"
-          :prepend-icon="icon"
-          :error-messages="errors"
-          filled
-          :data-testId="model"
-        />
-      </template>
-    </ValidationProvider>
-  </AuthForm>
+    <template v-slot="{ mutate, loading, gqlError }">
+      <AuthForm
+        buttonText="Login"
+        helperText="Não possui uma conta?"
+        actionText="Cadastre-se agora!"
+        @action-text:clicked="changeRoute('auth.register')"
+        :isButtonLoading="loading"
+        @submit="mutate()"
+        :error="gqlError"
+        data-testId="login-page"
+      >
+        <ValidationProvider
+          v-for="{ label, model, icon, type, rules } in form"
+          :key="label"
+          v-bind="{ rules }"
+          :name="label"
+        >
+          <template v-slot="{ errors }">
+            <v-text-field
+              class="my-2"
+              :type="type"
+              :label="label"
+              v-model="input[model]"
+              :prepend-icon="icon"
+              :error-messages="errors"
+              filled
+              :data-testId="model"
+            />
+          </template>
+        </ValidationProvider>
+      </AuthForm>
+    </template>
+  </ApolloMutation>
 </template>
 
 <script>
 import AuthForm from '../components/AuthForm'
 import { ValidationProvider } from 'vee-validate'
+import { loginUserMutation } from '@easypub/core/domains/auth/graphql'
+import { mapActions } from 'vuex'
+import { getData } from '@easypub/core/helpers/graphql'
 
 export default {
   name: 'Login',
   components: { AuthForm, ValidationProvider },
+  loginUserMutation,
   data: () => ({
     input: {
       email: '',
@@ -59,6 +74,13 @@ export default {
   methods: {
     changeRoute(name) {
       this.$router.push({ name })
+    },
+    ...mapActions('auth', ['setTokens']),
+    submitSuccess(result) {
+      return Promise.resolve(result)
+        .then(getData('loginUser'))
+        .then(this.setTokens)
+        .then(() => this.changeRoute('home'))
     },
   },
 }

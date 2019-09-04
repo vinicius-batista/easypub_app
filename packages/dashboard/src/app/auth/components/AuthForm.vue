@@ -4,6 +4,11 @@
       <v-col cols="12" sm="8" md="4">
         <v-img :src="require('@/assets/images/logo.png')"></v-img>
         <v-card elevation="12" class="pa-3">
+          <FormErrorMessage
+            v-if="error !== null"
+            v-bind="{ error }"
+            transition="scale-transition"
+          />
           <v-card-text>
             <v-form v-model="valid" @submit.prevent="submit">
               <slot></slot>
@@ -13,6 +18,7 @@
                 block
                 large
                 :loading="isButtonLoading"
+                data-testId="submit-button"
               >
                 {{ buttonText }}
               </v-btn>
@@ -34,13 +40,17 @@
 </template>
 
 <script>
+import FormErrorMessage from '@/components/FormErrorMessage'
+
 export default {
   props: {
     buttonText: String,
     helperText: String,
     actionText: String,
     isButtonLoading: Boolean,
+    error: Object,
   },
+  components: { FormErrorMessage },
   data: () => ({ valid: false }),
   methods: {
     submit() {
