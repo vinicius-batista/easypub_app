@@ -24,5 +24,8 @@
   "peerDependencies": {
     "vue": "^2.5.17",
     "vuex": "^3.0.1"
+  },
+  "devDependencies": {
+    "graphql-tag": "^2.10.1"
   }
 }

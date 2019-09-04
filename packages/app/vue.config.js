@@ -7,5 +7,4 @@ module.exports = {
     appleMobileWebAppStatusBarStyle: 'black',
   },
   productionSourceMap: false,
-  devServer: { https: true },
 }
