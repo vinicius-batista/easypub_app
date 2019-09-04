@@ -1,6 +1,6 @@
 <template>
   <ApolloMutation
-    :mutation="$options.loginUserMutation"
+    :mutation="$options.LOGIN_USER_MUTATION"
     :variables="{ input }"
     @done="submitSuccess"
   >
@@ -42,14 +42,14 @@
 <script>
 import AuthForm from '../components/AuthForm'
 import { ValidationProvider } from 'vee-validate'
-import { loginUserMutation } from '@easypub/core/domains/auth/graphql'
+import { LOGIN_USER_MUTATION } from '@easypub/core/domains/auth/graphql'
 import { mapActions } from 'vuex'
 import { getData } from '@easypub/core/helpers/graphql'
 
 export default {
   name: 'Login',
   components: { AuthForm, ValidationProvider },
-  loginUserMutation,
+  LOGIN_USER_MUTATION,
   data: () => ({
     input: {
       email: '',

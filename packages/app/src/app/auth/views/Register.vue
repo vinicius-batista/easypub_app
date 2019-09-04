@@ -8,7 +8,7 @@
     >
       <FormErrorMessage ref="formErrorMessage" />
       <ApolloMutation
-        :mutation="$options.registerUserMutation"
+        :mutation="$options.REGISTER_USER_MUTATION"
         @done="submitSuccess"
         @error="handleError"
       >
@@ -45,7 +45,7 @@ import LogoCard from '../components/LogoCard'
 import FormCard from '../components/FormCard'
 import FormErrorMessage from '@/components/FormErrorMessage'
 import SendButton from '@/components/SendButton'
-import { registerUserMutation } from '@easypub/core/domains/auth/graphql'
+import { REGISTER_USER_MUTATION } from '@easypub/core/domains/auth/graphql'
 import { getData } from '@easypub/core/helpers/graphql'
 import { mapActions } from 'vuex'
 
@@ -57,7 +57,7 @@ export default {
     FormErrorMessage,
     SendButton,
   },
-  registerUserMutation,
+  REGISTER_USER_MUTATION,
   data: () => ({
     valid: false,
     input: {

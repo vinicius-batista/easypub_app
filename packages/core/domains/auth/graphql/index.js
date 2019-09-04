@@ -1,3 +1,3 @@
-export { default as loginUserMutation } from './mutations/loginUser'
+export { default as LOGIN_USER_MUTATION } from './mutations/loginUser'
 // export { default as logoutMutation } from './mutations/logout'
-export { default as registerUserMutation } from './mutations/registerUser'
+export { default as REGISTER_USER_MUTATION } from './mutations/registerUser'
