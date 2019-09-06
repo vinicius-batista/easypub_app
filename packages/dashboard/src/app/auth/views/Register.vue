@@ -1,53 +1,67 @@
 <template>
-  <AuthForm
-    buttonText="Cadastre-se"
-    helperText="Já possui uma conta?"
-    actionText="Entre agora!"
-    data-testId="register-page"
-    @action-text:clicked="changeRoute('auth.login')"
+  <ApolloMutation
+    :mutation="$options.REGISTER_BAR_OWNER_MUTATION"
+    :variables="{ input }"
+    @done="submitSuccess"
   >
-    <ValidationProvider
-      v-for="{ label, icon, type, rules, model } in form"
-      :key="label"
-      v-bind="{ rules }"
-      :name="label"
-    >
-      <template v-slot="{ errors }">
-        <v-text-field
-          class="my-2"
-          :type="type"
-          :label="label"
-          v-model="input[model]"
-          :prepend-icon="icon"
-          :error-messages="errors"
-          filled
-          :data-testId="model"
-        />
-      </template>
-    </ValidationProvider>
-    <ValidationProvider rules="required|size:2000000" name="Foto do bar">
-      <template v-slot="{ errors }">
-        <v-file-input
-          class="my-2"
-          label="Foto do bar"
-          accept="image/png, image/jpeg, image/bmp"
-          v-model="input['barAvatar']"
-          prepend-icon="fa-image"
-          :error-messages="errors"
-          filled
-          data-testId="barAvatar"
-        />
-      </template>
-    </ValidationProvider>
-  </AuthForm>
+    <template v-slot="{ mutate, loading, gqlError }">
+      <AuthForm
+        buttonText="Cadastre-se"
+        helperText="Já possui uma conta?"
+        actionText="Entre agora!"
+        @submit="mutate()"
+        :error="gqlError"
+        @action-text:clicked="changeRoute('auth.login')"
+        data-testId="register-page"
+      >
+        <ValidationProvider
+          v-for="{ label, icon, type, rules, model } in form"
+          :key="label"
+          v-bind="{ rules }"
+          :name="label"
+        >
+          <template v-slot="{ errors }">
+            <v-text-field
+              class="my-2"
+              :type="type"
+              :label="label"
+              v-model="input[model]"
+              :prepend-icon="icon"
+              :error-messages="errors"
+              filled
+              :data-testId="model"
+            />
+          </template>
+        </ValidationProvider>
+        <ValidationProvider rules="required|size:2000000" name="Foto do bar">
+          <template v-slot="{ errors }">
+            <v-file-input
+              class="my-2"
+              label="Foto do bar"
+              accept="image/png, image/jpeg, image/bmp"
+              v-model="input['barAvatar']"
+              prepend-icon="fa-image"
+              :error-messages="errors"
+              filled
+              data-testId="barAvatar"
+            />
+          </template>
+        </ValidationProvider>
+      </AuthForm>
+    </template>
+  </ApolloMutation>
 </template>
 
 <script>
 import AuthForm from '../components/AuthForm'
 import { ValidationProvider } from 'vee-validate'
+import { REGISTER_BAR_OWNER_MUTATION } from '@easypub/core/domains/auth/graphql'
+import { mapActions } from 'vuex'
+import { getData } from '@easypub/core/helpers/graphql'
 
 export default {
   name: 'Register',
+  REGISTER_BAR_OWNER_MUTATION,
   components: { AuthForm, ValidationProvider },
   data: () => ({
     input: {
@@ -104,6 +118,13 @@ export default {
   methods: {
     changeRoute(name) {
       this.$router.push({ name })
+    },
+    ...mapActions('auth', ['setTokens']),
+    submitSuccess(result) {
+      return Promise.resolve(result)
+        .then(getData('loginUser'))
+        .then(this.setTokens)
+        .then(() => this.changeRoute('home'))
     },
   },
 }
