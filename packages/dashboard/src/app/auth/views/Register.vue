@@ -9,6 +9,7 @@
         buttonText="Cadastre-se"
         helperText="Já possui uma conta?"
         actionText="Entre agora!"
+        :isButtonLoading="loading"
         @submit="mutate()"
         :error="gqlError"
         @action-text:clicked="changeRoute('auth.login')"
@@ -122,7 +123,7 @@ export default {
     ...mapActions('auth', ['setTokens']),
     submitSuccess(result) {
       return Promise.resolve(result)
-        .then(getData('loginUser'))
+        .then(getData('registerBarOwner'))
         .then(this.setTokens)
         .then(() => this.changeRoute('home'))
     },
