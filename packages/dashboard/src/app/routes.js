@@ -1,3 +1,4 @@
 import { authRoutes } from './auth'
+import { homeRoutes } from './home'
 
-export default [...authRoutes]
+export default [{ path: '/', redirect: '/home' }, ...authRoutes, ...homeRoutes]
