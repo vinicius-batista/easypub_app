@@ -7,7 +7,9 @@
           <v-row justify="center">
             <v-col cols="12" md="10">
               <slot name="add-table"></slot>
-              <v-list two-line> </v-list>
+            </v-col>
+            <v-col cols="12" md="8">
+              <slot name="tables-list"></slot>
             </v-col>
           </v-row>
         </v-card-text>
@@ -19,10 +21,6 @@
 <script>
 export default {
   name: 'Tables',
-  props: {
-    id: String,
-    tables: Array,
-  },
 }
 </script>
 
