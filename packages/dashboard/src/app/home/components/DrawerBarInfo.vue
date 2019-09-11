@@ -1,6 +1,6 @@
 <template>
   <div>
-    <v-list-item three-line :to="{ name: 'bar.profile' }">
+    <v-list-item two-line :to="{ name: 'bar.profile' }">
       <v-list-item-avatar>
         <img :src="`https://localhost:4443/download${avatar}`" />
       </v-list-item-avatar>
@@ -8,6 +8,9 @@
       <v-list-item-content>
         <v-list-item-title>{{ name }}</v-list-item-title>
       </v-list-item-content>
+      <v-list-item-action>
+        <v-icon>fa-angle-down</v-icon>
+      </v-list-item-action>
     </v-list-item>
     <v-list-item>
       <ApolloMutation
