@@ -23,9 +23,3 @@ export default {
   BAR_TABLES_QUERY,
 }
 </script>
-
-<style lang="scss">
-.border-top {
-  border-top: 0.3em solid #2962ff !important;
-}
-</style>

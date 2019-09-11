@@ -71,3 +71,11 @@ export default {
   },
 }
 </script>
+
+<style lang="scss" scoped>
+.send-button {
+  margin: 0 0;
+  left: -8px;
+  top: -12px;
+}
+</style>

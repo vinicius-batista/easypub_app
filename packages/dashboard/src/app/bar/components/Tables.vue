@@ -26,10 +26,8 @@ export default {
 }
 </script>
 
-<style lang="scss">
-.send-button {
-  margin: 0 0;
-  left: -8px;
-  top: -12px;
+<style lang="scss" scoped>
+.border-top {
+  border-top: 0.3em solid #2962ff !important;
 }
 </style>
