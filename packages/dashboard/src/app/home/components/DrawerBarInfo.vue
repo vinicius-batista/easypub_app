@@ -1,6 +1,6 @@
 <template>
   <div>
-    <v-list-item three-line>
+    <v-list-item three-line :to="{ name: 'bar.profile' }">
       <v-list-item-avatar>
         <img :src="`https://localhost:4443/download${avatar}`" />
       </v-list-item-avatar>

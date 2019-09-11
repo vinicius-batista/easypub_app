@@ -2,7 +2,7 @@
   <div>
     <AppBar @nav-icon:clicked="toogleDrawer" />
     <v-content app>
-      <div>home</div>
+      <router-view></router-view>
     </v-content>
     <Drawer v-bind="{ drawerStatus }" />
   </div>
