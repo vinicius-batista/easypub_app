@@ -28,11 +28,18 @@
               <v-list-item-title>Gerar QR Code</v-list-item-title>
             </v-list-item>
 
-            <v-list-item @click.stop="openDialog({ component: 'DeleteTable' })">
+            <v-list-item
+              @click.stop="
+                openDialog({
+                  component: 'DeleteTable',
+                  binds: { tableId: table.id },
+                })
+              "
+            >
               <v-list-item-action>
                 <v-icon>fa-trash</v-icon>
               </v-list-item-action>
-              <v-list-item-title>Apagar mesa</v-list-item-title>
+              <v-list-item-title>Excluir mesa</v-list-item-title>
             </v-list-item>
           </v-list>
         </v-menu>

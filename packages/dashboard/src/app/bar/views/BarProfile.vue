@@ -15,8 +15,12 @@
         </Tables>
       </template>
     </ApolloQuery>
-    <v-dialog v-model="isDialogOpen" width="500" height="500">
-      <component :is="modalComponent" v-bind="modalBinds"></component>
+    <v-dialog v-model="isDialogOpen" width="300">
+      <component
+        :is="modalComponent"
+        v-bind="modalBinds"
+        @dialog:close="isDialogOpen = false"
+      ></component>
     </v-dialog>
   </v-container>
 </template>
@@ -26,11 +30,12 @@ import Tables from '../components/Tables'
 import AddTable from '../components/AddTable'
 import TablesList from '../components/TablesList'
 import TableQRCode from '../components/TableQRCode'
+import DeleteTable from '../components/DeleteTable'
 import { BAR_TABLES_QUERY } from '@easypub/core/domains/bar/graphql'
 
 export default {
   name: 'BarProfile',
-  components: { Tables, AddTable, TablesList, TableQRCode },
+  components: { Tables, AddTable, TablesList, TableQRCode, DeleteTable },
   BAR_TABLES_QUERY,
   data: () => ({
     isDialogOpen: false,
