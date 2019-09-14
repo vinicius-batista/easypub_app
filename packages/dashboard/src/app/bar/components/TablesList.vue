@@ -14,14 +14,21 @@
           </template>
 
           <v-list>
-            <v-list-item>
+            <v-list-item
+              @click.stop="
+                openDialog({
+                  component: 'TableQRCode',
+                  binds: { tableId: table.id },
+                })
+              "
+            >
               <v-list-item-action>
                 <v-icon>fas fa-qrcode</v-icon>
               </v-list-item-action>
               <v-list-item-title>Gerar QR Code</v-list-item-title>
             </v-list-item>
 
-            <v-list-item>
+            <v-list-item @click.stop="openDialog({ component: 'DeleteTable' })">
               <v-list-item-action>
                 <v-icon>fa-trash</v-icon>
               </v-list-item-action>
@@ -39,6 +46,11 @@ export default {
   name: 'TablesList',
   props: {
     tables: Array,
+  },
+  methods: {
+    openDialog(options) {
+      this.$emit('dialog:open', options)
+    },
   },
 }
 </script>
