@@ -40,7 +40,7 @@ export default {
   data: () => ({
     navItems: [
       { title: 'Home', icon: 'fa-home', to: { name: 'home' } },
-      { title: 'Cardápio', icon: 'far fa-list-alt', to: null },
+      { title: 'Cardápio', icon: 'far fa-list-alt', to: { name: 'menu' } },
       { title: 'Pedidos', icon: 'far fa-chart-bar', to: null },
     ],
   }),

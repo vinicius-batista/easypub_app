@@ -34,20 +34,6 @@
             />
           </template>
         </ValidationProvider>
-        <ValidationProvider rules="required|size:2000000" name="Foto do bar">
-          <template v-slot="{ errors }">
-            <v-file-input
-              class="my-2"
-              label="Foto do bar"
-              accept="image/png, image/jpeg, image/bmp"
-              v-model="input['barAvatar']"
-              prepend-icon="fa-image"
-              :error-messages="errors"
-              filled
-              data-testId="barAvatar"
-            />
-          </template>
-        </ValidationProvider>
       </AuthForm>
     </template>
   </ApolloMutation>
@@ -112,6 +98,12 @@ export default {
         label: 'Endereço do bar',
         model: 'barAddress',
         icon: 'fas fa-map-marker-alt',
+        rules: 'required',
+      },
+      {
+        label: 'Foto do  bar',
+        model: 'barAvatar',
+        icon: 'fa-image',
         rules: 'required',
       },
     ],

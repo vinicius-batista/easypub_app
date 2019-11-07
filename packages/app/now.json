@@ -1,0 +1,8 @@
+{
+  "build": {
+    "env": {
+      "VUE_APP_GRAPHQL_ENDPOINT": "@vue_app_graphql_endpoint",
+      "VUE_APP_GRAPHQL_SOCKET_ENDPOINT": "@vue_app_socket_endpoint"
+    }
+  }
+}

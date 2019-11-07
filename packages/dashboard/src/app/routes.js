@@ -1,6 +1,7 @@
 import { authRoutes } from './auth'
 import { homeRoutes } from './home'
 import { barRoutes } from './bar'
+import { menuRoutes } from './menu'
 
 export default [
   { path: '/', redirect: '/home' },
@@ -11,7 +12,7 @@ export default [
     meta: {
       requiresAuth: true,
     },
-    children: [...homeRoutes, ...barRoutes],
+    children: [...homeRoutes, ...barRoutes, ...menuRoutes],
   },
   ...authRoutes,
 ]

@@ -2,7 +2,7 @@
   <div>
     <v-list-item two-line :to="{ name: 'bar.profile' }">
       <v-list-item-avatar>
-        <img :src="`https://localhost:4443/download${avatar}`" />
+        <img :src="avatar" />
       </v-list-item-avatar>
 
       <v-list-item-content>

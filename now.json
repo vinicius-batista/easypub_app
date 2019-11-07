@@ -1,0 +1,16 @@
+{
+  "build": {
+    "env": {
+      "VUE_APP_GRAPHQL_ENDPOINT": "@vue_app_graphql_endpoint",
+      "VUE_APP_GRAPHQL_SOCKET_ENDPOINT": "@vue_app_socket_endpoint"
+    }
+  },
+  "builds": [
+    { "src": "packages/dashboard/package.json", "use": "@now/static-build" },
+    { "src": "packages/app/package.json", "use": "@now/static-build" }
+  ],
+  "routes": [
+    { "src": "/dashboard", "dest": "packages/dashboard/index.html"},
+    { "src": "/app", "dest": "packages/app/index.html"}
+  ]
+}
